@@ -1,8 +1,9 @@
 import React from 'react'
+import { Navbar } from '../components'
 
 const Insights = () => {
   return (
-    <div>Insights</div>
+    <div><Navbar/></div>
   )
 }
 

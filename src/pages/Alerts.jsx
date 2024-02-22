@@ -1,8 +1,11 @@
 import React from 'react'
+import { Navbar } from '../components'
 
 const Alerts = () => {
   return (
-    <div>Alerts</div>
+    <div>
+      <Navbar/>
+    </div>
   )
 }
 

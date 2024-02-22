@@ -1,3 +1,15 @@
 body{
   background: linear-gradient(134.13deg, #EBEFFA 2.49%, #E8EBFD 30.02%, #F0ECF9 51.39%, #EFEEFB 70.14%, #EEF7FF 99.26%);
 }
+/* Navigation.module.css */
+
+.link {
+  margin-right: 2px;
+  color: black;
+  text-decoration: none;
+  font-family: 'adobe-clean, sans-serif';
+}
+
+.linkActive {
+  color: pink;
+}

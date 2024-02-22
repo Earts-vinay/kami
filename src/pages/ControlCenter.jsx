@@ -1,8 +1,11 @@
 import React from 'react'
+import { Navbar } from '../components'
 
 const ControlCenter = () => {
   return (
-    <div>ControlCenter</div>
+    <div>
+      <Navbar/>
+    </div>
   )
 }
 
