@@ -1,5 +1,5 @@
 // Navbar.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,8 +8,8 @@ import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import moment from 'moment';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import moment from "moment";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { ArrowDropDown } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 
@@ -36,13 +36,21 @@ const NavLink = ({ to, label }) => {
   );
 };
 
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 function Navbar() {
   const [fontSizeMenuAnchor, setFontSizeMenuAnchor] = React.useState(null);
-  const [currentTime, setCurrentTime] = useState(moment().format('YY-MM-DD | HH:mm'));
-
+  const [currentTime, setCurrentTime] = useState(
+    moment().format("YY-MM-DD | HH:mm")
+  );
+  const [anchorElUser, setAnchorElUser] = useState();
+const handleCloseUserMenu = () => {
+  setAnchorElUser(null);
+};
+  
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(moment().format('YY-MM-DD | HH:mm'));
+      setCurrentTime(moment().format("YY-MM-DD | HH:mm"));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -65,29 +73,27 @@ function Navbar() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{padding:"0px"}}>
+    <Container maxWidth="xl" sx={{ padding: "0px !important" }}>
       <Toolbar
         sx={{
           display: "flex",
           gap: 2,
           alignItems: "center",
           marginTop: "20px",
-          paddingLeft: 0,   // Adjusted to remove left padding
-          paddingRight: 0,
         }}
       >
         {/* Font Size Dropdown */}
         <Box
-         sx={{
-            background: 'linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4))',
-            width: '20%',
-            height: 80,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '5px',
-            
+          sx={{
+            background:
+              "linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4))",
+            width: "20%",
+            height: 90,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "5px",
           }}
         >
           <img
@@ -113,9 +119,10 @@ function Navbar() {
 
         <Box
           sx={{
-            background: 'linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4))',
+            background:
+              "linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4))",
             width: "80%",
-            height: 80,
+            height: 90,
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
@@ -139,9 +146,12 @@ function Navbar() {
                 <React.Fragment key={item.to}>
                   <NavLink to={item.to} label={item.label} />
                   {item.label.toLowerCase() === "alerts" && (
-                   <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                   <span className="" style={{backgroundColor:"red",width:2, height:2,}}></span>
-                 </Box>
+                    <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+                      <span
+                        className=""
+                        style={{ backgroundColor: "red", width: 2, height: 2 }}
+                      ></span>
+                    </Box>
                   )}
                 </React.Fragment>
               ))}
@@ -151,28 +161,46 @@ function Navbar() {
           {/* User Settings */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-                <Box sx={{display:"flex", gap:2, alignItems:"center"}}>
-                    <Box>
-                    <Typography variant="h6" color="black"> Welcome Back James</Typography>
-                    <Typography variant="body2" color="textSecondary" textAlign="end">{currentTime}</Typography>
-                    </Box>
-                
-            <LightModeIcon />
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                <Box>
+                  <Typography variant="h6" color="black">
+                    {" "}
+                    Welcome Back James
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    textAlign="end"
+                  >
+                    {currentTime}
+                  </Typography>
+
                 </Box>
+
+             
+              </Box>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
+           <Menu
+              sx={{ mt: '45px' }}
               id="menu-appbar"
+              anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
-            >  
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
         </Box>
