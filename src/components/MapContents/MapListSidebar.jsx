@@ -46,20 +46,21 @@ const YourComponent = () => {
   return (
     <div>
       <ToggleButtonGroup
+      fullWidth
         value={alignment}
         exclusive
         onChange={(event, newAlignment) => setAlignment(newAlignment)}
         aria-label="Platform"
-        sx={{ backgroundColor: 'primary', color: 'white' }}
+        sx={{ backgroundColor: 'primary', color: 'white', width:"15%" }}
       >
         <ToggleButton
           value="web"
           onClick={handleListClick}
           sx={{
-            backgroundColor:"primary",
-            color: 'white',
+            backgroundColor:"white",
+           
             '&.Mui-selected': {
-              backgroundColor: 'blue',
+              backgroundColor: '#91B1F4',
             },
           }}
         >
@@ -71,7 +72,7 @@ const YourComponent = () => {
           sx={{
             backgroundColor: 'white',
             '&.Mui-selected': {
-              backgroundColor: 'blue',
+              backgroundColor: '#91B1F4',
             },
           }}
         >
