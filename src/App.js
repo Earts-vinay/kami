@@ -10,15 +10,13 @@ import ControlCenter from './pages/ControlCenter'
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
       <Routes>
           <Route path="/" element={<Map/>} />
           <Route path="/controlcenter" element={<ControlCenter/>} />
           <Route path="/devices" element={<Devices/>} />
           <Route path="/insights" element={<Insights/>} />
           <Route path="/alerts" element={<Alerts/>} />
-      </Routes>
-      </div>
+      </Routes>   
     </BrowserRouter>
   );
 }

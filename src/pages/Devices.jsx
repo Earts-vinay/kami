@@ -178,7 +178,7 @@ const Devices = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xl" sx={{ height: "55vh" }}>
+      <Container maxWidth="xl" sx={{ height: "85vh" }}>
         <Box sx={{ backgroundColor: "#eff2fd", width: "100%", marginTop: "10px", borderRadius: "10px" }}>
           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
             <TextField
