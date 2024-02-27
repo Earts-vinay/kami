@@ -22,9 +22,10 @@ const NavLink = ({ to, label }) => {
   const isActive = location.pathname === to;
 
   const linkStyles = {
-    color: isActive ? "purple" : "black",
+    color: isActive ? "#2465e9" : "#001426",
     textDecoration: "none",
-    fontFamily: "adobe-clean, sans-serif",
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: "bold",
     margin: "0 10px",
     transition: "border-color 0.3s ease-in-out",
     ...(isActive && {
