@@ -6,11 +6,13 @@ import Alerts from './pages/Alerts';
 import Devices from './pages/Devices';
 import Insights from './pages/Insights';
 import ControlCenter from './pages/ControlCenter'
+import Login from './pages/Login';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+         <Route path="/login" element={<Login/>} />
           <Route path="/" element={<Map/>} />
           <Route path="/controlcenter" element={<ControlCenter/>} />
           <Route path="/devices" element={<Devices/>} />

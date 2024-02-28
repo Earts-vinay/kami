@@ -15,21 +15,21 @@ import { Box, TextField, InputAdornment } from '@mui/material';  // Add these li
 
 const YourComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [alignment, setAlignment] = useState('web');
+  const [alignment, setAlignment] = useState('map');
   const [searchTerm, setSearchTerm] = useState('');
 
- 
+
   const handleListClick = () => {
     setSidebarOpen(true);
-    setAlignment('web');
+    setAlignment('list');
   };
 
   const handleMapClick = () => {
     setSidebarOpen(false);
-    setAlignment('android');
+    setAlignment('map');
   };
 
- 
+
   // Example data array (replace it with your actual data)
   const dataArray = [
     { image: 'assets/images/car.jpg', zone: 'Zone A', pole: 'Pole 1', camera: 'Camera 1' },
@@ -45,40 +45,52 @@ const YourComponent = () => {
 
   return (
     <div>
-      <ToggleButtonGroup
-      fullWidth
-        value={alignment}
-        exclusive
-        onChange={(event, newAlignment) => setAlignment(newAlignment)}
-        aria-label="Platform"
-        sx={{ backgroundColor: 'primary', color: 'white', width:"15%" }}
-      >
-        <ToggleButton
-          value="web"
-          onClick={handleListClick}
-          sx={{
-            backgroundColor:"white",
-           
-            '&.Mui-selected': {
-              backgroundColor: '#91B1F4',
-            },
-          }}
+      <Box width="100%">
+        <ToggleButtonGroup
+          fullWidth
+          value={alignment}
+          exclusive
+          onChange={(event, newAlignment) => setAlignment(newAlignment)}
+          aria-label="Platform"
+          sx={{ backgroundColor: 'black', color: 'white', width: "15%" }}
         >
-          List
-        </ToggleButton>
-        <ToggleButton
-          value="android"
-          onClick={handleMapClick}
-          sx={{
-            backgroundColor: 'white',
-            '&.Mui-selected': {
-              backgroundColor: '#91B1F4',
-            },
-          }}
-        >
-          Map
-        </ToggleButton>
-      </ToggleButtonGroup>
+          <ToggleButton
+            value="list"
+            onClick={handleListClick}
+            size='small'
+            sx={{
+              backgroundColor: "white",
+              textTransform: "capitalize",
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: "bold",
+              '&.Mui-selected': {
+                backgroundColor: '#2465e9',
+                color: "white",
+              },
+            }}
+          >
+            List View
+          </ToggleButton>
+          <ToggleButton
+            value="map"
+            onClick={handleMapClick}
+            size='small'
+            sx={{
+              backgroundColor: 'white',
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: "bold",
+              textTransform: "capitalize",
+              '&.Mui-selected': {
+                backgroundColor: '#2465e9',
+                color: "white",
+              },
+            }}
+          >
+            Map View
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+
 
       {sidebarOpen && (
         <Paper
@@ -89,20 +101,17 @@ const YourComponent = () => {
             position: 'absolute',
             top: '0',
             right: '0',
-            height: '100%',
+            height: "100%",
             zIndex: 1000,
           }}
         >
           {/* Search Bar */}
-          <Box sx={{ backgroundColor: "#91B1F4", padding:"10px",display:"flex",justifyContent:"end"}}>
-          {/* <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
-           
-            <InputBase
-              placeholder="Search"
-              inputProps={{ 'aria-label': 'search' }}
-              width={200}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              sx={{ marginLeft: '8px',backgroundColor:"blue" }}
+          <Box sx={{ backgroundColor: "#2465e9", padding: "10px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1 }}>
+            <TextField
+              id="search"
+              type="search"
+              label="Search"
+              size="small"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -110,49 +119,36 @@ const YourComponent = () => {
                   </InputAdornment>
                 ),
               }}
+              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px" }}
             />
-           
-          </div> */}
-             <TextField
-        id="search"
-        type="search"
-        label="Search"
-        size="small"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-        sx={{backgroundColor:"white",border:"none",borderRadius:"5px"}}
-      />
           </Box>
 
-
-          {/* MUI Table */}
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell>Zone </TableCell>
-                <TableCell>Pole </TableCell>
-                <TableCell>Camera</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {dataArray.map((data, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px',borderRadius:"5px" }} />
-                  </TableCell>
-                  <TableCell>{data.zone}</TableCell>
-                  <TableCell>{data.pole}</TableCell>
-                  <TableCell>{data.camera}</TableCell>
+          <Box height="90%" overflow="auto">
+            {/* MUI Table */}
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Zone </TableCell>
+                  <TableCell>Pole </TableCell>
+                  <TableCell>Camera</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody >
+                {dataArray.map((data, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
+                    </TableCell>
+                    <TableCell>{data.zone}</TableCell>
+                    <TableCell>{data.pole}</TableCell>
+                    <TableCell>{data.camera}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
+
         </Paper>
       )}
     </div>

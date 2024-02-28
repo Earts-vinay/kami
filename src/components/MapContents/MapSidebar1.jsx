@@ -30,6 +30,7 @@ const MapSidebar1 = () => {
                     top: "0px",
                     right: "0",
                     height: "250px",
+                    borderRadius:"5px"
                   }}
                 >
                   <div style={{ padding: "0px" }}>
@@ -38,7 +39,7 @@ const MapSidebar1 = () => {
                       <Typography
                         variant="body2"
                         sx={{
-                          backgroundColor: "#91B1F4",
+                          backgroundColor: "#2465e9",
                           textAlign: "center",
                           paddingY: "5px",
                           color: "white",
