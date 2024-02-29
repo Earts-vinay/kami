@@ -49,7 +49,7 @@ const ControlCenter = () => {
     <div>
       <Navbar />
       <Container maxWidth="xl">
-        <Box sx={{ backgroundColor: '#eff2fd', height: '78vh', padding: '20px', mt: 1, borderRadius: '10px' }}>
+        <Box sx={{ backgroundColor: '#eff2fd', height: '75vh', padding: '20px', mt: 1, borderRadius: '10px' }}>
           <Box display="flex" justifyContent="space-between">
             <Box display="flex" justifyContent="" gap={2} mb={2} width={800} height={40}>
               <FormControl style={{ width: "30%" }} size='small'>
@@ -82,9 +82,9 @@ const ControlCenter = () => {
             />
           </Box>
 
-          <Box display="flex" flexWrap="wrap" justifyContent="" gap={2} height={"68vh"} overflow="auto" paddingY="20px">
+          <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="68vh" overflow="auto" paddingY="10px">
             {getPaginatedCards().map((card) => (
-              <Card key={card.id} sx={{ position: 'relative', width: '23.5%', marginBottom: '20px', gap: "10px", height: "36%", borderRadius: "10px" }}>
+              <Card key={card.id} sx={{ position: 'relative',width: { xs: '100%', sm: '48%', md: '30.5%' },  gap: "10px", height: "40%", borderRadius: "10px" }}>
                 <CardMedia component="img" alt={card.title} height="280px" image={card.imageUrl} />
                 <CardContent sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, color: 'white', borderRadius: '0 0 10px 10px', padding: "0px" }}>
                   <Typography variant="body2" color="text.light" backgroundColor='rgba(0, 0, 0, 0.5)' paddingY="15px" paddingX={2}>
@@ -94,11 +94,8 @@ const ControlCenter = () => {
                 </CardContent>
               </Card>
             ))}
-          </Box>
-
-
-          {/* Centered Pagination Component */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                {/* Centered Pagination Component */}
+          <Box sx={{ display: 'flex', justifyContent: 'center !important', marginTop: '10px',alignItems:"center",alignContent:"center" }}>
             <Pagination
               count={Math.ceil(cardData.length / cardsPerPage)}
               color="primary"
@@ -106,6 +103,10 @@ const ControlCenter = () => {
               onChange={handlePageChange}
             />
           </Box>
+          </Box>
+
+
+      
         </Box>
       </Container>
     </div>

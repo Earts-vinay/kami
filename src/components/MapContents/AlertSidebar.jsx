@@ -25,7 +25,7 @@ const AlertSidebar = () => {
             {isSidebarOpen && (
                 <Paper
                     style={{
-                        width: 300,
+                        width: 330,
                         transition: 'width 0.3s, left 0.3s',
                         overflow: 'auto',
                         position: 'absolute',
