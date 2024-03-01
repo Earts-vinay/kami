@@ -7,6 +7,7 @@ import Devices from './pages/Devices';
 import Insights from './pages/Insights';
 import ControlCenter from './pages/ControlCenter'
 import Login from './pages/Login';
+import Camera from './components/MapContents/MapInsideScreens/Camera';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/devices" element={<Devices/>} />
           <Route path="/insights" element={<Insights/>} />
           <Route path="/alerts" element={<Alerts/>} />
+          <Route path="/camera" element={<Camera/>} />
       </Routes>   
     </BrowserRouter>
   );

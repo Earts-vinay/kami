@@ -84,7 +84,7 @@ const ControlCenter = () => {
 
           <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="68vh" overflow="auto" paddingY="10px">
             {getPaginatedCards().map((card) => (
-              <Card key={card.id} sx={{ position: 'relative',width: { xs: '100%', sm: '48%', md: '30.5%' },  gap: "10px", height: "40%", borderRadius: "10px" }}>
+              <Card key={card.id} sx={{ position: 'relative',width: { xs: '100%', sm: '48%', md: '31.5%' },  gap: "10px", height: "40%", borderRadius: "10px" }}>
                 <CardMedia component="img" alt={card.title} height="280px" image={card.imageUrl} />
                 <CardContent sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, color: 'white', borderRadius: '0 0 10px 10px', padding: "0px" }}>
                   <Typography variant="body2" color="text.light" backgroundColor='rgba(0, 0, 0, 0.5)' paddingY="15px" paddingX={2}>

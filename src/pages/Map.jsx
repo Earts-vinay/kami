@@ -100,7 +100,7 @@ const Map = () => {
 <Container maxWidth="xl">
 <Box sx={{ marginTop: "20px", borderRadius: "5px" }}>
 <LoadScript googleMapsApiKey="AIzaSyC-5nyue-_mpTnrAgQ1LfunsNnLlIumhZI">
-      <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={10}>
+      <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={18}>
         {destinations.map((destination) => (
           <Marker
             key={destination.id}
