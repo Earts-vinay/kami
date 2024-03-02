@@ -34,10 +34,11 @@ const Insights = () => {
   return (
     <>
       <Navbar />
-      <Container maxWidth="xl">
+      <Container maxWidth="xxl" sx={{padding:"0px !important"}}>
         <Box
-          backgroundColor="#eff2fd"
-          sx={{ marginTop: "10px", borderRadius: "10px", padding: "10px" }}
+          backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)"
+          sx={{ margin: "10px", borderRadius: "10px", padding: "10px",  boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          border: "solid 2px #2465e9",backdropFilter: "blur(15px)"}}
         >
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Tabs
@@ -47,6 +48,7 @@ const Insights = () => {
                 borderBottom: "none",
                 ".css-heg063-MuiTabs-flexContainer": {
                   backgroundColor: "white",
+                  height: "80%",
                   borderRadius: "5px",
                   boxShadow:"0 3px 6px 0 rgba(0, 0, 0, 0.16)"
                 },
@@ -65,6 +67,8 @@ const Insights = () => {
                   sx={{
                     textTransform: "capitalize",
                     backgroundColor: selectedTab === index && "#84bef1",
+                    color: selectedTab === index && " black !important",
+                    minHeight: "30px !important",
                     margin: "5px",
                     borderRadius: "5px",
                   }}
@@ -85,17 +89,16 @@ const Insights = () => {
                     </InputAdornment>
                   ),
                 }}
-                sx={{
-                  backgroundColor: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                }}
+                sx={{ backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)",   backdropFilter: "blur(15px)",
+              boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+              border: "solid 2px #2465e9",
+              borderRadius: "5px", }}
               />
             </Box>
           </Box>
 
-          <Box mt={2}>
-            <TabPanel value={selectedTab} index={0}>
+          <Box mt={1} style={{padding:"0px !important"}}>
+            <TabPanel value={selectedTab} index={0} sx={{padding:"0px !important"}}>
               <Overview />
             </TabPanel>
             <TabPanel value={selectedTab} index={1}>

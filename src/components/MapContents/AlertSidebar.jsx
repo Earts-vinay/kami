@@ -31,7 +31,7 @@ const AlertSidebar = () => {
                         position: 'absolute',
                         bottom: '20px',
                         left: '15px',
-                        height: '65%',
+                       
                         zIndex: 1000,
                         borderRadius: "5px"
                     }}
@@ -51,10 +51,10 @@ const AlertSidebar = () => {
                         </Typography>
                         <CloseIcon sx={{ position: 'absolute', top: 0, right: 0, color: 'white', cursor: 'pointer', paddingY: "6px", paddingX: '10px' }} onClick={handleSidebarToggle} />
 
-                        <Box display="flex">
-                            <Box>
+                        <Box display="flex" sx={{ height: '25%'}}>
+                            <Box height="60%" overflow="auto">
                                 {cameraData.map((camera) => (
-                                    <Link to={`/camera`} key={camera.id} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/camera`} key={camera.id} style={{ textDecoration: 'none' }} height="50%" overflow="auto">
                                         <Card sx={{ display: 'flex', marginX: "10px", marginY: "10px", alignItems: "center", border: "0px", height: 100, cursor: "pointer" }} >
                                             <CardMedia
                                                 component="img"

@@ -6,7 +6,7 @@ const CameraVideo = () => {
   return (
     <>
         {/* Video section */}
-        <Box sx={{ padding: "0px !important", "&.css-19kzrtu": { padding: "0px !important" } }}>
+        <Box sx={{ padding: "0px !important", "&.css-19kzrtu": { padding: "0px !important" },height:"57vh"}}>
   {/* MUI Video Player */}
   <ReactPlayer
     url="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"

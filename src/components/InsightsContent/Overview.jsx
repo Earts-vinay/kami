@@ -47,9 +47,9 @@ const Overview = () => {
 
 
   return (
-    <>
-      <Box display="flex" justifyContent="end" alignItems="center">
-        <Typography variant="h6">Last Updated {moment().format('HH:mm')}</Typography>
+    <Box style={{padding:"0px !important"}}>
+      <Box display="flex" justifyContent="end" alignItems="center" style={{padding:"0px !important"}}>
+        <Typography variant="body-2">Last Updated {moment().format('HH:mm')}</Typography>
         <IconButton color="primary" >
           <RefreshIcon />
         </IconButton>
@@ -118,7 +118,7 @@ const Overview = () => {
           </PieChart>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 

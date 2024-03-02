@@ -140,13 +140,13 @@ const Devices = () => {
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
 
   const alertsData = [
-    { id: 1, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline",  },
-    { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline",  },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
+    { id: 1, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     // Add more data as needed
   ];
 
@@ -178,8 +178,12 @@ const Devices = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xl" sx={{ height: "85vh" }}>
-        <Box sx={{ backgroundColor: "#eff2fd", width: "100%", marginTop: "10px", borderRadius: "10px" }}>
+      <Container maxWidth="xl" sx={{ height: "70vh" }}>
+        <Box sx={{
+          backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
+          boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          border: "solid 2px #2465e9", width: "100%", marginTop: "10px", borderRadius: "10px"
+        }}>
           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
             <TextField
               label="Search"
@@ -195,7 +199,10 @@ const Devices = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", }}
+              sx={{ backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)",   backdropFilter: "blur(15px)",
+              boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+              border: "solid 2px #2465e9",
+            border: "none", borderRadius: "5px", }}
             />
           </Box>
 
@@ -238,7 +245,7 @@ const Devices = () => {
               color="primary"
               page={page + 1}
               onChange={(event, value) => handleChangePage(event, value - 1)}
-              
+
             />
           </Box>
         </Box>

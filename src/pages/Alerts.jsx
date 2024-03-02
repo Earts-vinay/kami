@@ -51,7 +51,11 @@ const Alerts = () => {
     <div>
       <Navbar />
       <Container maxWidth="xl" sx={{height:"55vh"}}>
-        <Box sx={{ backgroundColor: "#eff2fd", width: "100%", marginTop: "10px", borderRadius: "10px" }}>
+      <Box sx={{
+          backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
+          boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          border: "solid 2px #2465e9", width: "100%", marginTop: "10px", borderRadius: "10px"
+        }}>
           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
             <TextField
               label="Search"
@@ -67,7 +71,10 @@ const Alerts = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", }}
+              sx={{ backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)",   backdropFilter: "blur(15px)",
+              boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+              border: "solid 2px #2465e9",
+            border: "none", borderRadius: "5px", }}
             />
           </Box>
 
@@ -101,6 +108,7 @@ const Alerts = () => {
                         onChange={handleAddInfoChange}
                         displayEmpty
                         inputProps={{ 'aria-label': 'Add Info' }}
+                        size='small'
                       >
                         <MenuItem value="">Unresolved</MenuItem>
                         <MenuItem value="">Resolved</MenuItem>

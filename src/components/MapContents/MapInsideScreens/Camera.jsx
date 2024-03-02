@@ -56,10 +56,10 @@ const Camera = () => {
         // Add more buttons as needed
       ];
     return (
-        <>
-            <Container maxWidth="xl">
+     
+           <Container maxWidth="xxl" paddingLeft="0px !important" paddingRight="0px !important" sx={{ padding: "0px !important" }}>
                 <Box display="flex" height="100vh">
-                    <Box width="60%">
+                    <Box width="65%" height="">
                         {/* Header with tabs and back button */}
                         <Box
 
@@ -68,7 +68,7 @@ const Camera = () => {
                             <Box display="flex" justifyContent="space-between" alignItems="center" >
                                 <IconButton onClick={handleArrowClick}>
                                     <ArrowBackIosNewIcon />
-                                    <Typography px={2}>  Zone:A, Pole 1, Camera name1</Typography>
+                                    <Typography px={1}>  Zone:A, Pole 1, Camera name1</Typography>
                                 </IconButton>
 
                                 <Tabs
@@ -80,7 +80,8 @@ const Camera = () => {
                                             backgroundColor: "white",
                                             height: "80%",
                                             borderRadius: "5px",
-                                            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)"
+                                            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+                                            marginX:"10px"
                                         },
                                     }}
                                     TabIndicatorProps={{ style: { display: "none" } }}
@@ -112,7 +113,7 @@ const Camera = () => {
                             </Box>
 
                             <Box mt={0}>
-                                <TabPanel value={selectedTab} index={0} sx={{ "&.css-19kzrtu": { padding: "0px !important" } }}>
+                                <TabPanel value={selectedTab} index={0} sx={{  }}>
                                     <CameraVideo />
                                 </TabPanel>
                                 <TabPanel value={selectedTab} index={1}>
@@ -182,7 +183,7 @@ const Camera = () => {
                         </Box>
                     </Box>
 
-                    <Box width="40%" backgroundColor="white">
+                    <Box width="35%" backgroundColor="white">
                         {/* Header with search bar */}
                         <Box sx={{ backgroundColor: "#2465e9", padding: "10px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1 }}>
                             <TextField
@@ -229,7 +230,7 @@ const Camera = () => {
                     </Box>
                 </Box>
             </Container>
-        </>
+      
     );
 };
 
