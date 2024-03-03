@@ -187,7 +187,7 @@ const handleCloseUserMenu = () => {
   >
      <MenuItem onClick={handleCloseUserMenu}>
      <AccountCircleIcon style={{ marginRight: '8px', color: 'black' }} />
-      <NavLink to="/profile" label="My Profile"/>
+      <NavLink to="/myprofile" label="My Profile"/>
     </MenuItem>
     <MenuItem onClick={handleCloseUserMenu}>
     <SettingsIcon style={{ marginRight: '8px' }} />

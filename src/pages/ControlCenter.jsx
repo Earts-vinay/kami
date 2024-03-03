@@ -49,7 +49,11 @@ const ControlCenter = () => {
     <div>
       <Navbar />
       <Container maxWidth="xl">
-        <Box sx={{ backgroundColor: '#eff2fd', height: '75vh', padding: '20px', mt: 1, borderRadius: '10px' }}>
+        <Box sx={{
+          backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', height: '75vh', padding: '20px', mt: 1, borderRadius: '10px', backdropFilter: "blur(15px)",
+          boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          border: "solid .5px #2465e9"
+        }}>
           <Box display="flex" justifyContent="space-between">
             <Box display="flex" justifyContent="" gap={2} mb={2} width={800} height={40}>
               <FormControl style={{ width: "30%" }} size='small'>
@@ -69,7 +73,7 @@ const ControlCenter = () => {
             <TextField
               label="Search"
               variant="outlined"
-              style={{ marginBottom: '20px' }}
+              style={{ marginBottom: '20px', border: "solid 1px #2465e9" }}
               size="small"
               InputProps={{
                 endAdornment: (
@@ -78,27 +82,38 @@ const ControlCenter = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ backgroundColor: 'white', border: 'none', borderRadius: '5px' }}
+              sx={{ backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', border: 'none', borderRadius: '5px' }}
             />
           </Box>
 
           <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="65vh" overflow="auto" paddingY="10px">
             {getPaginatedCards().map((card) => (
-              <Card key={card.id} sx={{ position: 'relative',width: { xs: '100%', sm: '48%', md: '31.5%' },  gap: "10px", height: "50%", borderRadius: "10px" }}>
+              <Card key={card.id} sx={{ position: 'relative', width: { xs: '100%', sm: '48%', md: '31.5%' }, gap: "10px", height: "50%", borderRadius: "10px" }}>
                 <CardMedia component="img" alt={card.title} height="280px" image={card.imageUrl} />
                 <CardContent sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, color: 'white', borderRadius: '0 0 10px 10px', padding: "0px" }}>
-                  <Typography variant="body2" color="text.light" backgroundColor='rgba(0, 0, 0, 0.5)' paddingY="15px" paddingX={2}>
+                  <Typography
+                    variant="body2"
+
+                    style={{
+                      background: 'linear-gradient(to bottom, #000, rgba(84, 84, 84, 0.3))',
+                      opacity: 0.7,
+                      padding: '15px',
+                      color: "white",
+
+                    }}
+                  >
                     {card.description}
                   </Typography>
+
                   <CloseIcon sx={{ position: 'absolute', top: 0, right: 0, color: 'white', cursor: 'pointer', paddingY: "15px", paddingX: '10px' }} />
                 </CardContent>
               </Card>
             ))}
-      
+
           </Box>
 
           {/* Centered Pagination Component */}
-          <Box sx={{ display: 'flex', justifyContent: 'center !important',paddingTop:"10px",alignItems:"center",alignContent:"center" }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center !important', paddingTop: "10px", alignItems: "center", alignContent: "center" }}>
             <Pagination
               count={Math.ceil(cardData.length / cardsPerPage)}
               color="primary"
@@ -106,7 +121,7 @@ const ControlCenter = () => {
               onChange={handlePageChange}
             />
           </Box>
-      
+
         </Box>
       </Container>
     </div>

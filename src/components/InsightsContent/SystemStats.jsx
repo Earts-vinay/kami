@@ -38,7 +38,7 @@ const SystemStats = () => {
   return (
     <>
       <Box display="flex" gap={2}>
-        <Box width="30%" sx={{backgroundColor:"white",borderRadius:"5px",padding:"15px"}}>
+        <Box width="30%" height="30%" sx={{backgroundColor:"white",borderRadius:"5px",padding:"15px"}}>
             <Typography pb={2}>  Paired Camera Status :</Typography>
           <PieChart width={200} height={200}>
             <Pie dataKey="value" isAnimationActive={false} data={pieChartData} cx="50%" cy="50%" outerRadius={80}>
@@ -48,9 +48,9 @@ const SystemStats = () => {
             </Pie>
           </PieChart>
         </Box>
-        <Box width="30%" sx={{backgroundColor:"white",borderRadius:"5px", padding:"15px"}}>
+        <Box width="30%" height="30%" sx={{backgroundColor:"white",borderRadius:"5px", padding:"15px"}}>
             <Typography pb={2}>  Total Paired Camera Status :</Typography>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={200}>
             <LineChart data={lineChartData1}>
               <XAxis dataKey="timestamp" axisLine={false} />
               <YAxis axisLine={false} />
@@ -63,9 +63,9 @@ const SystemStats = () => {
             </LineChart>
           </ResponsiveContainer>
         </Box>
-        <Box width="60%" sx={{backgroundColor:"white",borderRadius:"5px",padding:"15px"}}>
+        <Box width="60%" height="30%" sx={{backgroundColor:"white",borderRadius:"5px",padding:"15px"}}>
             <Typography pb={2}>  Devices Online</Typography>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={200}>
             <LineChart data={lineChartData2}>
               <XAxis dataKey="timestamp" axisLine={false} />
               <YAxis axisLine={false} />

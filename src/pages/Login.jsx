@@ -42,15 +42,17 @@ const Login = () => {
 
     return (
         <Container maxWidth="xl">
-            <Box height="100vh" display="flex" alignItems="center">
-                <Box width="50%" marginX={4}>
+            <Box height="100vh" display="flex" alignItems="center" justifyContent="center">
+                <Box width="50%" >
+                    <Box width="80%" >
                 <img
-                        src="/assets/logos/kamilogo.png"
+                        src="/assets/logos/saplogo.svg"
                         alt="Logo"
                         style={{ objectFit: "contain" }}
                     />
                     <Typography variant="h3" mt={2}>Welcome to <br/> The Spear of Security</Typography>
                     <Typography mt={2}>Our AI platform uses computer vision to provide home security, elder care, and commercial applications. It tracks movements of cars, license plates, and people, quickly warning of any questionable activity.</Typography>
+                </Box>
                 </Box>
                 <Box sx={{ backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", boxShadow: "0 0 15px 0 rgba(36, 101, 233, 0.3)",
                     border: "solid 2px #fff", padding: "50px", borderRadius: "10px", marginX: "10px", width:"30%" }}>
@@ -80,7 +82,7 @@ const Login = () => {
                             id="password"
                             autoComplete="current-password"
                         />
-                             <ForgotPasswordLink onClick={handleForgotPassword} paddingY="20px">
+                             <ForgotPasswordLink onClick={handleForgotPassword} sx={{  textTransform: "capitalize", paddingY:"20px"}}>
                             Forgot Password?
                         </ForgotPasswordLink>
                         <StyledButton

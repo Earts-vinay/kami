@@ -37,7 +37,7 @@ const Insights = () => {
       <Container maxWidth="xxl" sx={{padding:"0px !important"}}>
         <Box
           backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)"
-          sx={{ margin: "10px", borderRadius: "10px", padding: "10px",  boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          sx={{ margin: "10px", borderRadius: "10px", padding: "10px",height:"79vh",overflow:"auto",  boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
           border: "solid 2px #2465e9",backdropFilter: "blur(15px)"}}
         >
           <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -76,7 +76,7 @@ const Insights = () => {
               ))}
             </Tabs>
 
-            <Box mt={2}>
+            <Box mt={1}>
               <TextField
                 label="Search"
                 variant="outlined"

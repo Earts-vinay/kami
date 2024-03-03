@@ -79,10 +79,10 @@ const Overview = () => {
         </Grid>
       </Box>
 
-      <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} my={5} gap={2}>
-        <Box style={{ width: '50%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={3} gap={2}>
+        <Box style={{ width: '50%', backgroundColor: "white", borderRadius: "5px", padding:"15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
           {/* MUI Two Line Chart */}
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={300} >
             <LineChart data={lineChartData}>
               <XAxis dataKey="day" axisLine={false} />
               <YAxis axisLine={false} />
@@ -97,7 +97,7 @@ const Overview = () => {
         </Box>
 
 
-        <Box style={{ width: '50%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
+        <Box style={{ width: '50%', backgroundColor: "white", borderRadius: "5px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
           {/* Pie Chart */}
           <PieChart width={400} height={300}>
             <Pie
@@ -108,6 +108,7 @@ const Overview = () => {
               outerRadius={120}
               fill="#8884d8"
               label
+             
             >
               {/* Customize Pie Chart Colors */}
               <Cell fill="#0088FE" />

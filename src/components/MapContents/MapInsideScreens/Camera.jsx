@@ -80,7 +80,7 @@ const Camera = () => {
                                             backgroundColor: "white",
                                             height: "80%",
                                             borderRadius: "5px",
-                                            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+                                            boxShadow: "0 0 5px 0 rgba(36, 101, 233, 0.5)",
                                             marginX:"10px"
                                         },
                                     }}
@@ -185,7 +185,7 @@ const Camera = () => {
 
                     <Box width="35%" backgroundColor="white">
                         {/* Header with search bar */}
-                        <Box sx={{ backgroundColor: "#2465e9", padding: "10px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1 }}>
+                        <Box sx={{ backgroundColor: "#2465e9", padding: "10px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1,  backdropFilter: "blur(5px)", boxShadow: "-1px 6px 31px 0 rgba(25, 96, 159, 0.1)" }}>
                             <TextField
                                 id="search"
                                 type="search"
@@ -203,30 +203,31 @@ const Camera = () => {
                         </Box>
                         {/* MUI Table */}
                         <Box height="90%" overflow="auto">
-                            {/* MUI Table */}
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell></TableCell>
-                                        <TableCell>Zone </TableCell>
-                                        <TableCell>Pole </TableCell>
-                                        <TableCell>Camera</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody >
-                                    {dataArray.map((data, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell>
-                                                <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
-                                            </TableCell>
-                                            <TableCell>{data.zone}</TableCell>
-                                            <TableCell>{data.pole}</TableCell>
-                                            <TableCell>{data.camera}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </Box>
+    {/* MUI Table */}
+    <Table style={{ backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%) !important", borderRadius: "5px" }}>
+        <TableHead sx={{ backgroundColor: "white" }}>
+            <TableRow>
+                <TableCell></TableCell>
+                <TableCell>Zone</TableCell>
+                <TableCell>Pole</TableCell>
+                <TableCell>Camera</TableCell>
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            {dataArray.map((data, index) => (
+                <TableRow key={index}>
+                    <TableCell>
+                        <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
+                    </TableCell>
+                    <TableCell>{data.zone}</TableCell>
+                    <TableCell>{data.pole}</TableCell>
+                    <TableCell>{data.camera}</TableCell>
+                </TableRow>
+            ))}
+        </TableBody>
+    </Table>
+</Box>
+
                     </Box>
                 </Box>
             </Container>
