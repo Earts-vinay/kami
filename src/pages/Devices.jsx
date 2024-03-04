@@ -178,7 +178,7 @@ const Devices = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xl" sx={{ height: "70vh" }}>
+      <Container maxWidth="xxl" sx={{ height: "70vh" }}>
         <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
           boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
@@ -216,7 +216,7 @@ const Devices = () => {
                   <TableCell>Pole</TableCell>
                   <TableCell>Camera Model</TableCell>
                   <TableCell>Status</TableCell>
-                  <TableCell> Controls </TableCell>
+                  {/* <TableCell> Controls </TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -230,9 +230,9 @@ const Devices = () => {
                     <TableCell>{row.pole}</TableCell>
                     <TableCell>{row.eventType}</TableCell>
                     <TableCell>{row.status} </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       <Switch />
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>

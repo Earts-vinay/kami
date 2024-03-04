@@ -97,10 +97,10 @@ const Map = () => {
   return (
 <>
 <Navbar/>
-<Container maxWidth="xl">
-<Box sx={{ marginTop: "20px", borderRadius: "5px" }}>
+<Container maxWidth="xxl">
+<Box sx={{ marginTop: "5px",  }}>
 <LoadScript googleMapsApiKey="AIzaSyC-5nyue-_mpTnrAgQ1LfunsNnLlIumhZI">
-      <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={18}>
+      <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={18} sx={{borderRadius: "15px"}}> 
         {destinations.map((destination) => (
           <Marker
             key={destination.id}

@@ -48,7 +48,7 @@ const ControlCenter = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xl">
+      <Container maxWidth="xxl">
         <Box sx={{
           backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', height: '75vh', padding: '20px', mt: 1, borderRadius: '10px', backdropFilter: "blur(15px)",
           boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
@@ -89,7 +89,7 @@ const ControlCenter = () => {
           <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="65vh" overflow="auto" paddingY="10px">
             {getPaginatedCards().map((card) => (
               <Card key={card.id} sx={{ position: 'relative', width: { xs: '100%', sm: '48%', md: '31.5%' }, gap: "10px", height: "50%", borderRadius: "10px" }}>
-                <CardMedia component="img" alt={card.title} height="280px" image={card.imageUrl} />
+                <CardMedia component="img" alt={card.title} height="100%" image={card.imageUrl} />
                 <CardContent sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, color: 'white', borderRadius: '0 0 10px 10px', padding: "0px" }}>
                   <Typography
                     variant="body2"

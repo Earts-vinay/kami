@@ -4,8 +4,15 @@ import { Navbar } from '../components';
 import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
+import { useNavigate } from 'react-router-dom';
 
 const Alerts = () => {
+  const navigate = useNavigate();
+
+  const handleTableRowClick = (row) => {
+    // Assuming you have a route for the camera screen with the camera ID as a parameter
+    navigate(`/camera`);
+  };
   const pageSizeOptions = [4, 8, 20];
 
   const [page, setPage] = useState(0);
@@ -50,7 +57,7 @@ const Alerts = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xl" sx={{height:"55vh"}}>
+      <Container maxWidth="xxl" sx={{height:"55vh"}}>
       <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
           boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
@@ -93,7 +100,7 @@ const Alerts = () => {
               </TableHead>
               <TableBody>
                 {paginatedData.map((row, index) => (
-                  <TableRow key={row.id}>
+                  <TableRow key={row.id} onClick={() => handleTableRowClick(row)} sx={{cursor: 'pointer'}}>
                     <TableCell>
                       <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
                     </TableCell>
