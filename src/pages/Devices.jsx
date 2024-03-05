@@ -140,7 +140,7 @@ const Devices = () => {
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
 
   const alertsData = [
-    { id: 1, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 1, image: 'assets/images/car1.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
@@ -222,8 +222,8 @@ const Devices = () => {
               <TableBody>
                 {paginatedData.map((row, index) => (
                   <TableRow key={row.id}>
-                    <TableCell>
-                      <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
+                     <TableCell width="20%" >
+                      <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px",paddingLeft:"50px" }} />
                     </TableCell>
                     <TableCell>{row.camera}</TableCell>
                     <TableCell>{row.zone}</TableCell>

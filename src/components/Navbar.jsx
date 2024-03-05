@@ -319,7 +319,7 @@ const handleCloseUserMenu = () => {
   const handleIncreaseFontSize = () => {
     // Implement logic to increase font size
   };
-  const [age, setAge] = useState('');
+  const [age, setAge] = useState(10);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -337,23 +337,19 @@ const handleCloseUserMenu = () => {
           alt="Logo"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
-          <FormControl variant="standard" sx={{ width:"100px",paddingLeft:"25px",paddingTop:"5px" }} size="small" >
+          <FormControl variant="standard" sx={{ width:"150px",paddingLeft:"25px",paddingTop:"5px" }} size="small" >
        
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={age}
-          defaultValue={10}
-          onChange={handleChange}
-        
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
+          <Select
+  labelId="demo-simple-select-standard-label"
+  id="demo-simple-select-standard"
+  value={age}
+  defaultValue={10}
+  onChange={handleChange}
+>
+  <MenuItem value={10}>Old North Campus</MenuItem>
+  <MenuItem value={20}> North Campus</MenuItem>
+  <MenuItem value={30}> Campus</MenuItem>
+</Select>
       </FormControl>
 
       </div>
@@ -435,8 +431,8 @@ const handleCloseUserMenu = () => {
     onClose={handleCloseUserMenu}
   >
      <MenuItem onClick={handleCloseUserMenu}>
-     <AccountCircleIcon style={{ marginRight: '8px', color: 'black' }} />
-      <NavLink to="/myprofile" label="My Profile"/>
+     <AccountCircleIcon style={{ marginRight: '8px', color: 'white' }} />
+      <NavLink to="/myprofile" style={{ color: 'blue' }} label="My Profile"/>
     </MenuItem>
     <MenuItem onClick={handleCloseUserMenu}>
     <SettingsIcon style={{ marginRight: '8px' }} />

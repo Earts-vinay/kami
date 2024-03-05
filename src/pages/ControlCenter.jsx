@@ -18,7 +18,17 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox,
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import LibraryAddOutlinedIcon from '@mui/icons-material/LibraryAddOutlined';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Navbar } from '../components';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
@@ -42,11 +52,35 @@ const cardData = [
   // ... Add more cards as needed
 ];
 
+const cameraData = [
+  { id: 1, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 2, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 3, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 4, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 5, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 6, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  { id: 7, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
+  // Add more camera data as needed
+];
+
 const ControlCenter = () => {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
+  const [selectedCameras, setSelectedCameras] = useState([]);
+
+  const handleCameraToggle = (cameraId) => {
+    const isSelected = selectedCameras.includes(cameraId);
+    if (isSelected) {
+      setSelectedCameras(selectedCameras.filter((id) => id !== cameraId));
+    } else {
+      setSelectedCameras([...selectedCameras, cameraId]);
+    }
+  };
 
   const cardsPerPage = 12;
+
+
+
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -59,6 +93,10 @@ const ControlCenter = () => {
   const handleSave = () => {
     // Implement your logic here
     setOpenDialog(false); // Close the dialog after saving
+  };
+  const handleEdit = () => {
+    // Handle the functionality for the Edit button
+    console.log('Edit button clicked');
   };
 
   const handleCloseDialog = () => {
@@ -95,12 +133,19 @@ const ControlCenter = () => {
                   <MenuItem value={2}>Option 2</MenuItem>
                 </Select>
               </FormControl>
-              <Button variant="contained" size="large" onClick={handleAddNow} sx={{ textTransform: 'capitalize' }}>
-                Add View
-              </Button>
-              <Button variant="contained" size="large" onClick={handleSave} disabled sx={{ textTransform: 'capitalize' }}>
-                Save View
-              </Button>
+              <Button variant="outlined" size="small" onClick={handleAddNow} sx={{ textTransform: 'capitalize' }}>
+        <AddIcon />
+      </Button>
+      <Button variant="outlined" size="small" onClick={handleEdit} sx={{ textTransform: 'capitalize' }}>
+        <BorderColorOutlinedIcon/>
+       
+      </Button>
+      <Button variant="outlined" size="small" onClick={handleSave}  sx={{ textTransform: 'capitalize' }}>
+        <LibraryAddOutlinedIcon />
+      
+      </Button>
+
+    
             </Box>
             <TextField
               label="Search"
@@ -162,7 +207,7 @@ const ControlCenter = () => {
           </Box>
 
           {/* Dialog */}
-          <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+          <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm"  >
             <Typography backgroundColor=" #2465e9" color="white" p={2}>Add view</Typography>
             <CloseIcon
                 sx={{
@@ -178,7 +223,11 @@ const ControlCenter = () => {
               />
             <DialogContent>
               {/* Add your dialog content here */}
+              <Typography>View Name</Typography>
+              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" />
+              <Typography pt={2}>Add Camera</Typography>
               <TextField
+              fullWidth
               label="Search"
               variant="outlined"
               style={{ marginBottom: '20px', border: 'solid 1px #2465e9' }}
@@ -192,11 +241,42 @@ const ControlCenter = () => {
               }}
               sx={{ backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', border: 'none', borderRadius: '5px' }}
             />
-          
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseDialog}>Cancel</Button>
-              <Button onClick={handleSave} variant="contained" disabled>
+
+            <Typography>Camera List</Typography>
+
+            <TableContainer sx={{height:"200px"}}>
+            <Table>
+              <TableHead>
+              
+              </TableHead>
+              <TableBody>
+                {cameraData.map((camera) => (
+                  <TableRow key={camera.id}>
+                    <TableCell>
+                      <img src={camera.imageUrl} alt={`Camera ${camera.id}`} style={{ width: '50px', height: '50px' }} />
+                    </TableCell>
+                    <TableCell>{camera.name}</TableCell>
+                    <TableCell>{camera.status}</TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleCameraToggle(camera.id)}
+                        sx={{textTransform:"capitalize"}}
+                        color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}
+                      >
+                        {selectedCameras.includes(camera.id) ? 'Remove Camera' : 'Add Camera'}
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+            </DialogContent >
+            <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+              <Button onClick={handleCloseDialog}variant="contained" disabled>Cancel</Button>
+              <Button onClick={handleSave} variant="contained" >
                 Save
               </Button>
             </DialogActions>

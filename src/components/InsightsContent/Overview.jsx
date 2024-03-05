@@ -22,10 +22,11 @@ const Overview = () => {
   ];
 
   const cardsData = [
-    { title: ' 12', content: 'Total Alerts Today' },
-    { title: ' 245', content: ' Total Alerts Last 7 days' },
-    { title: ' 3452', content: 'Avg Daily People Entered Last 7 days' },
-    { title: ' 324', content: ' Total Alerts Last 7 days' },
+    { title: ' 12', content: 'Event Count' },
+    { title: ' 245', content: ' Occupancy' },
+    { title: ' 3452', content: 'Event Count' },
+    { title: ' 324', content: ' Occupancy' },
+    { title: ' 324', content: ' Occupancy' },
   ];
 
   const lineChartData = [
@@ -55,9 +56,9 @@ const Overview = () => {
         </IconButton>
       </Box>
       <Box mt={2}>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {cardsData.map((card, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={2.4} key={index}>
               <Card
                 sx={{
                   borderRadius: '10px',
