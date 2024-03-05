@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Navbar } from '../components';
-import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment } from '@mui/material';
+import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
 import { useNavigate } from 'react-router-dom';
@@ -19,13 +19,13 @@ const Alerts = () => {
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
 
    const alertsData = [
-    { id: 1, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM', eventDate: "2024-02-24" },
-    { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 1, image: 'assets/images/car1.png', camera:'Gate 1 cam Entry', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM', eventDate: "2024-02-24" },
+    { id: 2, image: 'assets/images/car1.png', camera: 'Gate 1 cam Entry', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 3, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
     // Add more data as needed
   ];
 
@@ -60,8 +60,8 @@ const Alerts = () => {
       <Container maxWidth="xxl" sx={{height:"55vh"}}>
       <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
-          boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
-          border: "solid 2px #2465e9", width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
+          boxShadow: " 0 0 5px 0 #2465e9",
+           width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
         }}>
           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
             <TextField
@@ -100,15 +100,15 @@ const Alerts = () => {
               </TableHead>
               <TableBody>
                 {paginatedData.map((row, index) => (
-                  <TableRow key={row.id} onClick={() => handleTableRowClick(row)} sx={{cursor: 'pointer'}}>
-                    <TableCell>
-                      <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
+                  <TableRow key={row.id}  sx={{cursor: 'pointer'}}>
+                    <TableCell width="20%" onClick={() => handleTableRowClick(row)}>
+                      <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px",paddingLeft:"50px" }} />
                     </TableCell>
-                    <TableCell>{row.camera}</TableCell>
-                    <TableCell>{row.zone}</TableCell>
-                    <TableCell>{row.pole}</TableCell>
-                    <TableCell>{row.eventType} <br />{row.eventStatus}</TableCell>
-                    <TableCell>{row.eventTime} <br />{row.eventDate}</TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)}>{row.camera}</TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)}>{row.zone}</TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)}>{row.pole}</TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} ><Box display="flex" gap={2}><img src='assets/images/carx.svg'/> <Box display="flex" flexDirection="column" p={0}>{row.eventType}<Typography variant='body-2' sx={{color:"red",textAlign:"start",py:"0px"}}  >{row.eventStatus}</Typography></Box></Box> </TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)}>{row.eventTime} <br />{row.eventDate}</TableCell>
                     <TableCell>
                       <Select
                         value={addInfoDropdown}
@@ -117,8 +117,8 @@ const Alerts = () => {
                         inputProps={{ 'aria-label': 'Add Info' }}
                         size='small'
                       >
-                        <MenuItem value="">Unresolved</MenuItem>
-                        <MenuItem value="">Resolved</MenuItem>
+                        <MenuItem value="">Open</MenuItem>
+                        <MenuItem value="">Close</MenuItem>
                         {/* Add more dropdown options if needed */}
                       </Select>
                     </TableCell>

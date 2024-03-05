@@ -181,8 +181,8 @@ const Devices = () => {
       <Container maxWidth="xxl" sx={{ height: "70vh" }}>
         <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
-          boxShadow: " 0 0 5px 0 rgba(0, 58, 111, 0.5)",
-          border: "solid 2px #2465e9", width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
+          boxShadow: " 0 0 5px 0 #2465e9",
+          width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
         }}>
           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
             <TextField

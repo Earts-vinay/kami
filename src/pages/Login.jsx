@@ -50,7 +50,7 @@ const Login = () => {
                         alt="Logo"
                         style={{ objectFit: "contain" }}
                     />
-                    <Typography variant="h3" mt={2}>Welcome to <br/> The Spear of Security</Typography>
+                    <Typography variant="h4" mt={4}>Welcome to <br/> The Sphere of Security</Typography>
                     <Typography mt={2}>Our AI platform uses computer vision to provide home security, elder care, and commercial applications. It tracks movements of cars, license plates, and people, quickly warning of any questionable activity.</Typography>
                 </Box>
                 </Box>

@@ -231,22 +231,25 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ArrowDropDown } from "@mui/icons-material";
 import Button from "@mui/material/Button";
+import { FormControl, InputLabel, NativeSelect, Select } from "@mui/material";
 
 // Styled components for styling
 const Hello = (props) => (
   <Box
     {...props}
     sx={{
-      backgroundImage: 'url("assets/images/navbar1.png")',
-      backgroundSize: 'cover',
+      backgroundImage: 'url("assets/images/navbar777.png")',
+      backgroundSize: 'contain',
+      backgroundPosition:"center",
+
       backgroundRepeat: 'no-repeat',
       width: '100%',
       margin: 'auto',
       height: '100%',
       display: 'flex',
-      paddingY: '40px',
-      paddingX: '15px',
-      justifyContent: 'space-evenly',
+      paddingY: '26px',
+ 
+      justifyContent: 'center',
       alignItems: 'center',
     }}
   />
@@ -267,16 +270,7 @@ const Nav = (props) => (
   />
 );
 
-const Logo = (props) => (
-  <Box
-    {...props}
-    sx={{
-      fontSize: '24px',
-      fontWeight: 'bold',
-      color: 'black',
-    }}
-  />
-);
+
 
 const NavLink = ({ to, label }) => {
   const location = useLocation();
@@ -335,25 +329,40 @@ const handleCloseUserMenu = () => {
   <>
     <Container maxWidth="xl">
       <Hello>
-
-   
-      <Logo>
-       <Box sx={{display: "flex",
-            flexDirection: "column",
-           }}>
-       <img
+      
+     <Box display="flex"  gap={{ xs: '5rem', md: '20rem' }} justifyContent="center" alignItems="center">
+      <div style={{display:"flex", flexDirection:"column",width:"12%"}}>
+      <img
           src="/assets/logos/logo.png"
           alt="Logo"
-          style={{ width: '30%', height: '100%', objectFit: 'contain' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
+          <FormControl variant="standard" sx={{ width:"100px",paddingLeft:"25px",paddingTop:"5px" }} size="small" >
+       
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={age}
+          defaultValue={10}
+          onChange={handleChange}
+        
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
 
-       </Box>
-      </Logo>
+      </div>
+    
       <Nav>
         <Box
           sx={{
             flexGrow: 1,
-            display: { xs: 'none', md: 'flex' },
+            display: { xs: 'flex', md: 'flex' },
             backgroundColor: 'transparent !important',
           }}
         >
@@ -380,6 +389,7 @@ const handleCloseUserMenu = () => {
           </Box>
         </Box>
       </Nav>
+     </Box>
       </Hello>
       {/* Your avbar form or content goes here */}
     </Container>
@@ -403,7 +413,13 @@ const handleCloseUserMenu = () => {
     </Box>
   </Tooltip>
   <Menu
-    sx={{ mt: '35px' }}
+    sx={{ mt: '35px',"& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper": {
+      background: 'rgba(255, 255, 255, 0.1)',
+      webkitBackdropFilter: "blur(30px)",
+  backdropFilter: "blur(50px)",
+  border: "solid 2px #fff",
+    }}}
+
     id="menu-appbar"
     anchorEl={anchorElUser}
     anchorOrigin={{
@@ -442,3 +458,5 @@ const handleCloseUserMenu = () => {
 };
 
 export default Navbar;
+
+
