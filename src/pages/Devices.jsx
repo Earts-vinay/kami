@@ -128,19 +128,51 @@
 
 import React, { useState } from 'react';
 import { Navbar } from '../components';
-import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment } from '@mui/material';
+import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment, Typography, Popover } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import Pagination from '@mui/material/Pagination';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const Devices = () => {
   const pageSizeOptions = [4, 8, 20];
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
+  const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+  const [selectedDate, setSelectedDate] =useState(new Date());
+  const [selectedTime, setSelectedTime] =useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+    
+  };
+
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+    setAnchorEl(null); // Close the Popover after selecting a date
+    // You can use the selected date as needed in your application
+  };
 
   const alertsData = [
-    { id: 1, image: 'assets/images/car1.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 1, image: 'assets/images/car1.png', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
@@ -184,7 +216,38 @@ const Devices = () => {
           boxShadow: " 0 0 5px 0 #2465e9",
           width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
         }}>
-          <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
+          <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: 2, gap: "25px", px: 2 }}>
+            <Box display="flex" alignItems="center">
+              <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
+              <Box >
+                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9" }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
+                <Typography sx={{ marginLeft: 1, color: "#2465e9" }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+              </Box>
+            </Box>
+            <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <StaticDateTimePicker
+            label="Event Date and Time"
+            value={selectedDate}
+            onChange={handleDateSelect}
+            onTimeChange={handleTimeSelect}
+            sx={{
+              '& .MuiPickersLayout-toolbar': {
+                display: 'none',
+              },
+              
+            }}
+            onClose={handleClose}
+          />
+        </LocalizationProvider>
+      </Popover>
+
             <TextField
               label="Search"
               variant="outlined"
@@ -199,10 +262,12 @@ const Devices = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)",   backdropFilter: "blur(15px)",
-              boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
-              border: "solid 2px #2465e9",
-            border: "none", borderRadius: "5px", }}
+              sx={{
+                backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
+                boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+                border: "solid 2px #2465e9",
+                border: "none", borderRadius: "5px", marginTop: "10px"
+              }}
             />
           </Box>
 

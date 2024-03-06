@@ -37,7 +37,7 @@ const ForgetPass = () => {
     const handleForgotPassword = () => {
         // Add logic to navigate to the forgot password page or show a modal
         // For example:
-        navigate('/');
+        navigate('/login');
     };
 
     return (

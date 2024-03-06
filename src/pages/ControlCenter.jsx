@@ -66,6 +66,7 @@ const cameraData = [
 const ControlCenter = () => {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [selectedCameras, setSelectedCameras] = useState([]);
 
   const handleCameraToggle = (cameraId) => {
@@ -89,10 +90,17 @@ const ControlCenter = () => {
   const handleAddNow = () => {
     setOpenDialog(true);
   };
+  const handleDeleteNow = () => {
+    setOpenDeleteDialog(true);
+  };
 
   const handleSave = () => {
     // Implement your logic here
     setOpenDialog(false); // Close the dialog after saving
+  };
+  const handleDelete = () => {
+    // Implement your logic here
+    setOpenDeleteDialog(false); // Close the dialog after saving
   };
   const handleEdit = () => {
     // Handle the functionality for the Edit button
@@ -101,6 +109,9 @@ const ControlCenter = () => {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
+  };
+  const handleCloseDeleteDialog = () => {
+    setOpenDeleteDialog(false);
   };
 
   const getPaginatedCards = () => {
@@ -194,7 +205,7 @@ const ControlCenter = () => {
                     {card.description}
                   </Typography>
 
-                  <CloseIcon
+                  <CloseIcon onClick={handleDeleteNow}
                     sx={{ position: 'absolute', top: 0, right: 0, color: 'white', cursor: 'pointer', paddingY: '15px', paddingX: '10px' }}
                   />
                 </CardContent>
@@ -207,7 +218,7 @@ const ControlCenter = () => {
           </Box>
 
           {/* Dialog */}
-          <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm"  >
+          <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" sx={{height:"700px",display:"flex", justifyContent:"center",alignItems:"center"}}  >
             <Typography backgroundColor=" #2465e9" color="white" p={2}>Add view</Typography>
             <CloseIcon
                 sx={{
@@ -223,12 +234,13 @@ const ControlCenter = () => {
               />
             <DialogContent>
               {/* Add your dialog content here */}
-              <Typography>View Name</Typography>
+              <Typography fontSize="14px">View Name</Typography>
               <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" />
-              <Typography pt={2}>Add Camera</Typography>
+              <Typography pt={1} fontSize="14px">Add Camera</Typography>
               <TextField
               fullWidth
               label="Search"
+              fontSize="14px"
               variant="outlined"
               style={{ marginBottom: '20px', border: 'solid 1px #2465e9' }}
               size="small"
@@ -242,7 +254,7 @@ const ControlCenter = () => {
               sx={{ backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', border: 'none', borderRadius: '5px' }}
             />
 
-            <Typography>Camera List</Typography>
+            <Typography fontSize="14px">Camera List</Typography>
 
             <TableContainer sx={{height:"200px"}}>
             <Table>
@@ -275,12 +287,41 @@ const ControlCenter = () => {
           </TableContainer>
             </DialogContent >
             <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <Button onClick={handleCloseDialog}variant="contained" disabled>Cancel</Button>
-              <Button onClick={handleSave} variant="contained" >
+              <Button onClick={handleCloseDialog}variant="contained" sx={{ textTransform: 'capitalize' }}>Cancel</Button>
+              <Button onClick={handleSave} variant="contained" sx={{ textTransform: 'capitalize' }} >
                 Save
               </Button>
             </DialogActions>
           </Dialog>
+
+          {/* {Delete Dialog} */}
+          <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog} maxWidth="sm"  >
+          <Typography backgroundColor=" #2465e9" color="white" p={2}>Delete view</Typography>
+            <CloseIcon
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  color: 'white',
+                  cursor: 'pointer',
+                  paddingY: '6px',
+                  paddingX: '10px',
+                }}
+                onClick={handleCloseDeleteDialog}
+              />
+                 <DialogContent>
+              {/* Add your dialog content here */}
+              <Typography>Please confirm to Delete "New Camera View"</Typography>
+              </DialogContent>
+              <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center",textDecoration:"capitalize"}}>
+              <Button onClick={handleCloseDeleteDialog}variant="contained" disabled sx={{ textTransform: 'capitalize' }}>Back</Button>
+              <Button onClick={handleDelete} variant="contained" sx={{ textTransform: 'capitalize' }}>
+                Delete
+              </Button>
+            </DialogActions>
+
+          </Dialog>
+
         </Box>
       </Container>
     </div>

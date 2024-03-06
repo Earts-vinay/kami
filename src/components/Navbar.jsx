@@ -438,10 +438,10 @@ const handleCloseUserMenu = () => {
     <SettingsIcon style={{ marginRight: '8px' }} />
       <NavLink to="/account" label="Settings"/>
     </MenuItem>
-    <MenuItem onClick={handleCloseUserMenu}>
+    {/* <MenuItem onClick={handleCloseUserMenu}>
     <HelpIcon style={{ marginRight: '8px',color:"black" }} />
       <NavLink to="/dashboard" label="Help"/> 
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem onClick={handleCloseUserMenu}>
     <ExitToAppIcon style={{ marginRight: '8px' }} />
       <NavLink to="/logout" label="Logout"/>

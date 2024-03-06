@@ -11,20 +11,18 @@ import moment from "moment";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ApexCharts from 'react-apexcharts';
 
-const Overview = () => {
+const TrafficComponent = () => {
   const cardColors = [
-    'linear-gradient(302deg, #a486f2 100%, #736fee 2%)',
-    'linear-gradient(120deg, #ee746f 3%, #f3b188);',
-    'linear-gradient(120deg, #02b2ec 3%, #93d9ff);',
-    'linear-gradient(301deg, #6adbe0, #6ea7d2 1%);',
-    'linear-gradient(302deg, #6A6181 100%,#91B1F4 100%);'
+    'linear-gradient(296deg, #a486f2, #736fee 2%);',
+    'linear-gradient(114deg, #ee746f 3%, #f3b188);',
+    'linear-gradient(114deg, #02b2ec 3%, #93d9ff);',
+    'linear-gradient(295deg, #6adbe0, #6ea7d2 1%);',
   ];
 
   const cardsData = [
     { title: ' 12', content: 'Event Count' },
     { title: ' 245', content: ' Occupancy' },
     { title: ' 3452', content: 'Event Count' },
-    { title: ' 324', content: ' Occupancy' },
     { title: ' 324', content: ' Occupancy' },
   ];
 
@@ -103,10 +101,33 @@ const Overview = () => {
           <RefreshIcon />
         </IconButton>
       </Box>
-      <Box mt={2}>
+      <Box mt={2} style={{display: "flex", flexDirection:"column", gap:"40px"}}>
         <Grid container spacing={3}>
           {cardsData.map((card, index) => (
-            <Grid item xs={12} sm={6} md={2.4} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Card
+                sx={{
+                  borderRadius: '10px',
+                  background: cardColors[index % cardColors.length],
+                  boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)"
+                }}
+              >
+                <CardContent>
+                  <Typography color="white" pt={2}>
+                    {card.content}
+                  </Typography>
+                  <Typography variant="h3" color="white" pt={2}>
+                    {card.title}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Grid container spacing={3}>
+          {cardsData.map((card, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
               <Card
                 sx={{
                   borderRadius: '10px',
@@ -153,4 +174,4 @@ const Overview = () => {
   )
 }
 
-export default Overview;
+export default TrafficComponent;

@@ -1,16 +1,49 @@
 import React, { useState } from 'react';
-import { Container, Box, Tabs, Tab, TextField, IconButton, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, InputAdornment, Typography, Card, CardMedia, CardContent, Button } from '@mui/material';
+import { Container, Box, Tabs, Tab, TextField, IconButton, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, InputAdornment, Typography, Card, CardMedia, CardContent, Button, Popover } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SearchIcon from '@mui/icons-material/Search';
 import moment from "moment";
 import { useNavigate } from 'react-router-dom';
 import CameraVideo from './CameraContents/CameraVideo';
 import CameraMap from './CameraContents/CameraMap';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const Camera = () => {
     const [value, setValue] = React.useState(0);
     const [selectedTab, setSelectedTab] = useState(0);
     const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+    const [selectedDate, setSelectedDate] =useState(new Date());
+    const [selectedTime, setSelectedTime] =useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+  
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const handleDateSelect = (date) => {
+      setSelectedDate(date);
+    };
+  
+    const handleTimeSelect = (time) => {
+      setSelectedTime(time);
+      
+    };
+  
+    const handleDateChange = (newDate) => {
+      setSelectedDate(newDate);
+      setAnchorEl(null); // Close the Popover after selecting a date
+      // You can use the selected date as needed in your application
+    };
 
     const handleArrowClick = () => {
         // Navigate to the map screen
@@ -33,14 +66,13 @@ const Camera = () => {
     };
 
     const dataArray = [
-        { image: 'assets/images/car.jpg', zone: 'Zone A', pole: 'Pole 1', camera: 'Camera 1' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
-        { image: 'assets/images/car.jpg', zone: 'Zone B', pole: 'Pole 2', camera: 'Camera 3' },
+        { id: 1, image: 'assets/images/car1.png', camera:'Gate 1 cam Entry', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM', eventDate: "2024-02-24" },
+        { id: 2, image: 'assets/images/car1.png', camera: 'Gate 1 cam Entry', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+        { id: 3, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+        { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+        { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+        { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
+        { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
         // Add more data as needed
     ];
 
@@ -186,7 +218,38 @@ const Camera = () => {
                     <Box width="35%" backgroundColor="white">
                         {/* Header with search bar */}
                         <Box sx={{ backgroundColor: "#2465e9", padding: "10px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1,  backdropFilter: "blur(5px)", boxShadow: "-1px 6px 31px 0 rgba(25, 96, 159, 0.1)" }}>
-                            <TextField
+                        <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", gap: "25px", px: 2 }}>
+            <Box display="flex" alignItems="center">
+              <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{color:"white", cursor:"pointer"}} /> {/* Toggle the visibility of DateTimePicker */}
+              <Box >
+                <Typography variant="body2" sx={{ marginLeft: 1, color: "white" }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
+                <Typography sx={{ marginLeft: 1, color: "white" }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+              </Box>
+            </Box>
+            <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <StaticDateTimePicker
+            label="Event Date and Time"
+            value={selectedDate}
+            onChange={handleDateSelect}
+            onTimeChange={handleTimeSelect}
+            sx={{
+              '& .MuiPickersLayout-toolbar': {
+                display: 'none',
+              },
+              
+            }}
+            onClose={handleClose}
+          />
+        </LocalizationProvider>
+      </Popover>
+      <TextField
                                 id="search"
                                 type="search"
                                 label="Search"
@@ -200,32 +263,44 @@ const Camera = () => {
                                 }}
                                 sx={{ backgroundColor: "white", border: "none", borderRadius: "5px" }}
                             />
+  
+          </Box>
+                            
                         </Box>
                         {/* MUI Table */}
                         <Box height="90%" overflow="auto">
     {/* MUI Table */}
-    <Table style={{ backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%) !important", borderRadius: "5px" }}>
-        <TableHead sx={{ backgroundColor: "white" }}>
-            <TableRow>
-                <TableCell></TableCell>
-                <TableCell>Zone</TableCell>
-                <TableCell>Pole</TableCell>
-                <TableCell>Camera</TableCell>
+    <Table style={{ background: "linear-gradient(332deg, rgba(255, 255, 255, 0.75) 99%, rgba(255, 255, 255, 0.4) 15%)", borderRadius: "5px" }}>
+    <TableHead >
+        <TableRow>
+            <TableCell></TableCell>
+            <TableCell>Camera</TableCell>
+            <TableCell>Event Type</TableCell>
+            <TableCell>Date & Time</TableCell>
+        </TableRow>
+    </TableHead>
+    <TableBody>
+        {dataArray.map((data, index) => (
+            <TableRow key={index}>
+                <TableCell width="20%" onClick={() => handleTableRowClick(row)}>
+                    <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px", paddingLeft: "20px" }} />
+                </TableCell>
+                <TableCell>{data.zone}</TableCell>
+                <TableCell>
+                    <Box display="flex" gap={2}>
+                        <img src='assets/images/carx.svg' />
+                        <Box display="flex" flexDirection="column" p={0}>
+                            {data.eventType}
+                            <Typography variant='body-2' sx={{ color: "red", textAlign: "start", py: "0px" }}>{data.eventStatus}</Typography>
+                        </Box>
+                    </Box>
+                </TableCell>
+                <TableCell>{data.eventTime} <br />{data.eventDate}</TableCell>
             </TableRow>
-        </TableHead>
-        <TableBody>
-            {dataArray.map((data, index) => (
-                <TableRow key={index}>
-                    <TableCell>
-                        <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
-                    </TableCell>
-                    <TableCell>{data.zone}</TableCell>
-                    <TableCell>{data.pole}</TableCell>
-                    <TableCell>{data.camera}</TableCell>
-                </TableRow>
-            ))}
-        </TableBody>
-    </Table>
+        ))}
+    </TableBody>
+</Table>
+
 </Box>
 
                     </Box>

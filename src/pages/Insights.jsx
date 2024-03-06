@@ -17,6 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Overview from "../components/InsightsContent/Overview";
 import SystemStats from "../components/InsightsContent/SystemStats";
 import Incident from "../components/InsightsContent/Incident";
+import TrafficComponent from "../components/InsightsContent/TrafficComponent";
 
 const Insights = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -40,7 +41,7 @@ const Insights = () => {
           sx={{ margin: "10px", borderRadius: "10px", padding: "10px",height:"79vh",overflow:"auto",  boxShadow: " 0 0 5px 0 #2465e9",
           backdropFilter: "blur(15px)"}}
         >
-          <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Box display="flex" justifyContent="space-between" alignItems="center" px={3}>
             <Tabs
               value={selectedTab}
               onChange={handleTabChange}
@@ -76,7 +77,7 @@ const Insights = () => {
               ))}
             </Tabs>
 
-            <Box mt={1}>
+            {/* <Box mt={1}>
               <TextField
                 label="Search"
                 variant="outlined"
@@ -93,7 +94,7 @@ const Insights = () => {
                 boxShadow: " 0 0 5px 0 #2465e9",
               borderRadius: "5px", }}
               />
-            </Box>
+            </Box> */}
           </Box>
 
           <Box mt={1} style={{padding:"0px !important"}}>
@@ -112,7 +113,7 @@ const Insights = () => {
             <TabPanel value={selectedTab} index={3}>
               {/* Content for Traffic & Activity tab */}
               {/* You can call your components here */}
-              12345
+           <TrafficComponent/>
             </TabPanel>
           </Box>
         </Box>
