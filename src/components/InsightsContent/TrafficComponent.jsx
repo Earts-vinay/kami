@@ -11,6 +11,10 @@ import moment from "moment";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ApexCharts from 'react-apexcharts';
 
+const commonStyles = {
+    fontFamily: "montserrat-regular"
+  };
+
 const TrafficComponent = () => {
   const cardColors = [
     'linear-gradient(296deg, #a486f2, #736fee 2%);',
@@ -27,10 +31,18 @@ const TrafficComponent = () => {
   ];
 
   const lineChartOptions = {
-    series: [{
-      name: "Desktops",
-      data: [5, 45, 60, 85, 90, 115, 130, 145, 166] // Quadratic curve: y = x^2
-    }],
+    series: [
+      {
+        name: "Desktops",
+        data: [5, 20, 45, 80, 120, 165, 200, 250, 200],
+        color: "#BBA1F7" // Sky blue color for Desktops
+      },
+      {
+        name: "Laptops",
+        data: [10, 30, 60, 100, 150, 200, 240, 220, 200],
+        color: "#2ABEFD" // Beige color for Laptops
+      }
+    ],
     chart: {
       height: 350,
       type: 'line',
@@ -42,7 +54,7 @@ const TrafficComponent = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth' // Use a smooth curve for better visualization
+      curve: 'smooth'
     },
     title: {
       text: 'Product Trends by Month',
@@ -50,7 +62,48 @@ const TrafficComponent = () => {
     },
     grid: {
       row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        colors: ['#f3f3f3', 'transparent'],
+        opacity: 0.5
+      },
+    },
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+    }
+  };
+
+  const lineChartOptions1 = {
+    series: [
+      {
+        name: "Desktops",
+        data: [5, 100, 205, 330, 400, 565, 670, 450, 600],
+        color: "#BBA1F7" // Sky blue color for Desktops
+      },
+      {
+        name: "Laptops",
+        data: [15, 250, 255, 430, 500, 665, 770, 750, 900],
+        color: "#2ABEFD" // Beige color for Laptops
+      }
+    ],
+    chart: {
+      height: 350,
+      type: 'line',
+      zoom: {
+        enabled: false
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    title: {
+      text: 'Product Trends by Month',
+      align: 'left'
+    },
+    grid: {
+      row: {
+        colors: ['#f3f3f3', 'transparent'],
         opacity: 0.5
       },
     },
@@ -59,25 +112,61 @@ const TrafficComponent = () => {
     }
   };
   
-  
-
-  const pieChartOptions = {
-    series: [44, 55, 13],
-    chart: {
-      width: 380,
-      type: 'pie',
-    },
-    labels: ['Team A', 'Team B', 'Team C'],
-    legend: {
-      show: true,
-      position: 'bottom', // Adjust legend position as per your preference
-      offsetY: 5,
-      formatter: function(val, opts) {
-        return val + " - " + opts.w.globals.series[opts.seriesIndex];
+  const barChartOptions = {
+    series: [
+      {
+        name: 'Net Profit',
+        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
       },
-      itemMargin: {
-        vertical: 3
+      {
+        name: 'Revenue',
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+      },
+    ],
+    chart: {
+      type: 'bar',
+      height: 350
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '55%',
+        endingShape: 'rounded'
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ['transparent']
+    },
+    xaxis: {
+      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+    },
+    yaxis: {
+      title: {
+        text: '$ (thousands)'
       }
+    },
+    fill: {
+      opacity: 1
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return "$ " + val + " thousands"
+        }
+      }
+    }
+  };
+
+  const donutChartOptions = {
+    series: [44, 55, 41, 17, 15],
+    chart: {
+      type: 'donut',
+      height: 350 // Set the same height as the bar chart
     },
     responsive: [{
       breakpoint: 480,
@@ -91,17 +180,16 @@ const TrafficComponent = () => {
       }
     }]
   };
-  
 
   return (
-    <Box style={{padding:"0px !important"}}>
-      <Box display="flex" justifyContent="end" alignItems="center" style={{padding:"0px !important"}}>
-        <Typography variant="body-2">Last Updated {moment().format('HH:mm')}</Typography>
+    <Box style={{ padding: "0px !important" }}>
+      <Box display="flex" justifyContent="end" alignItems="center" style={{ padding: "0px !important" }}>
+        <Typography variant="body-2" sx={commonStyles}>Last Updated {moment().format('HH:mm')}</Typography>
         <IconButton color="primary" >
           <RefreshIcon />
         </IconButton>
       </Box>
-      <Box mt={2} style={{display: "flex", flexDirection:"column", gap:"40px"}}>
+      <Box mt={2} style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
         <Grid container spacing={3}>
           {cardsData.map((card, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
@@ -113,10 +201,10 @@ const TrafficComponent = () => {
                 }}
               >
                 <CardContent>
-                  <Typography color="white" pt={2}>
+                  <Typography color="white" pt={2}  sx={commonStyles}>
                     {card.content}
                   </Typography>
-                  <Typography variant="h3" color="white" pt={2}>
+                  <Typography variant="h3" color="white" pt={2}  sx={commonStyles}>
                     {card.title}
                   </Typography>
                 </CardContent>
@@ -136,10 +224,10 @@ const TrafficComponent = () => {
                 }}
               >
                 <CardContent>
-                  <Typography color="white" pt={2}>
+                  <Typography color="white" pt={2}  sx={commonStyles}>
                     {card.content}
                   </Typography>
-                  <Typography variant="h3" color="white" pt={2}>
+                  <Typography variant="h3" color="white" pt={2}  sx={commonStyles}>
                     {card.title}
                   </Typography>
                 </CardContent>
@@ -150,26 +238,30 @@ const TrafficComponent = () => {
       </Box>
 
       <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={3} gap={2}>
-        <Box style={{ width: '50%', backgroundColor: "white", borderRadius: "5px", padding:"15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
+        <Box style={{ width: '48%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
           {/* ApexCharts Line Chart */}
           <ApexCharts options={lineChartOptions} series={lineChartOptions.series} type="line" height={350} />
         </Box>
 
-
-        <Box style={{ 
-  width: '50%', 
-  backgroundColor: "white", 
-  borderRadius: "5px", 
-  boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}}>
-  {/* ApexCharts Pie Chart */}
-  <ApexCharts options={pieChartOptions} series={pieChartOptions.series} type="pie" width={380} />
-</Box>
+        <Box style={{ width: '48%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
+          {/* ApexCharts Line Chart */}
+          <ApexCharts options={lineChartOptions1} series={lineChartOptions1.series} type="line" height={350} />
+        </Box>
 
       </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={3} gap={2}>
+      <Box style={{ width: '100%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }} mt={3}>
+        <ApexCharts options={donutChartOptions} series={donutChartOptions.series} type="donut" height={350} />
+      </Box>
+
+
+        <Box style={{ width: '100%', backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }} mt={3}>
+          {/* ApexCharts Bar Chart */}
+          <ApexCharts options={barChartOptions} series={barChartOptions.series} type="bar" height={350} />
+        </Box>
+      </Box>
+
     </Box>
   )
 }

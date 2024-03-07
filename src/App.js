@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Camera from './components/MapContents/MapInsideScreens/Camera';
 import ForgetPass from './components/LoginScreens/ForgetPass';
 import MyProfile from './components/LoginScreens/MyProfile';
+import Settings from './components/LoginScreens/Settings';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/alerts" element={<Alerts/>} />
           <Route path="/camera" element={<Camera/>} />
           <Route path="/myprofile" element={<MyProfile/>} />
+          <Route path="/settings" element={<Settings/>} />
       </Routes>   
     </BrowserRouter>
   );

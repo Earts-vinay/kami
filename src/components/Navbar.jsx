@@ -222,7 +222,7 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link, Link as RouterLink, useLocation } from "react-router-dom";
 import moment from "moment";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -232,7 +232,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { ArrowDropDown } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import { FormControl, InputLabel, NativeSelect, Select } from "@mui/material";
-
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
 // Styled components for styling
 const Hello = (props) => (
   <Box
@@ -263,6 +265,7 @@ const Nav = (props) => (
       backgroundColor: 'transparent',
       padding: '10px',
       borderRadius: '10px',
+      fontFamily:"montserrat-regular",
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-evenly',
@@ -279,7 +282,7 @@ const NavLink = ({ to, label }) => {
   const linkStyles = {
     color: isActive ? '#2465e9' : '#001426',
     textDecoration: 'none',
-    fontFamily: 'Montserrat, sans-serif',
+    fontFamily: 'montserrat-regular',
     fontWeight: "bold",
     margin: '0 10px',
     transition: 'border-color 0.3s ease-in-out',
@@ -344,11 +347,12 @@ const handleCloseUserMenu = () => {
   id="demo-simple-select-standard"
   value={age}
   defaultValue={10}
+  sx={commonStyles}
   onChange={handleChange}
 >
-  <MenuItem value={10}>Old North Campus</MenuItem>
-  <MenuItem value={20}> North Campus</MenuItem>
-  <MenuItem value={30}> Campus</MenuItem>
+  <MenuItem value={10} sx={commonStyles}>Old North Campus</MenuItem>
+  <MenuItem value={20} sx={commonStyles}> North Campus</MenuItem>
+  <MenuItem value={30} sx={commonStyles}> Campus</MenuItem>
 </Select>
       </FormControl>
 
@@ -397,7 +401,7 @@ const handleCloseUserMenu = () => {
       onClick={(e) => setAnchorElUser(e.currentTarget)} // Update anchorElUser on click
     >
       <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
-        <Typography variant="body-2" fontSize="16px" color="#2465e9" textAlign="center" >
+        <Typography variant="body-2" fontSize="16px" color="#2465e9" textAlign="center" fontFamily="montserrat-regular">
           {" "}
          <Box display="flex" alignItems="center"> Welcome Back James <ArrowDropDown/></Box>
         </Typography>
@@ -430,22 +434,28 @@ const handleCloseUserMenu = () => {
     open={Boolean(anchorElUser)}
     onClose={handleCloseUserMenu}
   >
-     <MenuItem onClick={handleCloseUserMenu}>
-     <AccountCircleIcon style={{ marginRight: '8px', color: 'white' }} />
-      <NavLink to="/myprofile" style={{ color: 'blue' }} label="My Profile"/>
-    </MenuItem>
-    <MenuItem onClick={handleCloseUserMenu}>
-    <SettingsIcon style={{ marginRight: '8px' }} />
-      <NavLink to="/account" label="Settings"/>
-    </MenuItem>
-    {/* <MenuItem onClick={handleCloseUserMenu}>
-    <HelpIcon style={{ marginRight: '8px',color:"black" }} />
-      <NavLink to="/dashboard" label="Help"/> 
-    </MenuItem> */}
-    <MenuItem onClick={handleCloseUserMenu}>
-    <ExitToAppIcon style={{ marginRight: '8px' }} />
-      <NavLink to="/logout" label="Logout"/>
-    </MenuItem>
+ <MenuItem onClick={handleCloseUserMenu} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
+  <Link to="/myprofile" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
+    <img src="assets/icons/Profile.svg" alt="" />
+    My Profile
+  </Link>
+  
+</MenuItem>
+
+<MenuItem onClick={handleCloseUserMenu} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
+  <Link to="/settings" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
+    <img src="assets/icons/Settings.svg" alt="" />
+    Settings
+  </Link>
+</MenuItem>
+
+<MenuItem onClick={handleCloseUserMenu} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
+  <Link to="/login" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
+    <img src="assets/icons/logout.svg" alt="" />
+    Logout
+  </Link>
+</MenuItem>
+
   </Menu>
 </Box>
     

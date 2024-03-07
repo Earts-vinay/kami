@@ -8,6 +8,10 @@ import {
 } from '@mui/material';
 import ApexCharts from 'apexcharts';
 
+
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
 const Incident = () => {
   const cardColors = [
     'linear-gradient(296deg, #a486f2, #736fee 2%);',
@@ -142,75 +146,193 @@ const Incident = () => {
     return () => {
       chart.destroy();
     };
-  }, []); 
+  }, []);
+
+  // Function to generate random data
+  const generateData = (count, yrange) => {
+    let i = 0;
+    const series = [];
+    while (i < count) {
+      const x = 'w' + (i + 1).toString();
+      const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+      series.push({
+        x,
+        y
+      });
+      i++;
+    }
+    return series;
+  };
+
+
+  const heatmapChartOptions = {
+    series: [
+      {
+        name: 'Metric1',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric2',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric3',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric4',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric5',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric6',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric7',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric8',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      },
+      {
+        name: 'Metric9',
+        data: generateData(18, {
+          min: 0,
+          max: 90
+        })
+      }
+    ],
+    chart: {
+      height: 240,
+      type: 'heatmap',
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: ["#008FFB"],
+    title: {
+      text: 'HeatMap Chart (Single color)'
+    },
+  };
+
+  useEffect(() => {
+    // Render the heatmap chart
+    const chart = new ApexCharts(document.querySelector("#heatmapChart"), heatmapChartOptions);
+    chart.render();
+
+    // Cleanup function
+    return () => {
+      chart.destroy();
+    };
+  }, []);
+
 
   return (
     <Box mt={2}>
       <Grid container spacing={2}>
         {/* First and Second Cards */}
-        <Grid item xs={6} md={3}>
-          {cardsData.map((card, index) => (
+        <Grid container spacing={2}>
+          {/* First and Second Cards */}
+          <Grid item xs={12} md={4}>
+            <Grid container  direction="column" justifyContent="space-between" >
+              {cardsData.map((card, index) => (
+                <Grid item key={index}>
+                  <Card
+                    sx={{
+                      borderRadius: '10px',
+                      background: cardColors[index % cardColors.length],
+                      boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
+                      marginBottom: 2,
+                      // width: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      // height: '100%', // Ensure the card takes the full height
+                    }}
+                  >
+                    <CardContent style={{ flexGrow: 1 }}> {/* Allow content to expand */}
+                      <Typography color="white" pt={2} sx={commonStyles}>
+                        {card.content}
+                      </Typography>
+                      <Typography variant="h3" color="white" pt={2} sx={commonStyles}>
+                        {card.title}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+
+          {/* Third Card */}
+          <Grid item xs={12} md={8}>
             <Card
-              key={index}
               sx={{
                 borderRadius: '10px',
-                background: cardColors[index % cardColors.length],
-                boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-                marginBottom: 2,
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
+                // margibBottom: "5px",
+                // background: 'linear-gradient(114deg, #02b2ec 3%, #93d9ff);',
+                // boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
+                // height: '100%',
               }}
             >
               <CardContent>
-                <Typography color="white" pt={2}>
-                  {card.content}
+                <Typography color="white" sx={commonStyles}>
+                  Heatmap Chart
                 </Typography>
-                <Typography variant="h3" color="white" pt={2}>
-                  {card.title}
-                </Typography>
+                <div id="heatmapChart"></div>
               </CardContent>
             </Card>
-          ))}
+          </Grid>
         </Grid>
 
-        {/* Third Card */}
-        <Grid item xs={12} md={6}>
-          <Card
-            sx={{
-              borderRadius: '10px',
-              background: 'linear-gradient(114deg, #02b2ec 3%, #93d9ff);',
-              boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-              height: '95%',
-              width: '70vw',
-            }}
-          >
-            <CardContent>
-              <Typography color="white" pt={2}>
-                Another Card
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
 
         <Grid container spacing={2}>
-  {/* Bar Chart */}
-  <Grid item xs={12} md={4}>
-    <div id="barChart" style={{ background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
-  </Grid>
+          {/* Bar Chart */}
+          <Grid item xs={12} md={4}>
+            <div id="barChart" style={{ background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
+          </Grid>
 
-  {/* Donut Chart */}
-  <Grid item xs={12} md={4}>
-    <div id="donutChart" style={{ display: "flex", alignItems: "center", background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
-  </Grid>
+          {/* Donut Chart */}
+          <Grid item xs={12} md={4}>
+            <div id="donutChart" style={{ display: "flex", alignItems: "center", background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
+          </Grid>
 
-  {/* Stepline Chart */}
-  <Grid item xs={12} md={4}>
-    <div id="chart" style={{ background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
-  </Grid>
-</Grid>
+          {/* Stepline Chart */}
+          <Grid item xs={12} md={4}>
+            <div id="chart" style={{ background: 'white', padding: '24px', borderRadius: "10px", height: '400px' }}></div>
+          </Grid>
+        </Grid>
 
-        
+
       </Grid>
     </Box>
   );

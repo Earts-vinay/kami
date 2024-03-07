@@ -7,10 +7,14 @@ import Pagination from '@mui/material/Pagination';
 import { useNavigate } from 'react-router-dom';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
+
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
 
 const Alerts = () => {
   const navigate = useNavigate();
@@ -20,13 +24,11 @@ const Alerts = () => {
     navigate(`/camera`);
   };
   const pageSizeOptions = [4, 8, 20];
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
-  // const [selectedDate, setSelectedDate] = useState(new Date());
   const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
-  const [selectedDate, setSelectedDate] =useState(new Date());
-  const [selectedTime, setSelectedTime] =useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -42,7 +44,7 @@ const Alerts = () => {
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
-    
+
   };
 
   const handleDateChange = (newDate) => {
@@ -54,8 +56,6 @@ const Alerts = () => {
     // Stop event propagation to prevent the Popover from closing
     event.preventDefault();
   };
-
-
 
   const alertsData = [
     { id: 1, image: 'assets/images/car1.png', camera: 'Gate 1 cam Entry', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM', eventDate: "2024-02-24" },
@@ -98,41 +98,50 @@ const Alerts = () => {
       <Navbar />
       <Container maxWidth="xxl" sx={{ height: "55vh" }}>
         <Box sx={{
-          backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
+          background: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
           boxShadow: " 0 0 5px 0 #2465e9",
-          width: "100%", height: "80vh", marginTop: "10px", borderRadius: "10px"
+          fontFamily: "montserrat-regular",
+
+          //   opacity: 0.7,
+          //  "-webkit-backdrop-filter":"blur(15px)",
+          //   backdropFilter: "blur(15px)",
+          //   boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
+          //   border: "solid 2px #2465e9",
+          //   backgroundColor:"#ffffff75",
+          //   color:"black",
+          width: "100%", height: "77vh", marginTop: "10px", borderRadius: "10px"
         }}>
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: 2, gap: "25px", px: 2 }}>
             <Box display="flex" alignItems="center">
               <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
               <Box >
-                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9" }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
-                <Typography sx={{ marginLeft: 1, color: "#2465e9" }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
+                <Typography sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
               </Box>
             </Box>
             <Popover
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDateTimePicker
-            label="Event Date and Time"
-            value={selectedDate}
-            onChange={handleDateSelect}
-            onTimeChange={handleTimeSelect}
-            sx={{
-              '& .MuiPickersLayout-toolbar': {
-                display: 'none',
-              },
-              
-            }}
-            onClose={handleClose}
-          />
-        </LocalizationProvider>
-      </Popover>
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <StaticDateTimePicker
+                  label="Event Date and Time"
+                  value={selectedDate}
+                  onChange={handleDateSelect}
+                  onTimeChange={handleTimeSelect}
+                  sx={{
+                    '& .MuiPickersLayout-toolbar': {
+                      display: 'none',
+                    },
+
+                  }}
+                  onClose={handleClose}
+                />
+              </LocalizationProvider>
+            </Popover>
 
             <TextField
               label="Search"
@@ -152,22 +161,23 @@ const Alerts = () => {
                 backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
                 boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
                 border: "solid 2px #2465e9",
+                ...commonStyles,
                 border: "none", borderRadius: "5px", marginTop: "10px"
               }}
             />
           </Box>
 
-          <TableContainer component={Paper} sx={{ backgroundColor: "transparent" }}>
+          <TableContainer component={Paper} sx={{ backgroundColor: "transparent", fontFamily: "montserrat-regular" }} >
             <Table>
               <TableHead>
-                <TableRow>
+                <TableRow sx={{ fontFamily: "montserrat-regular" }}>
                   <TableCell></TableCell>
-                  <TableCell>Camera</TableCell>
-                  <TableCell>Zone</TableCell>
-                  <TableCell>Pole</TableCell>
-                  <TableCell>Event Type</TableCell>
-                  <TableCell>Event Time</TableCell>
-                  <TableCell> Add Info </TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}} >Camera</TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}}>Zone</TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}}>Pole</TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}}>Event Type</TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}}>Event Time</TableCell>
+                  <TableCell sx={{fontWeight:"bold",color:"#657889",...commonStyles}}> Add Info </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -176,21 +186,34 @@ const Alerts = () => {
                     <TableCell width="20%" onClick={() => handleTableRowClick(row)}>
                       <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px", paddingLeft: "50px" }} />
                     </TableCell>
-                    <TableCell onClick={() => handleTableRowClick(row)}>{row.camera}</TableCell>
-                    <TableCell onClick={() => handleTableRowClick(row)}>{row.zone}</TableCell>
-                    <TableCell onClick={() => handleTableRowClick(row)}>{row.pole}</TableCell>
-                    <TableCell onClick={() => handleTableRowClick(row)} ><Box display="flex" gap={2}><img src='assets/images/carx.svg' /> <Box display="flex" flexDirection="column" p={0}>{row.eventType}<Typography variant='body-2' sx={{ color: "red", textAlign: "start", py: "0px" }}  >{row.eventStatus}</Typography></Box></Box> </TableCell>
-                    <TableCell onClick={() => handleTableRowClick(row)}>{row.eventTime} <br />{row.eventDate}</TableCell>
-                    <TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} sx={commonStyles}><Typography variant='h6' sx={commonStyles} fontSize="16px" fontWeight="bold">{row.camera}</Typography></TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} sx={commonStyles}><Typography variant='h6' sx={commonStyles} fontSize="16px" fontWeight="bold">{row.zone}</Typography></TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} sx={commonStyles}><Typography variant='h6' sx={commonStyles} fontSize="16px" fontWeight="bold">{row.pole}</Typography></TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} sx={commonStyles} ><Box display="flex" gap={2}><img src='assets/images/carx.svg' /> <Box display="flex" flexDirection="column" p={0} sx={commonStyles} fontSize="16px" fontWeight="bold">{row.eventType}<Typography variant='body-2' sx={{ color: "red", textAlign: "start", py: "0px", ...commonStyles }}  >{row.eventStatus}</Typography></Box></Box> </TableCell>
+                    <TableCell onClick={() => handleTableRowClick(row)} sx={commonStyles} ><Typography fontWeight="bold" fontSize="16px" sx={commonStyles}>{row.eventTime} <br />{row.eventDate}</Typography></TableCell>
+                    <TableCell sx={commonStyles}>
                       <Select
                         value={addInfoDropdown}
                         onChange={handleAddInfoChange}
                         displayEmpty
+                        sx={{
+                          ...commonStyles,
+                          boxShadow: "none",
+                          ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                          "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                          {
+                            border: 0,
+                          },
+                          "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                          {
+                            border: 0,
+                          },
+                        }}
                         inputProps={{ 'aria-label': 'Add Info' }}
                         size='small'
                       >
-                        <MenuItem value="">Open</MenuItem>
-                        <MenuItem value="">Close</MenuItem>
+                        <MenuItem value="" sx={commonStyles} fontWeight="bold" fontSize="16px">Open</MenuItem>
+                        <MenuItem value="" sx={commonStyles} fontWeight="bold" fontSize="16px">Close</MenuItem>
                         {/* Add more dropdown options if needed */}
                       </Select>
                     </TableCell>
@@ -206,7 +229,7 @@ const Alerts = () => {
               color="primary"
               page={page + 1}
               onChange={(event, value) => handleChangePage(event, value - 1)}
-
+              sx={commonStyles}
             />
           </Box>
         </Box>

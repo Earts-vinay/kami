@@ -19,6 +19,11 @@ import SystemStats from "../components/InsightsContent/SystemStats";
 import Incident from "../components/InsightsContent/Incident";
 import TrafficComponent from "../components/InsightsContent/TrafficComponent";
 
+
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
+
 const Insights = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -38,7 +43,7 @@ const Insights = () => {
       <Container maxWidth="xxl" sx={{padding:"0px !important"}}>
         <Box
           backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)"
-          sx={{ margin: "10px", borderRadius: "10px", padding: "10px",height:"79vh",overflow:"auto",  boxShadow: " 0 0 5px 0 #2465e9",
+          sx={{ margin: "10px", borderRadius: "10px", padding: "10px",height:"76vh",overflow:"auto",  boxShadow: " 0 0 5px 0 #2465e9",
           backdropFilter: "blur(15px)"}}
         >
           <Box display="flex" justifyContent="space-between" alignItems="center" px={3}>
@@ -53,6 +58,7 @@ const Insights = () => {
                   borderRadius: "5px",
                   boxShadow:"0 3px 6px 0 rgba(0, 0, 0, 0.16)"
                 },
+                ...commonStyles
               }}
               TabIndicatorProps={{ style: { display: "none" } }}
             >
@@ -67,11 +73,13 @@ const Insights = () => {
                   label={label}
                   sx={{
                     textTransform: "capitalize",
-                    backgroundColor: selectedTab === index && "#84bef1",
+                    backgroundColor: selectedTab === index && "#BCD0F8",
                     color: selectedTab === index && " black !important",
                     minHeight: "30px !important",
                     margin: "5px",
                     borderRadius: "5px",
+                    fontWeight:"bold",
+                    ...commonStyles
                   }}
                 />
               ))}

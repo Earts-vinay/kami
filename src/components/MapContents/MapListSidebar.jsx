@@ -61,7 +61,7 @@ const YourComponent = () => {
             sx={{
               backgroundColor: "white",
               textTransform: "capitalize",
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "montserrat-regular",
               fontWeight: "bold",
               '&.Mui-selected': {
                 backgroundColor: '#2465e9',
@@ -77,7 +77,7 @@ const YourComponent = () => {
             size='small'
             sx={{
               backgroundColor: 'white',
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "montserrat-regular",
               fontWeight: "bold",
               textTransform: "capitalize",
               '&.Mui-selected': {

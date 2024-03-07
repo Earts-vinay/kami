@@ -139,6 +139,11 @@ import dayjs from 'dayjs';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
+
+
 const Devices = () => {
   const pageSizeOptions = [4, 8, 20];
 
@@ -174,9 +179,9 @@ const Devices = () => {
   const alertsData = [
     { id: 1, image: 'assets/images/car1.png', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
     // Add more data as needed
@@ -220,8 +225,8 @@ const Devices = () => {
             <Box display="flex" alignItems="center">
               <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
               <Box >
-                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9" }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
-                <Typography sx={{ marginLeft: 1, color: "#2465e9" }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
+                <Typography sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
               </Box>
             </Box>
             <Popover
@@ -266,7 +271,8 @@ const Devices = () => {
                 backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
                 boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
                 border: "solid 2px #2465e9",
-                border: "none", borderRadius: "5px", marginTop: "10px"
+                border: "none", borderRadius: "5px", marginTop: "10px",
+                ...commonStyles
               }}
             />
           </Box>
@@ -276,11 +282,11 @@ const Devices = () => {
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
-                  <TableCell>Device Name</TableCell>
-                  <TableCell>Device ID</TableCell>
-                  <TableCell>Pole</TableCell>
-                  <TableCell>Camera Model</TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Device Name</TableCell>
+                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Device ID</TableCell>
+                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Pole</TableCell>
+                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Camera Model</TableCell>
+                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Status</TableCell>
                   {/* <TableCell> Controls </TableCell> */}
                 </TableRow>
               </TableHead>
@@ -290,11 +296,11 @@ const Devices = () => {
                      <TableCell width="20%" >
                       <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px",paddingLeft:"50px" }} />
                     </TableCell>
-                    <TableCell>{row.camera}</TableCell>
-                    <TableCell>{row.zone}</TableCell>
-                    <TableCell>{row.pole}</TableCell>
-                    <TableCell>{row.eventType}</TableCell>
-                    <TableCell>{row.status} </TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.camera}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.zone}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.pole}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.eventType}</TableCell>
+                    <TableCell sx={{fontSize: "16px", fontWeight: "bold",...commonStyles,color: row.status === 'Offline' ? 'red' : 'green'}}> {row.status}</TableCell>
                     {/* <TableCell>
                       <Switch />
                     </TableCell> */}
@@ -310,7 +316,7 @@ const Devices = () => {
               color="primary"
               page={page + 1}
               onChange={(event, value) => handleChangePage(event, value - 1)}
-
+              sx={commonStyles}
             />
           </Box>
         </Box>

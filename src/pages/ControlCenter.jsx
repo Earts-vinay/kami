@@ -33,6 +33,9 @@ import { Navbar } from '../components';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
 const cardData = [
   { id: 1, title: 'Card 1', description: 'Description for Card 1', imageUrl: 'assets/images/car.jpg' },
   { id: 2, title: 'Card 2', description: 'Description for Card 2', imageUrl: 'assets/images/car.jpg' },
@@ -138,7 +141,7 @@ const ControlCenter = () => {
           <Box display="flex" justifyContent="space-between">
             <Box display="flex" justifyContent="" gap={2} mb={2} width={800} height={40}>
               <FormControl style={{ width: '30%' }} size="small">
-                <InputLabel htmlFor="select-option"> All Camera Views</InputLabel>
+                <InputLabel htmlFor="select-option" sx={commonStyles}> All Camera Views</InputLabel>
                 <Select label="Select Option" id="select-option">
                   <MenuItem value={1}>Option 1</MenuItem>
                   <MenuItem value={2}>Option 2</MenuItem>
@@ -174,7 +177,7 @@ const ControlCenter = () => {
             />
           </Box>
 
-          <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="65vh" overflow="auto" paddingY="10px">
+          <Box display="flex" flexWrap="wrap" justifyContent="start" gap={3} height="60vh" overflow="auto" paddingY="10px">
             {getPaginatedCards().map((card) => (
               <Card
                 key={card.id}
@@ -200,6 +203,7 @@ const ControlCenter = () => {
                       opacity: 0.7,
                       padding: '15px',
                       color: 'white',
+                      ...commonStyles
                     }}
                   >
                     {card.description}
@@ -219,7 +223,7 @@ const ControlCenter = () => {
 
           {/* Dialog */}
           <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" sx={{height:"700px",display:"flex", justifyContent:"center",alignItems:"center"}}  >
-            <Typography backgroundColor=" #2465e9" color="white" p={2}>Add view</Typography>
+            <Typography backgroundColor=" #2465e9" color="white" sx={commonStyles} p={2}>Add view</Typography>
             <CloseIcon
                 sx={{
                   position: 'absolute',
@@ -234,15 +238,15 @@ const ControlCenter = () => {
               />
             <DialogContent>
               {/* Add your dialog content here */}
-              <Typography fontSize="14px">View Name</Typography>
-              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" />
-              <Typography pt={1} fontSize="14px">Add Camera</Typography>
+              <Typography fontSize="14px" sx={commonStyles}>View Name</Typography>
+              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" sx={commonStyles}/>
+              <Typography pt={1} fontSize="14px" sx={commonStyles}>Add Camera</Typography>
               <TextField
               fullWidth
               label="Search"
               fontSize="14px"
               variant="outlined"
-              style={{ marginBottom: '20px', border: 'solid 1px #2465e9' }}
+              style={{ marginBottom: '20px', border: 'solid 1px #2465e9',...commonStyles }}
               size="small"
               InputProps={{
                 endAdornment: (
@@ -254,7 +258,7 @@ const ControlCenter = () => {
               sx={{ backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', border: 'none', borderRadius: '5px' }}
             />
 
-            <Typography fontSize="14px">Camera List</Typography>
+            <Typography fontSize="14px" sx={commonStyles}>Camera List</Typography>
 
             <TableContainer sx={{height:"200px"}}>
             <Table>
@@ -267,8 +271,8 @@ const ControlCenter = () => {
                     <TableCell>
                       <img src={camera.imageUrl} alt={`Camera ${camera.id}`} style={{ width: '50px', height: '50px' }} />
                     </TableCell>
-                    <TableCell>{camera.name}</TableCell>
-                    <TableCell>{camera.status}</TableCell>
+                    <TableCell sx={commonStyles}>{camera.name}</TableCell>
+                    <TableCell sx={commonStyles}>{camera.status}</TableCell>
                     <TableCell>
                       <Button
                         variant="outlined"
@@ -287,8 +291,8 @@ const ControlCenter = () => {
           </TableContainer>
             </DialogContent >
             <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <Button onClick={handleCloseDialog}variant="contained" sx={{ textTransform: 'capitalize' }}>Cancel</Button>
-              <Button onClick={handleSave} variant="contained" sx={{ textTransform: 'capitalize' }} >
+              <Button onClick={handleCloseDialog}variant="contained" disabled sx={{ textTransform: 'capitalize',...commonStyles }}>Cancel</Button>
+              <Button onClick={handleSave} variant="contained" sx={{ textTransform: 'capitalize',...commonStyles }} >
                 Save
               </Button>
             </DialogActions>
@@ -311,11 +315,11 @@ const ControlCenter = () => {
               />
                  <DialogContent>
               {/* Add your dialog content here */}
-              <Typography>Please confirm to Delete "New Camera View"</Typography>
+              <Typography sx={commonStyles}>Please confirm to Delete "New Camera View"</Typography>
               </DialogContent>
               <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center",textDecoration:"capitalize"}}>
-              <Button onClick={handleCloseDeleteDialog}variant="contained" disabled sx={{ textTransform: 'capitalize' }}>Back</Button>
-              <Button onClick={handleDelete} variant="contained" sx={{ textTransform: 'capitalize' }}>
+              <Button onClick={handleCloseDeleteDialog}variant="contained" disabled sx={{ textTransform: 'capitalize',...commonStyles }}>Back</Button>
+              <Button onClick={handleDelete} variant="contained" sx={{ textTransform: 'capitalize',...commonStyles }}>
                 Delete
               </Button>
             </DialogActions>

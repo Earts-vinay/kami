@@ -11,13 +11,16 @@ import moment from "moment";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ApexCharts from 'react-apexcharts';
 
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
+
 const Overview = () => {
   const cardColors = [
-    'linear-gradient(302deg, #a486f2 100%, #736fee 2%)',
-    'linear-gradient(120deg, #ee746f 3%, #f3b188);',
-    'linear-gradient(120deg, #02b2ec 3%, #93d9ff);',
-    'linear-gradient(301deg, #6adbe0, #6ea7d2 1%);',
-    'linear-gradient(302deg, #6A6181 100%,#91B1F4 100%);'
+    'linear-gradient(296deg, #a486f2, #736fee 2%);',
+    'linear-gradient(114deg, #ee746f 3%, #f3b188);',
+    'linear-gradient(114deg, #02b2ec 3%, #93d9ff);',
+    'linear-gradient(295deg, #6adbe0, #6ea7d2 1%);',
   ];
 
   const cardsData = [
@@ -98,7 +101,7 @@ const Overview = () => {
   return (
     <Box style={{padding:"0px !important"}}>
       <Box display="flex" justifyContent="end" alignItems="center" style={{padding:"0px !important"}}>
-        <Typography variant="body-2">Last Updated {moment().format('HH:mm')}</Typography>
+        <Typography variant="body-2" sx={commonStyles}>Last Updated {moment().format('HH:mm')}</Typography>
         <IconButton color="primary" >
           <RefreshIcon />
         </IconButton>
@@ -115,10 +118,10 @@ const Overview = () => {
                 }}
               >
                 <CardContent>
-                  <Typography color="white" pt={2}>
+                  <Typography color="white" pt={2} sx={commonStyles}>
                     {card.content}
                   </Typography>
-                  <Typography variant="h3" color="white" pt={2}>
+                  <Typography variant="h3" color="white" pt={2} sx={commonStyles}>
                     {card.title}
                   </Typography>
                 </CardContent>

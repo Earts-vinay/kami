@@ -3,6 +3,10 @@ import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
 import ApexCharts from 'react-apexcharts';
 import { useNavigate } from 'react-router-dom';
 
+
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
 const SystemStats = () => {
   // Dummy data for charts
   const pieChartData = [
@@ -152,17 +156,17 @@ const SystemStats = () => {
     <Container maxWidth="xxl" sx={{ height: "100%" }}>
       <Box display="flex" gap={2}>
   <Box width="33%" sx={{ backgroundColor: "white", borderRadius: "5px", padding: "15px" }}>
-    <Typography pb={2}>Line Chart 1</Typography>
+    <Typography pb={2} sx={commonStyles}>Line Chart 1</Typography>
     <ApexCharts options={lineChartOptions1} series={lineChartOptions1.series} type="line" height={200} />
   </Box>
 
   <Box width="33%" sx={{ backgroundColor: "white", borderRadius: "5px", padding: "15px" }}>
-    <Typography pb={2}>Pie Chart</Typography>
+    <Typography pb={2} sx={commonStyles}>Pie Chart</Typography>
     <ApexCharts options={pieChartOptions} series={pieChartOptions.series} type="pie" height={200} />
   </Box>
 
   <Box width="33%" sx={{ backgroundColor: "white", borderRadius: "5px", padding: "15px" }}>
-    <Typography pb={2}>Line Chart 2</Typography>
+    <Typography pb={2} sx={commonStyles}>Line Chart 2</Typography>
     <ApexCharts options={lineChartOptions2} series={lineChartOptions2.series} type="line" height={200} />
   </Box>
 </Box>
@@ -179,10 +183,10 @@ const SystemStats = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell></TableCell>
-                    <TableCell>Camera</TableCell>
-                    <TableCell>Zone</TableCell>
-                    <TableCell>Event Type</TableCell>
-                    <TableCell>Event Time</TableCell>
+                    <TableCell sx={commonStyles}>Camera</TableCell>
+                    <TableCell sx={commonStyles}>Zone</TableCell>
+                    <TableCell sx={commonStyles}>Event Type</TableCell>
+                    <TableCell sx={commonStyles}>Event Time</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
