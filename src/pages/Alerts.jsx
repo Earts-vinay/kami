@@ -109,7 +109,7 @@ const Alerts = () => {
           //   border: "solid 2px #2465e9",
           //   backgroundColor:"#ffffff75",
           //   color:"black",
-          width: "100%", height: "77vh", marginTop: "10px", borderRadius: "10px"
+          width: "100%", height: "82vh", marginTop: "10px", borderRadius: "10px"
         }}>
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: 2, gap: "25px", px: 2 }}>
             <Box display="flex" alignItems="center">
