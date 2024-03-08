@@ -6,11 +6,11 @@ import moment from "moment";
 import { useNavigate } from 'react-router-dom';
 import CameraVideo from './CameraContents/CameraVideo';
 import CameraMap from './CameraContents/CameraMap';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const commonStyles = {
@@ -236,7 +236,7 @@ const Camera = () => {
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                                 transformOrigin={{ vertical: 'top', horizontal: 'center' }}
                             >
-                                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <StaticDateTimePicker
                                         label="Event Date and Time"
                                         value={selectedDate}
@@ -250,7 +250,7 @@ const Camera = () => {
                                         }}
                                         onClose={handleClose}
                                     />
-                                </LocalizationProvider>
+                                </LocalizationProvider> */}
                             </Popover>
                             <TextField
                                 id="search"
@@ -283,7 +283,7 @@ const Camera = () => {
                             <TableBody>
                                 {dataArray.map((data, index) => (
                                     <TableRow key={index}>
-                                        <TableCell width="20%" onClick={() => handleTableRowClick(row)}>
+                                        <TableCell width="20%">
                                             <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px", paddingLeft: "5px" }} />
                                         </TableCell>
                                         <TableCell sx={{fontFamily:"bold",...commonStyles}}>{data.zone}</TableCell>

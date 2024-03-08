@@ -31,7 +31,7 @@ const Login = () => {
         e.preventDefault();
         // Your login logic here
         // Assuming login is successful, navigate to the map page
-        navigate('/');
+        navigate('/map');
     };
 
     const handleForgotPassword = () => {

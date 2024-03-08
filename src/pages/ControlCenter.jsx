@@ -69,6 +69,7 @@ const cameraData = [
 const ControlCenter = () => {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [selectedCameras, setSelectedCameras] = useState([]);
 
@@ -107,6 +108,7 @@ const ControlCenter = () => {
   };
   const handleEdit = () => {
     // Handle the functionality for the Edit button
+    setOpenEditDialog(true);
     console.log('Edit button clicked');
   };
 
@@ -115,6 +117,9 @@ const ControlCenter = () => {
   };
   const handleCloseDeleteDialog = () => {
     setOpenDeleteDialog(false);
+  };
+  const handleCloseEditDialog = () => {
+    setOpenEditDialog(false);
   };
 
   const getPaginatedCards = () => {
@@ -277,6 +282,85 @@ const ControlCenter = () => {
                       <Button
                         variant="outlined"
                         size="small"
+                        onClick={() => handleCameraToggle(camera.id)}
+                        sx={{textTransform:"capitalize"}}
+                        color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}
+                      >
+                        {selectedCameras.includes(camera.id) ? 'Remove Camera' : 'Add Camera'}
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+            </DialogContent >
+            <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+              <Button onClick={handleCloseDialog}variant="contained" disabled sx={{ textTransform: 'capitalize',...commonStyles }}>Cancel</Button>
+              <Button onClick={handleSave} variant="contained" sx={{ textTransform: 'capitalize',...commonStyles }} >
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+
+          {/*Edit Dialog */}
+          <Dialog open={openEditDialog} onClose={handleCloseEditDialog} maxWidth="sm" sx={{height:"700px",display:"flex", justifyContent:"center",alignItems:"center"}}  >
+            <Typography backgroundColor=" #2465e9" color="white" sx={commonStyles} p={2}>Add view</Typography>
+            <CloseIcon
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  color: 'white',
+                  cursor: 'pointer',
+                  paddingY: '6px',
+                  paddingX: '10px',
+                }}
+                onClick={handleCloseEditDialog}
+              />
+            <DialogContent>
+              {/* Add your dialog content here */}
+              {/* <Typography fontSize="14px" sx={commonStyles}>View Name</Typography> */}
+              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" sx={commonStyles}/>
+              {/* <Typography pt={1} fontSize="14px" sx={commonStyles}>Add Camera</Typography> */}
+              <TextField
+              fullWidth
+              label="Search"
+              fontSize="14px"
+              variant="outlined"
+              style={{ marginBottom: '20px', border: 'solid 1px #2465e9',...commonStyles }}
+              size="small"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{ backgroundColor: 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)', border: 'none', borderRadius: '5px',marginTop:"10px" }}
+            />
+
+            <Typography fontSize="14px" sx={commonStyles}>Camera List</Typography>
+
+            <TableContainer sx={{height:"200px"}}>
+            <Table>
+              <TableHead>
+              
+              </TableHead>
+              <TableBody>
+                {cameraData.map((camera) => (
+                  <TableRow key={camera.id}>
+                    <TableCell>
+                      <img src={camera.imageUrl} alt={`Camera ${camera.id}`} style={{ width: '50px', height: '50px' }} />
+                    </TableCell>
+                    <TableCell sx={commonStyles}>{camera.name}</TableCell>
+                    <TableCell sx={commonStyles}>{camera.status}</TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        width="80%"
                         onClick={() => handleCameraToggle(camera.id)}
                         sx={{textTransform:"capitalize"}}
                         color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}

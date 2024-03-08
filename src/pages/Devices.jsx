@@ -132,11 +132,11 @@ import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import Pagination from '@mui/material/Pagination';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const commonStyles = {
@@ -236,7 +236,7 @@ const Devices = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
           <StaticDateTimePicker
             label="Event Date and Time"
             value={selectedDate}
@@ -250,7 +250,7 @@ const Devices = () => {
             }}
             onClose={handleClose}
           />
-        </LocalizationProvider>
+        </LocalizationProvider> */}
       </Popover>
 
             <TextField

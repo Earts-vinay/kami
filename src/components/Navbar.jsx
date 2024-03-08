@@ -368,7 +368,7 @@ const handleCloseUserMenu = () => {
         >
           <Box sx={{ backgroundColor: 'transparent' }}>
             {[
-              { to: '/', label: 'Map' },
+              { to: '/map', label: 'Map' },
               { to: '/controlcenter', label: 'Control Center' },
               { to: '/alerts', label: 'Alerts' },
               { to: '/devices', label: 'Devices' },
@@ -450,7 +450,7 @@ const handleCloseUserMenu = () => {
 </MenuItem>
 
 <MenuItem onClick={handleCloseUserMenu} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
-  <Link to="/login" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
+  <Link to="/" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
     <img src="assets/icons/logout.svg" alt="" />
     Logout
   </Link>

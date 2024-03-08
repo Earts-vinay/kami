@@ -5,16 +5,22 @@ import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
 import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
 import { useNavigate } from 'react-router-dom';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-import dayjs from 'dayjs';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
+import dayjs from 'dayjs';
+
+
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import moment from 'moment';
 
 const commonStyles = {
   fontFamily: "montserrat-regular"
 };
+
 
 const Alerts = () => {
   const navigate = useNavigate();
@@ -55,6 +61,10 @@ const Alerts = () => {
   const handlePickerClick = (event) => {
     // Stop event propagation to prevent the Popover from closing
     event.preventDefault();
+  };
+
+  const formatDate = (date) => {
+    return date.format('MMM DD YYYY');
   };
 
   const alertsData = [
@@ -115,40 +125,91 @@ const Alerts = () => {
             <Box display="flex" alignItems="center">
               <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
               <Box >
-                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
-                <Typography sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+                {/* <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}>
+  {selectedDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+</Typography>
+<Typography sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles, }}>
+  {selectedDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+</Typography> */}
+<LocalizationProvider dateAdapter={AdapterDayjs}>
+<DateTimePicker
+   format='MMM DD, YYYY hh:mm A'
+  label={
+    <Typography variant="body2" sx={{ color: "#2465e9", ...commonStyles }}>
+      {selectedDate.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      })}
+      {' '}
+      {selectedDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+    </Typography>
+  }
+  size="small"
+  renderInput={(props, openPicker) => (
+    <Typography
+      {...props}
+      onClick={openPicker}
+      sx={{
+        display: 'inline-block',
+        padding: '10px', // Add your desired styling
+        borderBottom: '1px solid #e0e0e0', // Add your desired styling
+        cursor: 'pointer',
+      }}
+    >
+      {selectedDate.format('MMM DD YYYY hh:mm A')}
+    </Typography>
+  )}
+  sx={{
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      border: 'none',
+    },
+    "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+      border: 'none',
+    },
+    "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: 'none',
+    },
+  }}
+  viewRenderers={{
+    hours: renderTimeViewClock,
+    minutes: renderTimeViewClock,
+    seconds: renderTimeViewClock,
+  }}
+/>
+
+
+</LocalizationProvider>
               </Box>
             </Box>
-            <Popover
+            {/* <Popover
               open={Boolean(anchorEl)}
               anchorEl={anchorEl}
               onClose={handleClose}
               anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
               transformOrigin={{ vertical: 'top', horizontal: 'center' }}
             >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <StaticDateTimePicker
-                  label="Event Date and Time"
-                  value={selectedDate}
-                  onChange={handleDateSelect}
-                  onTimeChange={handleTimeSelect}
-                  sx={{
-                    '& .MuiPickersLayout-toolbar': {
-                      display: 'none',
-                    },
-
-                  }}
-                  onClose={handleClose}
-                />
-              </LocalizationProvider>
-            </Popover>
+         
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
+        <DateTimePicker
+          label="With Time Clock"
+          viewRenderers={{
+            hours: renderTimeViewClock,
+            minutes: renderTimeViewClock,
+            seconds: renderTimeViewClock,
+          }}
+        />
+     
+   
+    </LocalizationProvider>
+            </Popover> */}
 
             <TextField
               label="Search"
               variant="outlined"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ marginBottom: '20px' }}
               size="small"
               InputProps={{
                 endAdornment: (
@@ -162,7 +223,16 @@ const Alerts = () => {
                 boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
                 border: "solid 2px #2465e9",
                 ...commonStyles,
-                border: "none", borderRadius: "5px", marginTop: "10px"
+                border: "none", borderRadius: "5px",
+                ".MuiOutlinedInput-notchedOutline": { border: 0 },
+              "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+              {
+                border: 0,
+              },
+              "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+              {
+                border: 0,
+              },
               }}
             />
           </Box>

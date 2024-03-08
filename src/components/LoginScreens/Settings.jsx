@@ -24,31 +24,36 @@ const Settings = () => {
           }}
         >
           <Box padding="15px">
-            <Typography variant="h5" sx={{fontWeight:"bold", ...commonStyles}}>Account</Typography>
+          <Box display="flex" gap={1}>
+              <Typography variant="h5" sx={{fontWeight:"bold", ...commonStyles}}>Account</Typography>
+              <img src="assets/icons/update.svg"  alt="" />
+            </Box>
             <Typography variant="body2" sx={commonStyles}>Update your account </Typography>
           </Box>
           <Box width="50%" padding="15px">
-            <Typography variant='h6' sx={{fontWeight:"bold", ...commonStyles}}>Change Password</Typography>
+            <Typography variant='h6' sx={{fontWeight:"bold",paddingBottom:"15px", ...commonStyles}}>Change Password</Typography>
             <form>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
+                <Typography variant="body1" sx={commonStyles}>New Password</Typography>
                   <TextField
                     fullWidth
                     type="password"
                     label="New Password"
                     variant="outlined"
-                    margin="normal"
+                    margin="dense"
                      size="small"
                      sx={commonStyles}
                   />
                 </Grid>
                 <Grid item xs={6}>
+                <Typography variant="body1" sx={commonStyles}>Confirm Password</Typography>
                   <TextField
                     fullWidth
                     type="password"
                     label="Confirm Password"
                     variant="outlined"
-                    margin="normal"
+                    margin="dense"
                      size="small"
                      sx={commonStyles}
                   />
