@@ -32,6 +32,9 @@ const MapSidebar1 = () => {
                     height: "250px",
                     borderRadius:"5px"
                   }}
+                  sx={{  backdropFilter: "blur(15px)",
+                  boxShadow: "0 0 5px 0 rgba(25, 96, 159, 0.1)",
+                  border: "solid 1px #fff",borderRadius:"10px"}}
                 >
                   <div style={{ padding: "0px" }}>
                     {/* Implement date and time using moment */}
@@ -42,6 +45,7 @@ const MapSidebar1 = () => {
                           backgroundColor: "#2465e9",
                           textAlign: "center",
                           paddingY: "5px",
+                          borderRadius:"5px 0px 0px 0px",
                           color: "white",
                         }}
                       >

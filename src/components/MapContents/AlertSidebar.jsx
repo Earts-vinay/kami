@@ -1,31 +1,35 @@
 import React, { useState, useRef } from 'react';
 import BounceLoader from 'react-spinners/BounceLoader';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, IconButton, Paper, Typography, Card, CardContent, CardMedia } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Paper,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import Draggable from 'react-draggable';
 
+const commonStyles = {
+  fontFamily: "montserrat-regular"
+};
+
 const AlertSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [style, setStyle] = useState({
-    width: 330,
-    transition: 'width 0.3s, left 0.3s',
-    overflow: 'auto',
-    zIndex: 1000,
-    borderRadius: '5px',
-    position: 'fixed',
-  });
 
-  const nodeRef = useRef(null);
   const cameraData = [
-    { id: 1, name: "Camera 1", area: "Parking", view: "South", image: "assets/images/car.jpg" },
-    { id: 2, name: "Camera 2", area: "Parking", view: "South", image: "assets/images/car.jpg" },
-    { id: 3, name: "Camera 3", area: "Parking", view: "South", image: "assets/images/car.jpg" },
-    { id: 3, name: "Camera 3", area: "Parking", view: "South", image: "assets/images/car.jpg" },
-
-
+    { id: 1, name: 'Camera 1', area: 'Parking', view: 'South', image: 'assets/images/car.jpg' },
+    { id: 2, name: 'Camera 2', area: 'Parking', view: 'South', image: 'assets/images/car.jpg' },
+    { id: 3, name: 'Camera 3', area: 'Parking', view: 'South', image: 'assets/images/car.jpg' },
+    { id: 4, name: 'Camera 4', area: 'Parking', view: 'South', image: 'assets/images/car.jpg' },
     // Add more camera objects as needed
-];
+  ];
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -39,16 +43,26 @@ const AlertSidebar = () => {
 
       {isSidebarOpen && (
         <Draggable>
-          <Paper style={{
-    width: 330,
-    transition: 'width 0.3s, left 0.3s',
-    overflow: 'auto',
-    zIndex: 1000,
-    borderRadius: '5px',
-    position: 'absolute',
-    transform: 'translate(0, 0)', // Add this line
-  }}>
-            <Box ref={nodeRef}>
+          <Paper
+            style={{
+              width: 330,
+              transition: 'width 0.3s, left 0.3s',
+              overflow: 'auto',
+              zIndex: 1000,
+              borderRadius: '5px',
+              position: 'absolute',
+              transform: 'translate(0, 0)', // Add this line
+              background:
+                'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)',
+            }}
+            sx={{
+              backdropFilter: 'blur(15px)',
+              boxShadow: '0 0 5px 0 rgba(25, 96, 159, 0.1)',
+              border: 'solid 1px #fff',
+              borderRadius: '10px',
+            }}
+          >
+            <Box>
               <Typography
                 variant="body2"
                 sx={{
@@ -74,40 +88,22 @@ const AlertSidebar = () => {
                 onClick={handleSidebarToggle}
               />
 
-              <Box display="flex" sx={{ height: '25%' }}>
-                <Box height="60%" overflow="auto">
-                  {cameraData.map((camera) => (
-                    <Link to={`/camera`} key={camera.id} style={{ textDecoration: 'none' }}>
-                      <Card
-                        sx={{
-                          display: 'flex',
-                          marginX: '10px',
-                          marginY: '10px',
-                          alignItems: 'center',
-                          border: '0px',
-                          height: 100,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <CardMedia
-                          component="img"
-                          sx={{ width: 151, height: 90 }}
-                          image={camera.image}
-                          borderRadius="10px"
-                          alt="Camera Image"
-                        />
-                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                          <CardContent sx={{ flex: '1 0 auto' }}>
-                            <Typography>{camera.name}</Typography>
-                            <Typography>Area: {camera.area}</Typography>
-                            <Typography>View: {camera.view}</Typography>
-                          </CardContent>
-                        </Box>
-                      </Card>
-                    </Link>
-                  ))}
-                </Box>
-              </Box>
+              <TableContainer sx={{ maxHeight: 300 }}>
+                <Table>
+                 
+                  <TableBody>
+                    {cameraData.map((camera) => (
+                      <TableRow key={camera.id} component={Link} to={`/camera`} style={{ textDecoration: 'none' }}>
+                         <TableCell width="20%" sx={{paddingY:"12px", ...commonStyles}}>
+                      <img src={camera.image} style={{ width: '150px', height: '80px', borderRadius: "5px" }} />
+                    </TableCell>
+                        <TableCell>{camera.name}<br/> Area: {camera.area} <br/> View: {camera.view}</TableCell>
+                       
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </Box>
           </Paper>
         </Draggable>

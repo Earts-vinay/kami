@@ -6,11 +6,9 @@ import moment from "moment";
 import { useNavigate } from 'react-router-dom';
 import CameraVideo from './CameraContents/CameraVideo';
 import CameraMap from './CameraContents/CameraMap';
-// import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const commonStyles = {
@@ -21,10 +19,11 @@ const Camera = () => {
     const [selectedTab, setSelectedTab] = useState(0);
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const [selectedTime, setSelectedTime] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
 
+    };
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -33,24 +32,9 @@ const Camera = () => {
         setAnchorEl(null);
     };
 
-    const handleDateSelect = (date) => {
-        setSelectedDate(date);
-    };
-
-    const handleTimeSelect = (time) => {
-        setSelectedTime(time);
-
-    };
-
-    const handleDateChange = (newDate) => {
-        setSelectedDate(newDate);
-        setAnchorEl(null); // Close the Popover after selecting a date
-        // You can use the selected date as needed in your application
-    };
-
     const handleArrowClick = () => {
         // Navigate to the map screen
-        navigate('/');
+        navigate('/map');
     };
 
     const handleTabChange = (event, newValue) => {
@@ -63,10 +47,6 @@ const Camera = () => {
         </div>
     );
 
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     const dataArray = [
         { id: 1, image: 'assets/images/car1.png', camera: 'Gate 1 cam Entry', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM', eventDate: "2024-02-24" },
@@ -94,12 +74,8 @@ const Camera = () => {
 
         <Container maxWidth="xxl" paddingLeft="0px !important" paddingRight="0px !important" sx={{ padding: "0px !important" }}>
             <Box display="flex" height="100vh">
-                <Box width="65%" height="">
-                    {/* Header with tabs and back button */}
-                    <Box
-
-                        sx={{ borderRadius: "10px", padding: "10px" }}
-                    >
+                <Box width="60%" height="">
+                    <Box sx={{ borderRadius: "10px", padding: "10px" }}>
                         <Box display="flex" justifyContent="space-between" alignItems="center" >
                             <IconButton onClick={handleArrowClick}>
                                 <ArrowBackIosNewIcon />
@@ -117,7 +93,7 @@ const Camera = () => {
                                         borderRadius: "5px",
                                         boxShadow: "0 0 5px 0 rgba(36, 101, 233, 0.5)",
                                         marginX: "10px",
-                                        fontWeight:"bold",
+                                        fontWeight: "bold",
                                         ...commonStyles
                                     },
                                 }}
@@ -156,15 +132,11 @@ const Camera = () => {
                                 <CameraVideo />
                             </TabPanel>
                             <TabPanel value={selectedTab} index={2}>
-                                {/* Content for Incident Response tab */}
-                                {/* You can call your components here */}
                                 <CameraMap />
                             </TabPanel>
 
                         </Box>
                     </Box>
-
-
 
                     {/* Left image and right information card */}
                     <Box display="flex" backgroundColor="white" borderRadius={1} marginX={2}  >
@@ -218,15 +190,21 @@ const Camera = () => {
                     </Box>
                 </Box>
 
-                <Box width="40%" backgroundColor="white">
+                <Box width="40%" backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)" sx={{ backdropFilter: "blur(5px)", boxShadow: "0 0 5px 0 rgba(25, 96, 159, 0.1)", border: "solid 2px #fff", borderRadius: "10px" }}>
                     {/* Header with search bar */}
-                    <Box sx={{ backgroundColor: "#2465e9", padding: "10px", borderRadius: "10px 10px 0px 0px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1, backdropFilter: "blur(5px)", boxShadow: "0 0 5px 0 rgba(25, 96, 159, 0.1)", border: "solid 2px #fff" }}>
+                    <Box sx={{ backgroundColor: "#2465e9", padding: "10px", borderRadius: "10px 10px 0px 0px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1, }}>
                         <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", gap: "25px", px: 2, backdropFilter: " blur(5px)", boxShadow: "-1px 6px 31px 0 rgba(25, 96, 159, 0.1)", backgroundColor: '#2465e9' }}>
-                            <Box display="flex" alignItems="center">
+                            <Box display="flex" alignItems="center" gap={2}>
                                 <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{ color: "white", cursor: "pointer" }} /> {/* Toggle the visibility of DateTimePicker */}
                                 <Box >
-                                    <Typography variant="body2" sx={{ marginLeft: 1, color: "white" }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
-                                    <Typography sx={{ marginLeft: 1, color: "white" }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+                                    <Box >
+                                        <Typography sx={{ color: "white", ...commonStyles,fontSize:"12px"  }}>
+                                            {selectedDate ? selectedDate.format('MMM DD YYYY') : moment().format('MMM DD YYYY')}
+                                        </Typography>
+                                        <Typography sx={{ color: "white", ...commonStyles }}>
+                                            {selectedDate ? selectedDate.format('hh:mm A') : moment().format('hh:mm A')}
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Box>
                             <Popover
@@ -236,12 +214,15 @@ const Camera = () => {
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                                 transformOrigin={{ vertical: 'top', horizontal: 'center' }}
                             >
-                                {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+
                                     <StaticDateTimePicker
                                         label="Event Date and Time"
                                         value={selectedDate}
+
                                         onChange={handleDateSelect}
-                                        onTimeChange={handleTimeSelect}
+
                                         sx={{
                                             '& .MuiPickersLayout-toolbar': {
                                                 display: 'none',
@@ -250,7 +231,7 @@ const Camera = () => {
                                         }}
                                         onClose={handleClose}
                                     />
-                                </LocalizationProvider> */}
+                                </LocalizationProvider>
                             </Popover>
                             <TextField
                                 id="search"
@@ -275,9 +256,9 @@ const Camera = () => {
                             <TableHead >
                                 <TableRow>
                                     <TableCell></TableCell>
-                                    <TableCell  sx={{fontWeight:"bold",...commonStyles}}>Camera</TableCell>
-                                    <TableCell  sx={{fontWeight:"bold",...commonStyles}}>Event Type</TableCell>
-                                    <TableCell  sx={{fontWeight:"bold",...commonStyles}}>Date & Time</TableCell>
+                                    <TableCell sx={{ fontWeight: "bold", ...commonStyles }}>Camera</TableCell>
+                                    <TableCell sx={{ fontWeight: "bold", ...commonStyles }}>Event Type</TableCell>
+                                    <TableCell sx={{ fontWeight: "bold", ...commonStyles }}>Date & Time</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -286,13 +267,13 @@ const Camera = () => {
                                         <TableCell width="20%">
                                             <img src={data.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px", paddingLeft: "5px" }} />
                                         </TableCell>
-                                        <TableCell sx={{fontFamily:"bold",...commonStyles}}>{data.zone}</TableCell>
+                                        <TableCell sx={{ fontFamily: "bold", ...commonStyles }}>{data.zone}</TableCell>
                                         <TableCell>
                                             <Box display="flex" gap={2}>
                                                 <img src='assets/images/carx.svg' />
                                                 <Box display="flex" flexDirection="column" p={0}>
                                                     {data.eventType}
-                                                    <Typography variant='body-2' sx={{ color: "red", textAlign: "start", py: "0px",...commonStyles }}>{data.eventStatus}</Typography>
+                                                    <Typography variant='body-2' sx={{ color: "red", textAlign: "start", py: "0px", ...commonStyles }}>{data.eventStatus}</Typography>
                                                 </Box>
                                             </Box>
                                         </TableCell>

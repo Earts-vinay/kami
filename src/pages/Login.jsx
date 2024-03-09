@@ -42,7 +42,15 @@ const Login = () => {
 
     return (
         <Container maxWidth="xl">
-            <Box height="100vh" display="flex" alignItems="center" justifyContent="center">
+            <Box height="100vh" display="flex" alignItems="center" justifyContent="center"     
+            sx={{
+                    backgroundImage: `url("/assets/icons/bgartwork.svg")`,
+                    backgroundSize: "contain",
+                    backgroundPosition: "right bottom", // or "100% 100%"
+                    backgroundRepeat: "no-repeat",
+                   
+                }}>
+               
                 <Box width="50%" >
                     <Box width="80%" >
                 <img
@@ -50,7 +58,7 @@ const Login = () => {
                         alt="Logo"
                         style={{ objectFit: "contain" }}
                     />
-                    <Typography variant="h4" mt={4}>Welcome to <br/> The Sphere of Security</Typography>
+                    <Typography variant="h4" mt={4}>Welcome to <br/> The Circle of Security</Typography>
                     <Typography mt={2}>Our AI platform uses computer vision to provide home security, elder care, and commercial applications. It tracks movements of cars, license plates, and people, quickly warning of any questionable activity.</Typography>
                 </Box>
                 </Box>

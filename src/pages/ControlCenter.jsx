@@ -71,6 +71,7 @@ const ControlCenter = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openDuplicateDialog, setOpenDuplicateDialog] = useState(false);
   const [selectedCameras, setSelectedCameras] = useState([]);
 
   const handleCameraToggle = (cameraId) => {
@@ -98,17 +99,27 @@ const ControlCenter = () => {
     setOpenDeleteDialog(true);
   };
 
-  const handleSave = () => {
-    // Implement your logic here
-    setOpenDialog(false); // Close the dialog after saving
+  const handleDuplicate = () => {
+    
+    setOpenDuplicateDialog(true);
+    console.log('Edit button clicked');
   };
-  const handleDelete = () => {
-    // Implement your logic here
-    setOpenDeleteDialog(false); // Close the dialog after saving
-  };
+
   const handleEdit = () => {
-    // Handle the functionality for the Edit button
+    
     setOpenEditDialog(true);
+    console.log('Edit button clicked');
+  };
+
+  const handleSave = () => {
+    
+  
+    console.log('Edit button clicked');
+  };
+
+  const handleDelete = () => {
+    
+
     console.log('Edit button clicked');
   };
 
@@ -120,6 +131,9 @@ const ControlCenter = () => {
   };
   const handleCloseEditDialog = () => {
     setOpenEditDialog(false);
+  };
+  const handleCloseDuplicateDialog = () => {
+    setOpenDuplicateDialog(false);
   };
 
   const getPaginatedCards = () => {
@@ -159,7 +173,7 @@ const ControlCenter = () => {
         <BorderColorOutlinedIcon/>
        
       </Button>
-      <Button variant="outlined" size="small" onClick={handleSave}  sx={{ textTransform: 'capitalize' }}>
+      <Button variant="outlined" size="small" onClick={handleDuplicate}  sx={{ textTransform: 'capitalize' }}>
         <LibraryAddOutlinedIcon />
       
       </Button>
@@ -226,7 +240,7 @@ const ControlCenter = () => {
             <Pagination count={Math.ceil(cardData.length / cardsPerPage)} color="primary" page={page} onChange={handlePageChange} />
           </Box>
 
-          {/* Dialog */}
+          {/*Add Dialog */}
           <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" sx={{height:"700px",display:"flex", justifyContent:"center",alignItems:"center"}}  >
             <Typography backgroundColor=" #2465e9" color="white" sx={commonStyles} p={2}>Add view</Typography>
             <CloseIcon
@@ -244,7 +258,7 @@ const ControlCenter = () => {
             <DialogContent>
               {/* Add your dialog content here */}
               <Typography fontSize="14px" sx={commonStyles}>View Name</Typography>
-              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" sx={commonStyles}/>
+              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" margin="dense" variant="outlined" sx={commonStyles}/>
               <Typography pt={1} fontSize="14px" sx={commonStyles}>Add Camera</Typography>
               <TextField
               fullWidth
@@ -273,21 +287,25 @@ const ControlCenter = () => {
               <TableBody>
                 {cameraData.map((camera) => (
                   <TableRow key={camera.id}>
-                    <TableCell>
-                      <img src={camera.imageUrl} alt={`Camera ${camera.id}`} style={{ width: '50px', height: '50px' }} />
+                      <TableCell >
+                      <img src={camera.imageUrl}  style={{ width: '150px', height: '80px', borderRadius: "5px" }} />
                     </TableCell>
                     <TableCell sx={commonStyles}>{camera.name}</TableCell>
                     <TableCell sx={commonStyles}>{camera.status}</TableCell>
                     <TableCell>
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        onClick={() => handleCameraToggle(camera.id)}
-                        sx={{textTransform:"capitalize"}}
-                        color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}
-                      >
-                        {selectedCameras.includes(camera.id) ? 'Remove Camera' : 'Add Camera'}
-                      </Button>
+                    <Button
+    variant="outlined"
+    size="small"
+    onClick={() => handleCameraToggle(camera.id)}
+    sx={{
+        textTransform: "capitalize",
+        width: "120px", // Set the width here
+    }}
+    color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}
+>
+    {selectedCameras.includes(camera.id) ? 'Remove Camera' : 'Add Camera'}
+</Button>
+
                     </TableCell>
                   </TableRow>
                 ))}
@@ -405,6 +423,35 @@ const ControlCenter = () => {
               <Button onClick={handleCloseDeleteDialog}variant="contained" disabled sx={{ textTransform: 'capitalize',...commonStyles }}>Back</Button>
               <Button onClick={handleDelete} variant="contained" sx={{ textTransform: 'capitalize',...commonStyles }}>
                 Delete
+              </Button>
+            </DialogActions>
+
+          </Dialog>
+
+            {/* {Duplicate Dialog} */}
+            <Dialog open={openDuplicateDialog} onClose={handleCloseDuplicateDialog} maxWidth="xl"  >
+          <Typography backgroundColor=" #2465e9" color="white" p={2}>Duplicate view</Typography>
+            <CloseIcon
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  color: 'white',
+                  cursor: 'pointer',
+                  paddingY: '6px',
+                  paddingX: '10px',
+                }}
+                onClick={handleCloseDeleteDialog}
+              />
+                 <DialogContent>
+              {/* Add your dialog content here */}
+              <Typography sx={commonStyles} width="500px">Add New Name</Typography>
+              <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined"  margin="dense" sx={commonStyles}/>
+              </DialogContent>
+              <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center",textDecoration:"capitalize"}}>
+              <Button onClick={handleCloseDeleteDialog}variant="contained" disabled sx={{ textTransform: 'capitalize',...commonStyles }}>Back</Button>
+              <Button onClick={handleSave} variant="contained" sx={{ textTransform: 'capitalize',...commonStyles }}>
+                Save
               </Button>
             </DialogActions>
 

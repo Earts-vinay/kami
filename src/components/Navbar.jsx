@@ -398,12 +398,12 @@ const handleCloseUserMenu = () => {
    <Tooltip title="Open settings">
      <Box
       
-      onClick={(e) => setAnchorElUser(e.currentTarget)} // Update anchorElUser on click
+       // Update anchorElUser on click
     >
-      <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
+      <Box display="flex" justifyContent="center" alignItems="center" gap={2} >
         <Typography variant="body-2" fontSize="16px" color="#2465e9" textAlign="center" fontFamily="montserrat-regular">
           {" "}
-         <Box display="flex" alignItems="center"> Welcome Back James <ArrowDropDown/></Box>
+         <Box display="flex" alignItems="center"onClick={(e) => setAnchorElUser(e.currentTarget)}> Welcome Back James <ArrowDropDown/></Box>
         </Typography>
         <Typography variant="body2" color="textSecondary" >
           {moment().format("DD-MM-YYYY | HH:mm")}

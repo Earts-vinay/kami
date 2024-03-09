@@ -132,11 +132,10 @@ import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import Pagination from '@mui/material/Pagination';
-// import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import moment from 'moment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const commonStyles = {
@@ -150,8 +149,7 @@ const Devices = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
   const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
-  const [selectedDate, setSelectedDate] =useState(new Date());
-  const [selectedTime, setSelectedTime] =useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -163,12 +161,9 @@ const Devices = () => {
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
+
   };
 
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-    
-  };
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
@@ -177,13 +172,13 @@ const Devices = () => {
   };
 
   const alertsData = [
-    { id: 1, image: 'assets/images/car1.png', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Online", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
-    { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status: "Offline", },
+    { id: 1, image: 'assets/images/car1.png', camera: 'Gate 1 Cam Entry', zone: 'Zone A', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
+    { id: 2, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone B', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
+    { id: 3, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone C', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Online", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Online", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Online", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
+    { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
     // Add more data as needed
   ];
 
@@ -215,43 +210,52 @@ const Devices = () => {
   return (
     <div>
       <Navbar />
-      <Container maxWidth="xxl" sx={{ height: "70vh" }}>
+      <Container maxWidth="xxl" sx={{  }}>
         <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
           boxShadow: " 0 0 5px 0 #2465e9",
-          width: "100%",height:"80vh", marginTop: "10px", borderRadius: "10px"
+          width: "100%",height:"80vh", borderRadius: "10px",overFlow:"auto",marginTop:"10px"
         }}>
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: 2, gap: "25px", px: 2 }}>
-            <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" gap={2}>
               <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
               <Box >
-                <Typography variant="body2" sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles }}>{dayjs(selectedDate).format('MMM DD YYYY ')} </Typography>
-                <Typography sx={{ marginLeft: 1, color: "#2465e9", ...commonStyles }}> {dayjs(selectedDate).format(' hh:mm a ')}</Typography>
+                <Box >
+                  <Typography sx={{ color: "#2465e9", ...commonStyles,fontSize:"12px"  }}>
+                    {selectedDate ? selectedDate.format('MMM DD YYYY') : moment().format('MMM DD YYYY')}
+                  </Typography>
+                  <Typography sx={{ color: "#2465e9", ...commonStyles }}>
+                    {selectedDate ? selectedDate.format('hh:mm A') : moment().format('hh:mm A')}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
             <Popover
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDateTimePicker
-            label="Event Date and Time"
-            value={selectedDate}
-            onChange={handleDateSelect}
-            onTimeChange={handleTimeSelect}
-            sx={{
-              '& .MuiPickersLayout-toolbar': {
-                display: 'none',
-              },
-              
-            }}
-            onClose={handleClose}
-          />
-        </LocalizationProvider> */}
-      </Popover>
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                <StaticDateTimePicker
+                  label="Event Date and Time"
+                  value={selectedDate}
+
+                  onChange={handleDateSelect}
+
+                  sx={{
+                    '& .MuiPickersLayout-toolbar': {
+                      display: 'none',
+                    },
+
+                  }}
+                  onClose={handleClose}
+                />
+              </LocalizationProvider>
+            </Popover>
 
             <TextField
               label="Search"
@@ -271,7 +275,7 @@ const Devices = () => {
                 backgroundColor: "whitelinear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",
                 boxShadow: "0 0 5px 0 rgba(0, 58, 111, 0.5)",
                 border: "solid 2px #2465e9",
-                border: "none", borderRadius: "5px", marginTop: "10px",
+                border: "none", borderRadius: "5px",
                 ...commonStyles
               }}
             />
@@ -282,25 +286,25 @@ const Devices = () => {
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
-                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Device Name</TableCell>
-                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Device ID</TableCell>
-                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Pole</TableCell>
-                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Camera Model</TableCell>
-                  <TableCell sx={{fontWeight:"bold",...commonStyles}}>Status</TableCell>
+                  <TableCell sx={{fontWeight:"bold",paddingY:"12px",...commonStyles}}>Device Name</TableCell>
+                  <TableCell sx={{fontWeight:"bold",paddingY:"12px",...commonStyles}}>Device ID</TableCell>
+                  <TableCell sx={{fontWeight:"bold",paddingY:"12px",...commonStyles}}>Pole</TableCell>
+                  <TableCell sx={{fontWeight:"bold",paddingY:"12px",...commonStyles}}>Camera Model</TableCell>
+                  <TableCell sx={{fontWeight:"bold",paddingY:"12px",...commonStyles}}>Status</TableCell>
                   {/* <TableCell> Controls </TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
                 {paginatedData.map((row, index) => (
                   <TableRow key={row.id}>
-                     <TableCell width="20%" >
+                     <TableCell width="20%" sx={{paddingY:"12px"}}>
                       <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '150px', height: '80px', borderRadius: "5px",paddingLeft:"50px" }} />
                     </TableCell>
-                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.camera}</TableCell>
-                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.zone}</TableCell>
-                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.pole}</TableCell>
-                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",...commonStyles}}>{row.eventType}</TableCell>
-                    <TableCell sx={{fontSize: "16px", fontWeight: "bold",...commonStyles,color: row.status === 'Offline' ? 'red' : 'green'}}> {row.status}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",paddingY:"12px",...commonStyles}}>{row.camera}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",paddingY:"12px",...commonStyles}}>{row.zone}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",paddingY:"12px",...commonStyles}}>{row.pole}</TableCell>
+                    <TableCell sx={{fontSize:"16px",fontWeight:"bold",paddingY:"12px",...commonStyles}}>{row.eventType}</TableCell>
+                    <TableCell sx={{fontSize: "16px", fontWeight: "bold",paddingY:"12px",...commonStyles,color: row.status === 'Offline' ? 'red' : 'green'}}> {row.status}</TableCell>
                     {/* <TableCell>
                       <Switch />
                     </TableCell> */}
@@ -310,7 +314,7 @@ const Devices = () => {
             </Table>
           </TableContainer>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '5px' }}>
             <Pagination
               count={Math.ceil(filteredData.length / rowsPerPage)}
               color="primary"
