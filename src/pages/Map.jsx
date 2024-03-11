@@ -3,7 +3,7 @@ import MapListSidebar from "../components/MapContents/MapListSidebar";
 import AlertSidebar from "../components/MapContents/AlertSidebar";
 import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
-import MarkerClusterer from "@googlemaps/markerclustererplus";
+import {MarkerClusterer} from "@googlemaps/markerclusterer";
 import { Box } from "@mui/material";
 import { Navbar } from "../components";
 
@@ -128,4 +128,3 @@ function Markers({ points, onMarkerClick }) {
 
   return null; 
 }
-
