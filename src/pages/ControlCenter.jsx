@@ -52,7 +52,6 @@ const cardData = [
   { id: 13, title: 'Card 13', description: 'Description for Card 10', imageUrl: 'assets/images/car.jpg' },
   { id: 14, title: 'Card 14', description: 'Description for Card 10', imageUrl: 'assets/images/car.jpg' },
   { id: 15, title: 'Card 15', description: 'Description for Card 10', imageUrl: 'assets/images/car.jpg' },
-  // ... Add more cards as needed
 ];
 
 const cameraData = [
@@ -63,7 +62,6 @@ const cameraData = [
   { id: 5, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
   { id: 6, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
   { id: 7, name: 'Camera 1', status: 'Online', imageUrl: 'assets/images/car.jpg' },
-  // Add more camera data as needed
 ];
 
 const ControlCenter = () => {
@@ -240,7 +238,6 @@ const ControlCenter = () => {
             <Pagination count={Math.ceil(cardData.length / cardsPerPage)} color="primary" page={page} onChange={handlePageChange} />
           </Box>
 
-          {/*Add Dialog */}
           <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" sx={{height:"700px",display:"flex", justifyContent:"center",alignItems:"center"}}  >
             <Typography backgroundColor=" #2465e9" color="white" sx={commonStyles} p={2}>Add view</Typography>
             <CloseIcon
@@ -256,7 +253,6 @@ const ControlCenter = () => {
                 onClick={handleCloseDialog}
               />
             <DialogContent>
-              {/* Add your dialog content here */}
               <Typography fontSize="14px" sx={commonStyles}>View Name</Typography>
               <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" margin="dense" variant="outlined" sx={commonStyles}/>
               <Typography pt={1} fontSize="14px" sx={commonStyles}>Add Camera</Typography>
@@ -299,7 +295,7 @@ const ControlCenter = () => {
     onClick={() => handleCameraToggle(camera.id)}
     sx={{
         textTransform: "capitalize",
-        width: "120px", // Set the width here
+        width: "120px", 
     }}
     color={selectedCameras.includes(camera.id) ? 'secondary' : 'primary'}
 >
@@ -338,7 +334,6 @@ const ControlCenter = () => {
                 onClick={handleCloseEditDialog}
               />
             <DialogContent>
-              {/* Add your dialog content here */}
               {/* <Typography fontSize="14px" sx={commonStyles}>View Name</Typography> */}
               <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined" sx={commonStyles}/>
               {/* <Typography pt={1} fontSize="14px" sx={commonStyles}>Add Camera</Typography> */}
@@ -400,7 +395,6 @@ const ControlCenter = () => {
             </DialogActions>
           </Dialog>
 
-          {/* {Delete Dialog} */}
           <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog} maxWidth="sm"  >
           <Typography backgroundColor=" #2465e9" color="white" p={2}>Delete view</Typography>
             <CloseIcon
@@ -416,7 +410,6 @@ const ControlCenter = () => {
                 onClick={handleCloseDeleteDialog}
               />
                  <DialogContent>
-              {/* Add your dialog content here */}
               <Typography sx={commonStyles}>Please confirm to Delete "New Camera View"</Typography>
               </DialogContent>
               <DialogActions sx={{display:"flex", justifyContent:"center", alignItems:"center",textDecoration:"capitalize"}}>
@@ -428,7 +421,6 @@ const ControlCenter = () => {
 
           </Dialog>
 
-            {/* {Duplicate Dialog} */}
             <Dialog open={openDuplicateDialog} onClose={handleCloseDuplicateDialog} maxWidth="xl"  >
           <Typography backgroundColor=" #2465e9" color="white" p={2}>Duplicate view</Typography>
             <CloseIcon
@@ -444,7 +436,6 @@ const ControlCenter = () => {
                 onClick={handleCloseDeleteDialog}
               />
                  <DialogContent>
-              {/* Add your dialog content here */}
               <Typography sx={commonStyles} width="500px">Add New Name</Typography>
               <TextField fullWidth size='small' id="outlined-basic" label="Enter view name here" variant="outlined"  margin="dense" sx={commonStyles}/>
               </DialogContent>

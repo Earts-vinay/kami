@@ -1,5 +1,3 @@
-// CameraMap.js
-
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
@@ -7,7 +5,6 @@ const CameraMap = () => {
   const locations = [
     { lat: 17.385044, lng: 78.486671 },
     { lat: 17.395044, lng: 78.496671 },
-    // Add more locations as needed
   ];
 
   const defaultCenter = locations && locations.length > 0 ? locations[0] : { lat: 17.385044, lng: 78.486671 };

@@ -1,139 +1,11 @@
-
-
-// import React, { useState } from 'react';
-// import { Navbar } from '../components';
-// import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment, TablePagination } from '@mui/material';
-// import SearchIcon from '@mui/icons-material/Search';
-// import Switch from '@mui/material/Switch';
-
-// const Devices = () => {
-//   const pageSizeOptions = [4, 8, 20];
-
-//   const [page, setPage] = useState(0);
-//   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
-
-//   const alertsData = [
-//     { id: 1, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone A', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline",  },
-//     { id: 2, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone B', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-//     { id: 3, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone C', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline",  },
-//     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-//     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-//     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-//     { id: 4, image: 'assets/images/car.jpg', camera: 'Camera 1', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', status:"Offline" ,  },
-//     // Add more data as needed
-//   ];
-
-//   const [searchTerm, setSearchTerm] = useState('');
-//   const [addInfoDropdown, setAddInfoDropdown] = useState('');
-
-//   const handleAddInfoChange = (event) => {
-//     setAddInfoDropdown(event.target.value);
-//   };
-
-//   const filteredData = alertsData.filter(alert =>
-//     alert.camera.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//     alert.zone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//     alert.pole.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//     alert.eventType.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   const handleChangePage = (event, newPage) => {
-//     setPage(newPage);
-//   };
-
-//   const handleChangeRowsPerPage = (event) => {
-//     setRowsPerPage(parseInt(event.target.value, 10));
-//     setPage(0);
-//   };
-
-//   const paginatedData = filteredData.slice(page * rowsPerPage, (page + 1) * rowsPerPage);
-
-//   return (
-//     <div>
-//       <Navbar />
-//       <Container maxWidth="xl" sx={{height:"55vh"}}>
-//         <Box sx={{ backgroundColor: "#eff2fd", width: "100%", marginTop: "10px", borderRadius: "10px" }}>
-//           <Box sx={{ pt: 2, textAlign: "end", px: 2 }}>
-//             <TextField
-//               label="Search"
-//               variant="outlined"
-//               value={searchTerm}
-//               onChange={(e) => setSearchTerm(e.target.value)}
-//               style={{ marginBottom: '20px' }}
-//               size="small"
-//               InputProps={{
-//                 endAdornment: (
-//                   <InputAdornment position="end">
-//                     <SearchIcon />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//               sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", }}
-//             />
-//           </Box>
-
-//           <TableContainer component={Paper} sx={{ backgroundColor: "transparent" }}>
-//             <Table>
-//               <TableHead>
-//                 <TableRow>
-//                   <TableCell></TableCell>
-//                   <TableCell>Device Name</TableCell>
-//                   <TableCell>Device ID</TableCell>
-//                   <TableCell>Pole</TableCell>
-//                   <TableCell>Camera Model</TableCell>
-//                   <TableCell>Status</TableCell>
-//                   <TableCell> Controls </TableCell>
-//                 </TableRow>
-//               </TableHead>
-//               <TableBody>
-//                 {paginatedData.map((row, index) => (
-//                   <TableRow key={row.id}>
-//                     <TableCell>
-//                       <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '100px', height: '80px', borderRadius: "5px" }} />
-//                     </TableCell>
-//                     <TableCell>{row.camera}</TableCell>
-//                     <TableCell>{row.zone}</TableCell>
-//                     <TableCell>{row.pole}</TableCell>
-//                     <TableCell>{row.eventType}</TableCell>
-//                     <TableCell>{row.status} </TableCell>
-//                     <TableCell>
-//                     <Switch />
-//                     </TableCell>
-//                   </TableRow>
-//                 ))}
-//               </TableBody>
-//             </Table>
-//           </TableContainer>
-
-//        <Box sx={{textAlign:"center"}}>
-//        <TablePagination
-//             rowsPerPageOptions={pageSizeOptions}
-//             component="div"
-//             count={filteredData.length}
-//             rowsPerPage={rowsPerPage}
-//             page={page}
-//             onPageChange={handleChangePage}
-//             onRowsPerPageChange={handleChangeRowsPerPage}
-//             sx={{ backgroundColor: "transparent", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px",textAlign:"center" }}
-//           />
-//        </Box>
-//         </Box>
-//       </Container>
-//     </div>
-//   );
-// }
-
-// export default Devices;
-
-
 import React, { useState } from 'react';
 import { Navbar } from '../components';
 import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment, Typography, Popover } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import Pagination from '@mui/material/Pagination';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import moment from 'moment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -148,7 +20,7 @@ const Devices = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
-  const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+  const [anchorEl, setAnchorEl] = useState(null); 
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleClick = (event) => {
@@ -167,8 +39,7 @@ const Devices = () => {
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
-    setAnchorEl(null); // Close the Popover after selecting a date
-    // You can use the selected date as needed in your application
+    setAnchorEl(null); 
   };
 
   const alertsData = [
@@ -179,7 +50,6 @@ const Devices = () => {
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Online", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 Cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: 'Linkdome Bullet', status: "Offline", },
-    // Add more data as needed
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -218,7 +88,7 @@ const Devices = () => {
         }}>
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: 2, gap: "25px", px: 2 }}>
           <Box display="flex" alignItems="center" gap={2}>
-              <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
+              <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> 
               <Box >
                 <Box >
                   <Typography sx={{ color: "#2465e9", ...commonStyles,fontSize:"12px"  }}>

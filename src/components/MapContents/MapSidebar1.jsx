@@ -3,7 +3,7 @@ import { Box, Container, IconButton, Paper, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SnowshoeingIcon from "@mui/icons-material/Snowshoeing";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import moment from "moment"; // Make sure to install moment library
+import moment from "moment"; 
 const MapSidebar1 = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -37,7 +37,6 @@ const MapSidebar1 = () => {
                   border: "solid 1px #fff",borderRadius:"10px"}}
                 >
                   <div style={{ padding: "0px" }}>
-                    {/* Implement date and time using moment */}
                     {isSidebarOpen && (
                       <Typography
                         variant="body2"
@@ -162,7 +161,6 @@ const MapSidebar1 = () => {
                 {/* Main Content */}
                 <div style={{ flex: 1, padding: "20px" }}>
                   <h1>Main Content</h1>
-                  {/* Add your main content here */}
                 </div>
               </div>
    </>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styled from '@mui/system/styled';  // Add this line
+import styled from '@mui/system/styled';  
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import moment from "moment";
 import SearchIcon from '@mui/icons-material/Search';
 import { Container, Box, Tabs, Tab, TextField, IconButton, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, InputAdornment, Typography, Card, CardMedia, CardContent, Button, Popover } from '@mui/material';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
@@ -17,7 +17,7 @@ const YourComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [alignment, setAlignment] = useState('map');
   const [selectedDate, setSelectedDate] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+  const [anchorEl, setAnchorEl] = useState(null); 
   const handleDateSelect = (date) => {
       setSelectedDate(date);
 
@@ -40,7 +40,6 @@ const handleClose = () => {
   };
 
 
-  // Example data array (replace it with your actual data)
   const dataArray = [
     { image: 'assets/images/car.jpg', zone: 'Camera 1', pole: 'Pole 1', camera: 'Online' },
     { image: 'assets/images/car.jpg', zone: 'Camera 2', pole: 'Pole 2', camera: 'Online' },
@@ -50,7 +49,6 @@ const handleClose = () => {
     { image: 'assets/images/car.jpg', zone: 'Camera 6', pole: 'Pole 2', camera: 'Online' },
     { image: 'assets/images/car.jpg', zone: 'Camera 7', pole: 'Pole 2', camera: 'Online' },
     { image: 'assets/images/car.jpg', zone: 'Camera 8', pole: 'Pole 2', camera: 'Online' },
-    // Add more data as needed
   ];
 
   return (
@@ -129,7 +127,7 @@ const handleClose = () => {
           {/* Search Bar */}
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", gap: "25px", p: 1, backdropFilter: " blur(5px)", boxShadow: "-1px 6px 31px 0 rgba(25, 96, 159, 0.1)", backgroundColor: '#2465e9' }}>
                             <Box display="flex" alignItems="center" gap={2}>
-                                <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{ color: "white", cursor: "pointer" }} /> {/* Toggle the visibility of DateTimePicker */}
+                                <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{ color: "white", cursor: "pointer" }} /> 
                                 <Box >
                                     <Box >
                                         <Typography sx={{ color: "white", ...commonStyles,fontSize:"12px" }}>

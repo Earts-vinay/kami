@@ -6,7 +6,6 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import moment from 'moment';
 
 const SystemStats = () => {
-  // Dummy data for charts
   const pieChartData = [
     { name: 'Online', value: 50 },
     { name: 'Offline', value: 20 },
@@ -19,7 +18,6 @@ const SystemStats = () => {
     { timestamp: '10:00', value1: 2, value2: 3 },
   ];
 
-  // Dummy data for table
   const tableData = [
     { camera: 'Camera 1', lastOfflineTime: '2022-02-27 10:30:00', offlineTime: 120 },
     { camera: 'Camera 2', lastOfflineTime: '2022-02-27 12:45:00', offlineTime: 60 },
@@ -50,8 +48,8 @@ const SystemStats = () => {
     title: {
       text: 'Camera Paired',
       style: {
-        color: '#003A6F', // Set the color of the title
-        fontWeight: 'normal' // Set the font weight to normal
+        color: '#003A6F', 
+        fontWeight: 'normal' 
       }
     },
     legend: {
@@ -111,8 +109,8 @@ const SystemStats = () => {
     title: {
       text: 'Line Chart 1',
       style: {
-        color: '#003A6F', // Set the color of the title
-        fontWeight: 'normal' // Set the font weight to normal
+        color: '#003A6F', 
+        fontWeight: 'normal' 
       }
         },
     markers: {
@@ -153,31 +151,31 @@ const SystemStats = () => {
       enabled: false
     },
     stroke: {
-      curve: 'straight', // Set curve to 'straight' for sharp lines
+      curve: 'straight', 
       width: 5,
-      lineCap: 'butt' // Set lineCap to 'butt' for sharp line endings
+      lineCap: 'butt' 
     },
     title: {
       text: 'Paired Camera Status (all)',
       style: {
-        color: '#003A6F', // Set the color of the title
-        fontWeight: 'normal' // Set the font weight to normal
+        color: '#003A6F', 
+        fontWeight: 'normal' 
       } 
        },
     markers: {
-      show: false, // Set show to false to hide markers (dots)
+      show: false, 
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'], // Make horizontal lines transparent
+        colors: ['transparent', 'transparent'], 
         opacity: 0.5
       },
       column: {
-        colors: ['transparent', 'transparent'] // Make vertical lines transparent
+        colors: ['transparent', 'transparent'] 
       }
     },
     xaxis: {
-      categories: ['08:00 AM', '12:00 PM', '04:00 PM', '08:00 PM'], // Display only four values
+      categories: ['08:00 AM', '12:00 PM', '04:00 PM', '08:00 PM'], 
       labels: {
         style: {
           fontSize: '14px',
@@ -194,7 +192,7 @@ const SystemStats = () => {
           colors: '#666'
         },
         formatter: function (value) {
-          return value.toString(); // Customize y-axis labels as needed
+          return value.toString(); 
         }
       }
     },
@@ -217,12 +215,12 @@ const SystemStats = () => {
       {
         name: "Desktops",
         data: [5, 300, 400, 400, 400, 300, 0],
-        color: "#BBA1F7" // Color for the first line
+        color: "#BBA1F7" 
       },
       {
         name: "Laptops",
         data: [10, 200, 300, 350, 400, 390, 270],
-        color: "#1BBAFD" // Color for the second line
+        color: "#1BBAFD" 
       },
     ],
     chart: {
@@ -243,9 +241,9 @@ const SystemStats = () => {
         autoSelected: 'zoom'
       },
       animations: {
-        enabled: true, // Enable animations
-        easing: 'easeinout', // Use easing function
-        speed: 800, // Set animation speed
+        enabled: true, 
+        easing: 'easeinout', 
+        speed: 800, 
         animateGradually: {
           enabled: true,
           delay: 150
@@ -260,21 +258,21 @@ const SystemStats = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth', // Make the line curve smooth
-      width: 3, // Set the width of the line
-      lineCap: 'round' // Make line caps round
+      curve: 'smooth', 
+      width: 3, 
+      lineCap: 'round' 
     },
     title: {
       text: 'Alerts Raised',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
         fontSize: "15px",
       }
     },
     markers: {
-      size: 5, // Set the size of markers
-      colors: ['#BBA1F7', '#1BBAFD', '#FF5733'], // Set marker color
+      size: 5, 
+      colors: ['#BBA1F7', '#1BBAFD', '#FF5733'], 
       strokeColors: '#fff',
       strokeWidth: 2,
       hover: {
@@ -283,32 +281,32 @@ const SystemStats = () => {
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'], // Make horizontal lines transparent
+        colors: ['transparent', 'transparent'], 
         opacity: 0.5
       },
       column: {
-        colors: ['transparent', 'transparent'] // Make vertical lines transparent
+        colors: ['transparent', 'transparent'] 
       }
     },
     xaxis: {
       categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px', 
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         },
-        rotate: -45, // Rotate labels for better adjustment
-        offsetY: 0, // Offset to adjust label position
-        offsetX: 0 // Offset to adjust label position
+        rotate: -45, 
+        offsetY: 0, 
+        offsetX: 0 
       }
     },
     yaxis: {
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px', 
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         }
       }
     },
@@ -331,7 +329,6 @@ const SystemStats = () => {
   const navigate = useNavigate();
 
   const handleTableRowClick = (row) => {
-    // Assuming you have a route for the camera screen with the camera ID as a parameter
     navigate(`/camera`);
   };
 
@@ -348,7 +345,6 @@ const SystemStats = () => {
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'P01', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24", status: 'Online' },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'P01', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24", status: 'Offline' },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'P01', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24", status: 'Online' },
-    // Add more data as needed
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -387,19 +383,19 @@ const SystemStats = () => {
       <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={1} gap={2}>
         <Grid container spacing={2.5}>
          
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 3 */}
               <ApexCharts options={lineChartOptions2} series={lineChartOptions2.series} type="line" height={350} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 2 */}
               <ApexCharts options={pieChartOptions} series={pieChartOptions.series} type="pie" height={395} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 1 */}
               <ApexCharts options={lineChartOptions} series={lineChartOptions.series} type="line" height={350} />

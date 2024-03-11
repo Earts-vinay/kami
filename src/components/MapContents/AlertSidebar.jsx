@@ -56,7 +56,7 @@ const AlertSidebar = ({ selectedMarker, onClose }) => {
             zIndex: 1000,
             borderRadius: '5px',
             position: 'absolute',
-            transform: 'translate(0, 0)', // Add this line
+            transform: 'translate(0, 0)', 
               background:
                 'linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)',
             }}

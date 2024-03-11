@@ -30,7 +30,7 @@ const Insights = () => {
   const TabPanel = ({ value, index, children }) => (
     <div hidden={value !== index}>
       {value === index && (
-        <Box p={0}>{/* Set padding to 0px here */}
+        <Box p={0}>
           {children}
         </Box>
       )}

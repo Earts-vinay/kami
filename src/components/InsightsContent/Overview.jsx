@@ -99,9 +99,9 @@ const Overview = () => {
         autoSelected: 'zoom'
       },
       animations: {
-        enabled: true, // Enable animations
-        easing: 'easeinout', // Use easing function
-        speed: 800, // Set animation speed
+        enabled: true, 
+        easing: 'easeinout', 
+        speed: 800, 
         animateGradually: {
           enabled: true,
           delay: 150
@@ -116,21 +116,21 @@ const Overview = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth', // Make the line curve smooth
-      width: 3, // Set the width of the line
-      lineCap: 'round' // Make line caps round
+      curve: 'smooth', 
+      width: 3, 
+      lineCap: 'round' 
     },
-    colors: ['#BBA1F7'], // Set the color of the line
+    colors: ['#BBA1F7'], 
     title: {
       text: 'Alerts Raised',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     },
     markers: {
-      size: 5, // Set the size of markers
-      colors: ['#BBA1F7'], // Set marker color
+      size: 5, 
+      colors: ['#BBA1F7'], 
       strokeColors: '#fff',
       strokeWidth: 2,
       hover: {
@@ -139,32 +139,32 @@ const Overview = () => {
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'], // Make horizontal lines transparent
+        colors: ['transparent', 'transparent'], 
         opacity: 0.5
       },
       column: {
-        colors: ['transparent', 'transparent'] // Make vertical lines transparent
+        colors: ['transparent', 'transparent'] 
       }
     },
     xaxis: {
       categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px',
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         },
-        rotate: -45, // Rotate labels for better adjustment
-        offsetY: 0, // Offset to adjust label position
-        offsetX: 0 // Offset to adjust label position
+        rotate: -45, 
+        offsetY: 0, 
+        offsetX: 0 
       }
     },
     yaxis: {
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px', 
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         }
       }
     },
@@ -209,7 +209,7 @@ const Overview = () => {
     title: {
       text: 'Camera Paired',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     },
@@ -242,12 +242,12 @@ const Overview = () => {
       {
         name: "Online",
         data: [5, 300, 400, 400, 400, 300, 200],
-        color: "#BBA1F7" // Color for the first line
+        color: "#BBA1F7" 
       },
       {
         name: "Offline",
         data: [10, 200, 300, 350, 400, 390, 270, 120, 0],
-        color: "#1BBAFD" // Color for the second line
+        color: "#1BBAFD" 
       },
     ],
     chart: {
@@ -268,9 +268,9 @@ const Overview = () => {
         autoSelected: 'zoom'
       },
       animations: {
-        enabled: true, // Enable animations
+        enabled: true, 
         easing: 'easeinout', // Use easing function
-        speed: 800, // Set animation speed
+        speed: 800, 
         animateGradually: {
           enabled: true,
           delay: 150
@@ -285,20 +285,20 @@ const Overview = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth', // Make the line curve smooth
-      width: 3, // Set the width of the line
-      lineCap: 'round' // Make line caps round
+      curve: 'smooth', 
+      width: 3, 
+      lineCap: 'round' 
     },
     title: {
       text: 'Camera Status',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     },
     markers: {
-      size: 5, // Set the size of markers
-      colors: ['#BBA1F7', '#1BBAFD', '#FF5733'], // Set marker color
+      size: 5, 
+      colors: ['#BBA1F7', '#1BBAFD', '#FF5733'], 
       strokeColors: '#fff',
       strokeWidth: 2,
       hover: {
@@ -307,11 +307,11 @@ const Overview = () => {
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'], // Make horizontal lines transparent
+        colors: ['transparent', 'transparent'], 
         opacity: 0.5
       },
       column: {
-        colors: ['transparent', 'transparent'] // Make vertical lines transparent
+        colors: ['transparent', 'transparent'] 
       }
     },
     xaxis: {
@@ -322,9 +322,9 @@ const Overview = () => {
           fontWeight: 400,
           colors: '#666' // Set label color
         },
-        rotate: -45, // Rotate labels for better adjustment
-        offsetY: 0, // Offset to adjust label position
-        offsetX: 0 // Offset to adjust label position
+        rotate: -45, 
+        offsetY: 0, 
+        offsetX: 0 
       }
     },
     yaxis: {
@@ -374,7 +374,7 @@ const Overview = () => {
                   backdropFilter: "blur(20px)",
                   opacity: "0.9",
                   border: '1px solid white',
-                  height: '160px', // Adjust height as needed
+                  height: '160px', 
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -424,19 +424,19 @@ const Overview = () => {
 
       <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={2.5} gap={2}>
         <Grid container spacing={2.5}>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 1 */}
               <ApexCharts options={lineChartOptions} series={lineChartOptions.series} type="line" height={350} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 2 */}
               <ApexCharts options={pieChartOptions} series={pieChartOptions.series} type="pie" height={395} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 3 */}
               <ApexCharts options={lineChartOptions2} series={lineChartOptions2.series} type="line" height={350} />

@@ -29,14 +29,10 @@ const ForgetPass = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Your login logic here
-        // Assuming login is successful, navigate to the map page
         // navigate('/');
     };
 
     const handleForgotPassword = () => {
-        // Add logic to navigate to the forgot password page or show a modal
-        // For example:
         navigate('/');
     };
 

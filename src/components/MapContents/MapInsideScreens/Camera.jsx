@@ -6,8 +6,8 @@ import moment from "moment";
 import { useNavigate } from 'react-router-dom';
 import CameraVideo from './CameraContents/CameraVideo';
 import CameraMap from './CameraContents/CameraMap';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; // Import StaticDateTimePicker
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; // Import LocalizationProvider
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker'; 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
@@ -18,7 +18,7 @@ const Camera = () => {
     const [value, setValue] = React.useState(0);
     const [selectedTab, setSelectedTab] = useState(0);
     const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+    const [anchorEl, setAnchorEl] = useState(null); 
     const [selectedDate, setSelectedDate] = useState(null);
     const handleDateSelect = (date) => {
         setSelectedDate(date);
@@ -33,7 +33,6 @@ const Camera = () => {
     };
 
     const handleArrowClick = () => {
-        // Navigate to the map screen
         navigate('/map');
     };
 
@@ -56,7 +55,6 @@ const Camera = () => {
         { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
         { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
         { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-        // Add more data as needed
     ];
 
     const buttonInformationArray = [
@@ -68,7 +66,6 @@ const Camera = () => {
         { label: 'Camera Z46', onClick: () => console.log('Button 2 clicked') },
         { label: 'Camera Z45', onClick: () => console.log('Button 1 clicked') },
         { label: 'Camera Z46', onClick: () => console.log('Button 2 clicked') },
-        // Add more buttons as needed
     ];
     return (
 
@@ -138,7 +135,6 @@ const Camera = () => {
                         </Box>
                     </Box>
 
-                    {/* Left image and right information card */}
                     <Box display="flex" backgroundColor="white" borderRadius={1} marginX={2}  >
                         <Box width="60%">
                             <Card sx={{ display: 'flex', marginY: "10px", alignItems: "center", border: "0px", cursor: "pointer", mx: "5px" }} >
@@ -191,11 +187,10 @@ const Camera = () => {
                 </Box>
 
                 <Box width="40%" backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)" sx={{ backdropFilter: "blur(5px)", boxShadow: "0 0 5px 0 rgba(25, 96, 159, 0.1)", border: "solid 2px #fff", borderRadius: "10px" }}>
-                    {/* Header with search bar */}
                     <Box sx={{ backgroundColor: "#2465e9", padding: "10px", borderRadius: "10px 10px 0px 0px", display: "flex", justifyContent: "flex-end", position: "sticky", top: 0, zIndex: 1, }}>
                         <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", gap: "25px", px: 2, backdropFilter: " blur(5px)", boxShadow: "-1px 6px 31px 0 rgba(25, 96, 159, 0.1)", backgroundColor: '#2465e9' }}>
                             <Box display="flex" alignItems="center" gap={2}>
-                                <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{ color: "white", cursor: "pointer" }} /> {/* Toggle the visibility of DateTimePicker */}
+                                <CalendarMonthIcon onClick={handleClick} fontSize="large" sx={{ color: "white", cursor: "pointer" }} />
                                 <Box >
                                     <Box >
                                         <Typography sx={{ color: "white", ...commonStyles,fontSize:"12px"  }}>

@@ -67,12 +67,12 @@ const TrafficComponent = () => {
         enabled: false
       },
       toolbar: {
-        show: false // Disable the toolbar
+        show: false 
       },
       animations: {
-        enabled: true, // Enable animations
-        easing: 'easeinout', // Use easing function
-        speed: 800, // Set animation speed
+        enabled: true, 
+        easing: 'easeinout', 
+        speed: 800, 
         animateGradually: {
           enabled: true,
           delay: 150
@@ -87,21 +87,21 @@ const TrafficComponent = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth', // Make the line curve smooth
-      width: 3, // Set the width of the line
-      lineCap: 'round' // Make line caps round
+      curve: 'smooth', 
+      width: 3, 
+      lineCap: 'round' 
     },
-    colors: ['#BBA1F7'], // Set the color of the line
+    colors: ['#BBA1F7'], 
     title: {
       text: 'People Entry & Occupancy',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     },
     markers: {
-      size: 5, // Set the size of markers
-      colors: ['#BBA1F7'], // Set marker color
+      size: 5, 
+      colors: ['#BBA1F7'], 
       strokeColors: '#fff',
       strokeWidth: 2,
       hover: {
@@ -110,32 +110,32 @@ const TrafficComponent = () => {
     },
     grid: {
       row: {
-        colors: ['transparent', 'transparent'], // Make horizontal lines transparent
+        colors: ['transparent', 'transparent'], 
         opacity: 0.5
       },
       column: {
-        colors: ['transparent', 'transparent'] // Make vertical lines transparent
+        colors: ['transparent', 'transparent'] 
       }
     },
     xaxis: {
       categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px', 
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         },
-        rotate: -45, // Rotate labels for better adjustment
-        offsetY: 0, // Offset to adjust label position
-        offsetX: 0 // Offset to adjust label position
+        rotate: -45, 
+        offsetY: 0, 
+        offsetX: 0 
       }
     },
     yaxis: {
       labels: {
         style: {
-          fontSize: '14px', // Set label font size
+          fontSize: '14px', 
           fontWeight: 400,
-          colors: '#666' // Set label color
+          colors: '#666' 
         }
       }
     },
@@ -180,7 +180,7 @@ const TrafficComponent = () => {
     title: {
       text: 'Vehicle Entry & Occupancy',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     },
@@ -242,9 +242,9 @@ const TrafficComponent = () => {
         autoSelected: 'zoom'
       },
       animations: {
-        enabled: true, // Enable animations
-        easing: 'easeinout', // Use easing function
-        speed: 800, // Set animation speed
+        enabled: true, 
+        easing: 'easeinout', 
+        speed: 800, 
         animateGradually: {
           enabled: true,
           delay: 150
@@ -296,9 +296,9 @@ const TrafficComponent = () => {
           fontWeight: 400,
           colors: '#666' // Set label color
         },
-        rotate: -45, // Rotate labels for better adjustment
-        offsetY: 0, // Offset to adjust label position
-        offsetX: 0 // Offset to adjust label position
+        rotate: -45, 
+        offsetY: 0, 
+        offsetX: 0 
       }
     },
     yaxis: {
@@ -358,7 +358,7 @@ const TrafficComponent = () => {
     },
     plotOptions: {
       bar: {
-        columnWidth: '30%', // Adjust the width of the bars here
+        columnWidth: '30%', 
         horizontal: false,
         endingShape: 'rounded'
       }
@@ -400,12 +400,12 @@ const TrafficComponent = () => {
         horizontal: 10,
         vertical: 0
       },
-      offsetY: 2, // Adding additional offset from the top
+      offsetY: 2, 
     },
     title: {
       text: 'Entrance Zones',
       style: {
-        color: '#003A6F', // Set the color of the title
+        color: '#003A6F', 
         fontWeight: 'normal',
       }
     }
@@ -422,7 +422,7 @@ const TrafficComponent = () => {
       <Box mt={1} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <Grid container spacing={2}>
           {cardsData.map((card, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}> {/* Adjust the sizes here */}
+            <Grid item xs={12} sm={6} md={4} key={index}> 
               <Card
                 sx={{
                   borderRadius: '10px',
@@ -472,7 +472,7 @@ const TrafficComponent = () => {
 
         <Grid container spacing={2}>
           {cardsData.map((card, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}> {/* Adjust the sizes here */}
+            <Grid item xs={12} sm={6} md={4} key={index}> 
               <Card
                 sx={{
                   borderRadius: '10px',
@@ -523,19 +523,19 @@ const TrafficComponent = () => {
 
       <Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }} mt={2.5} gap={2}>
         <Grid container spacing={2.5}>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}>
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 1 */}
               <ApexCharts options={lineChartOptions} series={lineChartOptions.series} type="line" height={350} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 2 */}
               <ApexCharts options={pieChartOptions} series={pieChartOptions.series} type="pie" height={395} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}> {/* Adjust the sizes here */}
+          <Grid item xs={12} md={4}> 
             <Box style={{ backgroundColor: "white", borderRadius: "5px", padding: "15px", boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)" }}>
               {/* ApexCharts Chart 3 */}
               <ApexCharts options={lineChartOptions2} series={lineChartOptions2.series} type="line" height={350} />

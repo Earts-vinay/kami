@@ -22,13 +22,12 @@ const Alerts = () => {
   const navigate = useNavigate();
 
   const handleTableRowClick = (row) => {
-    // Assuming you have a route for the camera screen with the camera ID as a parameter
     navigate(`/camera`);
   };
   const pageSizeOptions = [4, 8, 20];
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(pageSizeOptions[0]);
-  const [anchorEl, setAnchorEl] = useState(null); // For Popover positioning
+  const [anchorEl, setAnchorEl] = useState(null); 
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleClick = (event) => {
@@ -52,7 +51,6 @@ const Alerts = () => {
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
     { id: 4, image: 'assets/images/car.jpg', camera: 'Gate 1 cam Entry', zone: 'Zone D', pole: 'Pole 1', eventType: '6TRJ244', eventStatus: "still on property", eventTime: ' 10:30 AM ', eventDate: "2024-02-24" },
-    // Add more data as needed
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -92,7 +90,7 @@ const Alerts = () => {
         }}>
           <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", py: 2, gap: "25px", px: 2 }}>
             <Box display="flex" alignItems="center" gap={2}>
-              <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> {/* Toggle the visibility of DateTimePicker */}
+              <CalendarMonthIcon onClick={handleClick} fontSize="large" color="primary" /> 
               <Box >
                 <Box >
                   <Typography sx={{ color: "#2465e9", ...commonStyles,fontSize:"12px"  }}>
@@ -210,7 +208,6 @@ const Alerts = () => {
                       >
                         <MenuItem value="" sx={commonStyles} fontWeight="bold" fontSize="16px">Open</MenuItem>
                         <MenuItem value="" sx={commonStyles} fontWeight="bold" fontSize="16px">Close</MenuItem>
-                        {/* Add more dropdown options if needed */}
                       </Select>
                     </TableCell>
                   </TableRow>

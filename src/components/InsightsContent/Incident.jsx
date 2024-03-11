@@ -46,7 +46,6 @@ const Incident = () => {
   ];
 
   useEffect(() => {
-    // Bar chart options
     const barChartOptions = {
       series: [
         {
@@ -72,7 +71,7 @@ const Incident = () => {
       },
       plotOptions: {
         bar: {
-          columnWidth: '70%', // Adjust the width of the bars here
+          columnWidth: '70%', 
           horizontal: false,
           endingShape: 'rounded'
         }
@@ -114,20 +113,19 @@ const Incident = () => {
           horizontal: 10,
           vertical: 0
         },
-        offsetY: 2, // Adding additional offset from the top
+        offsetY: 2, 
       },
       title: {
         text: 'Camera Status Overview',
         style: {
-          color: '#003A6F', // Set the color of the title
-          fontWeight: 'normal' // Set the font weight to normal
+          color: '#003A6F', 
+          fontWeight: 'normal' 
         }
       }
     };
 
 
 
-    // Donut chart options
     const donutChartOptions = {
       series: [44, 55, 41],
       chart: {
@@ -135,34 +133,34 @@ const Incident = () => {
         height: "85%",
 
         toolbar: {
-          show: true // Enable toolbar
+          show: true 
         },
 
       },
-      colors: ['#9442C8', '#E169F6', '#4472D9'], // Define three colors for each zone
-      labels: ['Zone 1', 'Zone 2', 'Zone 3'], // Label each zone
+      colors: ['#9442C8', '#E169F6', '#4472D9'], 
+      labels: ['Zone 1', 'Zone 2', 'Zone 3'], 
       title: {
         text: 'Alerts by Zone',
         style: {
-          color: '#003A6F', // Set the color of the title
-          fontWeight: 'normal' // Set the font weight to normal
+          color: '#003A6F', 
+          fontWeight: 'normal' 
         }
       },
       plotOptions: {
         pie: {
           donut: {
-            size: '90%' // Adjust the width of the zones here
+            size: '90%' 
           }
         }
       },
       legend: {
-        position: 'bottom', // Position legends below the chart
-        offsetY: 20, // Adjust this value to move the legend further down
+        position: 'bottom', 
+        offsetY: 20, 
         floating: true,
         zIndex: 1001,
         itemMargin: {
           horizontal: 10,
-          vertical: 10 // Adjust the vertical gap between legend items
+          vertical: 10 
         }
       },
       responsive: [{
@@ -175,15 +173,12 @@ const Incident = () => {
       }]
     };
 
-    // Render the bar chart
     const barChart = new ApexCharts(document.querySelector("#barChart"), barChartOptions);
     barChart.render();
 
-    // Render the donut chart
     const donutChart = new ApexCharts(document.querySelector("#donutChart"), donutChartOptions);
     donutChart.render();
 
-    // Cleanup function
     return () => {
       barChart.destroy();
       donutChart.destroy();
@@ -191,7 +186,6 @@ const Incident = () => {
   }, []);
 
   useEffect(() => {
-    // Define chart options and data
     const options = {
       series: [{
         data: [34, 44, 54, 21, 12, 43, 33, 23, 66, 66, 58]
@@ -225,8 +219,8 @@ const Incident = () => {
       title: {
         text: 'Stepline Chart',
         style: {
-          color: '#003A6F', // Set the color of the title
-          fontWeight: 'normal' // Set the font weight to normal
+          color: '#003A6F', 
+          fontWeight: 'normal' 
         }
       },
       markers: {
@@ -236,18 +230,15 @@ const Incident = () => {
       },
     };
     
-    // Render the chart
     const chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-    // Cleanup function
     return () => {
       chart.destroy();
     };
 }, []);
 
 
-  // Function to generate random data
   const generateData = (count, yrange) => {
     let i = 0;
     const series = [];
@@ -318,7 +309,7 @@ const Incident = () => {
       },
     ],
     chart: {
-      height: "100%", // Enclose "100%" in quotes
+      height: "100%", 
       type: 'heatmap',
     },
     dataLabels: {
@@ -328,8 +319,8 @@ const Incident = () => {
     title: {
       text: 'HeatMap Chart',
       style: {
-        color: '#003A6F', // Set the color of the title
-        fontWeight: 'normal' // Set the font weight to normal
+        color: '#003A6F', 
+        fontWeight: 'normal' 
       }
     },
     xaxis: {
@@ -344,11 +335,9 @@ const Incident = () => {
 
 
   useEffect(() => {
-    // Render the heatmap chart
     const chart = new ApexCharts(document.querySelector("#heatmapChart"), heatmapChartOptions);
     chart.render();
 
-    // Cleanup function
     return () => {
       chart.destroy();
     };
@@ -387,7 +376,7 @@ const Incident = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        height: '100%', // Ensure cards take full height of the container
+                        height: '100%', 
                       }}
                     >
                       <CardContent sx={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
