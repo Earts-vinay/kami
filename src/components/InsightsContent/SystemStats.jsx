@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, Select, Container, InputAdornment, Typography, Pagination, IconButton, Grid } from '@mui/material';
+import { Box, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Container, InputAdornment, Typography, Pagination, IconButton, Grid } from '@mui/material';
 import ApexCharts from 'react-apexcharts';
 import { useNavigate } from 'react-router-dom';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -370,7 +370,7 @@ const SystemStats = () => {
     setPage(0);
   };
 
-  const paginatedData = filteredData.slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+
 
   return (
     <Container maxWidth="xxl" style={{ padding: "0px !important", marginTop: "10px" }} disableGutters>
@@ -408,7 +408,7 @@ const SystemStats = () => {
   <div maxWidth="4xl" sx={{ height: "55vh" }}>
     <Box sx={{ backgroundColor: "#FFFFFF", width: "100%", marginTop: "10px", borderRadius: "10px" }}>
       <Typography variant="h6" align="left" sx={{ paddingTop: '10px', paddingLeft: "10px", color: '#003A6F' }}>Unhealthy Cameras</Typography>
-      <TableContainer sx={{ backgroundColor: "transparent" }}>
+      <TableContainer sx={{ backgroundColor: "transparent",height:"40vh" }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -421,7 +421,7 @@ const SystemStats = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.map((row, index) => (
+            {alertsData.map((row, index) => (
               <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
                 <TableCell width="20%" onClick={() => handleTableRowClick(row)}>
                   <img src={row.image} alt={`Image ${index + 1}`} style={{ width: '100%', height: 'auto', maxWidth: '150px', borderRadius: "5px" }} />
@@ -437,14 +437,7 @@ const SystemStats = () => {
         </Table>
       </TableContainer>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '15px', padding: "15px" }}>
-        <Pagination
-          count={Math.ceil(filteredData.length / rowsPerPage)}
-          color="primary"
-          page={page + 1}
-          onChange={(event, value) => handleChangePage(event, value - 1)}
-        />
-      </Box>
+      
     </Box>
   </div>
 </div>

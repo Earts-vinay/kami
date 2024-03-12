@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Navbar } from "../components";
 import {
   Box,
-  Typography,
-  Card,
-  CardContent,
-  Grid,
   TextField,
   InputAdornment,
   Container,
@@ -61,6 +57,7 @@ const Insights = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
+            flexWrap="wrap"
           >
             <Tabs
               value={selectedTab}
@@ -145,3 +142,4 @@ const Insights = () => {
 };
 
 export default Insights;
+

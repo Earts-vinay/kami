@@ -9,8 +9,6 @@ import {
 } from '@mui/material';
 import ApexCharts from 'apexcharts';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import moment from 'moment';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
