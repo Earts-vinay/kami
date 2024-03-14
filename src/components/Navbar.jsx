@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -6,7 +6,7 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link, Link as RouterLink, useLocation } from "react-router-dom";
+import { Link, Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -16,6 +16,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { ArrowDropDown } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import { FormControl, InputLabel, NativeSelect, Select } from "@mui/material";
+import axios from 'axios';
+
 const commonStyles = {
   fontFamily: "montserrat-regular"
 };
@@ -41,7 +43,9 @@ const Hello = (props) => (
   />
 );
 
+
 const Nav = (props) => (
+  
   <Box
     {...props}
     as="nav"
@@ -87,9 +91,27 @@ const Navbar = () => {
     const [fontSizeMenuAnchor, setFontSizeMenuAnchor] = React.useState(null);
 
   const [anchorElUser, setAnchorElUser] = useState();
+  const navigate = useNavigate();
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDIwMzc4LCJqdGkiOiIxLTE3MTA0MTU1NzgiLCJpYXQiOjE3MTA0MTU1NzgsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE1NTY4fQ.rQy3CbT6YEaCzvffBZ51Mv_jGANiNCCWShbKM29dbvw";
+const Authorization = `Bearer ${token}`
+
 const handleCloseUserMenu = () => {
   setAnchorElUser(null);
 };
+
+const handleLogOutUser = () =>{
+  axios.request({
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    method: "POST",
+    url: `http://35.239.192.201:9092/api/logout`
+  }).then(response => {
+    console.log(response.data);
+    setAnchorElUser(null);
+    
+  });
+}
   
   const handleOpenFontSizeMenu = (event) => {
     setFontSizeMenuAnchor(event.currentTarget);
@@ -229,7 +251,7 @@ const handleCloseUserMenu = () => {
   </Link>
 </MenuItem>
 
-<MenuItem onClick={handleCloseUserMenu} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
+<MenuItem onClick={handleLogOutUser} style={{ color: '#2465e9', fontFamily: "montserrat-regular" }}>
   <Link to="/" style={{ textDecoration: 'none', color: 'inherit',gap:"10px",display:"flex",alignItems:"center" }}>
     <img src="assets/icons/logout.svg" alt="" />
     Logout

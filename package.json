@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@vis.gl/react-google-maps": "^0.7.1",
     "apexcharts": "^3.46.0",
+    "axios": "^1.6.7",
     "dayjs": "^1.11.10",
     "google-map-react": "^2.2.1",
     "markerclustererplus": "^2.1.4",

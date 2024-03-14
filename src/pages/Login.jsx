@@ -1,41 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Container, TextField, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+ 
 const StyledContainer = styled(Container)({
     marginTop: theme => theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
 });
-
+ 
 const StyledForm = styled('form')({
     width: '100%',
     marginTop: theme => theme.spacing(1),
 });
-
+ 
 const StyledButton = styled(Button)({
     margin: theme => theme.spacing(3, 0, 2),
 });
-
+ 
 const ForgotPasswordLink = styled(Button)({
     margin: theme => theme.spacing(1, 0),
     textDecoration: 'underline',
     color: theme => theme.palette.text.secondary,
 });
-
+ 
 const Login = () => {
     const navigate = useNavigate();
-
-    const handleLogin = (e) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginResponse, setLoginResponse] = useState({});
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDI0NjQ0LCJqdGkiOiIxLTE3MTA0MTk4NDQiLCJpYXQiOjE3MTA0MTk4NDQsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE5ODM0fQ.d_MoNX0auxu1qBZaGu72typIylMQGisIfd1LVkywHIE";
+    const Authorization = `Bearer ${token}`
+ 
+    const handleLogin = async (e) => {
         e.preventDefault();
-        navigate('/map');
+   
+        const formData = new URLSearchParams();
+        formData.append('email', email);
+        formData.append('password', password);
+   
+        try {
+            const response = await fetch('http://35.239.192.201:9092/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            });
+             const data = await response.json();
+            console.log("response", data);
+            
+            //setLoginResponse(data.data);
+            let responsedata = Object.keys(data)
+            console.log("Authorization" , Authorization)
+            // Handle successful login here, e.g., redirect to another page
+            callTokenAPI ();
+           
+        } catch (error) {
+            console.error('Error logging in:', error);
+            // Handle error, e.g., display error message to the user
+        }
     };
 
+   const callTokenAPI = () =>{
+    axios.request({
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        method: "POST",
+        url: `http://35.239.192.201:9092/api/auth`
+      }).then(response => {
+        console.log(response.data);
+        navigate('/map');
+      });
+   }
+ 
     const handleForgotPassword = () => {
         navigate('/forgot-password');
     };
-
+ 
     return (
         <Container maxWidth="xl">
             <Box height="100vh" display="flex" alignItems="center" justifyContent="center"
@@ -68,10 +112,12 @@ const Login = () => {
                             required
                             fullWidth
                             id="email"
-                            label="email"
+                            label="Email"
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -83,6 +129,8 @@ const Login = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <ForgotPasswordLink onClick={handleForgotPassword} sx={{  textTransform: "capitalize", paddingY:"20px"}}>
                             Forgot Password?
@@ -102,5 +150,5 @@ const Login = () => {
         </Container>
     );
 }
-
+ 
 export default Login;
