@@ -29,17 +29,20 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginResponse, setLoginResponse] = useState({});
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDI0NjQ0LCJqdGkiOiIxLTE3MTA0MTk4NDQiLCJpYXQiOjE3MTA0MTk4NDQsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE5ODM0fQ.d_MoNX0auxu1qBZaGu72typIylMQGisIfd1LVkywHIE";
-    const Authorization = `Bearer ${token}`
+    const [token, setToken] = useState('');
+
+    // Retrieve token from localStorage
+    const storedToken = localStorage.getItem('token');
+     console.log("storedToken", storedToken);
+    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDI0NjQ0LCJqdGkiOiIxLTE3MTA0MTk4NDQiLCJpYXQiOjE3MTA0MTk4NDQsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE5ODM0fQ.d_MoNX0auxu1qBZaGu72typIylMQGisIfd1LVkywHIE";    const Authorization = `Bearer ${token}`
  
     const handleLogin = async (e) => {
         e.preventDefault();
-   
+    
         const formData = new URLSearchParams();
         formData.append('email', email);
         formData.append('password', password);
-   
+    
         try {
             const response = await fetch('http://35.239.192.201:9092/api/login', {
                 method: 'POST',
@@ -48,25 +51,32 @@ const Login = () => {
                 },
                 body: formData,
             });
-             const data = await response.json();
-            console.log("response", data);
-            
-            //setLoginResponse(data.data);
-            let responsedata = Object.keys(data)
-            console.log("Authorization" , Authorization)
+    
+            const data = await response.json();
+            //console.log("response", data);
+    
+            // Accessing the token value
+            const newToken = data?.data?.token; // Using optional chaining to avoid errors if data or data.token is undefined
+            //console.log("token", newToken);
+
+          // Store token in localStorage
+          localStorage.setItem('token', newToken);
+
+          // Update token state
+          setToken(newToken);
+    
             // Handle successful login here, e.g., redirect to another page
-            callTokenAPI ();
-           
+            callTokenAPI();
+    
         } catch (error) {
             console.error('Error logging in:', error);
             // Handle error, e.g., display error message to the user
         }
     };
-
    const callTokenAPI = () =>{
     axios.request({
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${storedToken}`
         },
         method: "POST",
         url: `http://35.239.192.201:9092/api/auth`

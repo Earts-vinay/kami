@@ -92,8 +92,10 @@ const Navbar = () => {
 
   const [anchorElUser, setAnchorElUser] = useState();
   const navigate = useNavigate();
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDIwMzc4LCJqdGkiOiIxLTE3MTA0MTU1NzgiLCJpYXQiOjE3MTA0MTU1NzgsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE1NTY4fQ.rQy3CbT6YEaCzvffBZ51Mv_jGANiNCCWShbKM29dbvw";
-const Authorization = `Bearer ${token}`
+  // Retrieve token from localStorage
+  const storedToken = localStorage.getItem('token');
+  console.log("storedToken", storedToken);
+  const Authorization = `Bearer ${storedToken}`
 
 const handleCloseUserMenu = () => {
   setAnchorElUser(null);
@@ -102,13 +104,14 @@ const handleCloseUserMenu = () => {
 const handleLogOutUser = () =>{
   axios.request({
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${storedToken}`
     },
     method: "POST",
     url: `http://35.239.192.201:9092/api/logout`
   }).then(response => {
     console.log(response.data);
     setAnchorElUser(null);
+    navigate('/')
     
   });
 }

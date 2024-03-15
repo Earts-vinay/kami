@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import { Box, Button, Container, CssBaseline, TextField, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ const ForgotPasswordLink = styled(Button)({
 
 const ForgetPass = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -58,15 +59,17 @@ const ForgetPass = () => {
                     <Typography> No worriest! Just enter your email and we’ll send you a reset password link.</Typography>
                     <StyledForm onSubmit={handleLogin}>
                         <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="email"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
+                           variant="outlined"
+                           margin="normal"
+                           required
+                           fullWidth
+                           id="email"
+                           label="Email"
+                           name="email"
+                           autoComplete="email"
+                           autoFocus
+                           value={email}
+                           onChange={(e) => setEmail(e.target.value)}
                         />
                         <Box display="flex" alignItems="center">
 
@@ -82,6 +85,7 @@ const ForgetPass = () => {
                             variant="contained"
                             color="primary"
                             sx={{ textTransform: "capitalize", paddingY: "10px" }}
+                            
                         >
                            Send Recovery Email
                         </StyledButton>
