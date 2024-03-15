@@ -2,29 +2,33 @@ import React, { useState } from 'react';
 import { Box, Button, Container, TextField, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
- 
+import { toast } from 'react-toastify';
+import { setLoginApiResponse } from '../redux/apiResponse/loginApiSlice';
+import { useDispatch } from 'react-redux';
+import { setAuthentication, setAuthenticationError } from '../redux/apiResponse/authSlice';
+
 const StyledContainer = styled(Container)({
     marginTop: theme => theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
 });
- 
+
 const StyledForm = styled('form')({
     width: '100%',
     marginTop: theme => theme.spacing(1),
 });
- 
+
 const StyledButton = styled(Button)({
     margin: theme => theme.spacing(3, 0, 2),
 });
- 
+
 const ForgotPasswordLink = styled(Button)({
     margin: theme => theme.spacing(1, 0),
     textDecoration: 'underline',
     color: theme => theme.palette.text.secondary,
 });
- 
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -33,63 +37,79 @@ const Login = () => {
 
     // Retrieve token from localStorage
     const storedToken = localStorage.getItem('token');
-     console.log("storedToken", storedToken);
+    console.log("storedToken", storedToken);
     //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxIiwiZXhwIjoxNzExMDI0NjQ0LCJqdGkiOiIxLTE3MTA0MTk4NDQiLCJpYXQiOjE3MTA0MTk4NDQsImlzcyI6Imxpbmtkb21lIiwibmJmIjoxNzEwNDE5ODM0fQ.d_MoNX0auxu1qBZaGu72typIylMQGisIfd1LVkywHIE";    const Authorization = `Bearer ${token}`
- 
+    const dispatch = useDispatch();
+
+
     const handleLogin = async (e) => {
         e.preventDefault();
-    
+
         const formData = new URLSearchParams();
         formData.append('email', email);
         formData.append('password', password);
-    
+
         try {
-            const response = await fetch('http://35.239.192.201:9092/api/login', {
+            const apiUrl = process.env.REACT_APP_API_URL;
+            const response = await fetch(`${apiUrl}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: formData,
             });
-    
+
             const data = await response.json();
-            //console.log("response", data);
-    
-            // Accessing the token value
-            const newToken = data?.data?.token; // Using optional chaining to avoid errors if data or data.token is undefined
-            //console.log("token", newToken);
 
-          // Store token in localStorage
-          localStorage.setItem('token', newToken);
+            dispatch(setLoginApiResponse(data));
 
-          // Update token state
-          setToken(newToken);
-    
-            // Handle successful login here, e.g., redirect to another page
-            callTokenAPI();
-    
+            const newToken = data?.data?.token; 
+            localStorage.setItem('token', newToken);
+            setToken(newToken);
+
+            if (data.code !== 200) {
+                toast.error(data.msg);
+            } else {
+                callTokenAPI(newToken);
+            }
         } catch (error) {
             console.error('Error logging in:', error);
-            // Handle error, e.g., display error message to the user
+            toast.error('An error occurred while logging in');
         }
     };
-   const callTokenAPI = () =>{
-    axios.request({
-        headers: {
-          Authorization: `Bearer ${storedToken}`
-        },
-        method: "POST",
-        url: `http://35.239.192.201:9092/api/auth`
-      }).then(response => {
-        console.log(response.data);
-        navigate('/map');
-      });
-   }
- 
+
+
+    const callTokenAPI = (token) => {
+        axios.request({
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            method: "POST",
+            url: `${process.env.REACT_APP_API_URL}/api/auth`
+        }).then(response => {
+            // console.log(response.data);
+            const { data } = response.data;
+            // console.log(data);
+            if (data && data.role && data.role.level === 'company') {
+                dispatch(setAuthentication(data));
+                toast.success('Login successful');
+                navigate('/map');
+            } else {
+                throw new Error('User does not have access to map');
+            }
+        })
+        .catch(error => {
+            console.error('Error authenticating:', error);
+            dispatch(setAuthenticationError('Failed to authenticate'));
+
+            toast.error('Authentication failed');
+        });
+    }
+
     const handleForgotPassword = () => {
         navigate('/forgot-password');
     };
- 
+
     return (
         <Container maxWidth="xl">
             <Box height="100vh" display="flex" alignItems="center" justifyContent="center"
@@ -110,8 +130,10 @@ const Login = () => {
                         <Typography mt={2}>Our AI platform uses computer vision to provide home security, elder care, and commercial applications. It tracks movements of cars, license plates, and people, quickly warning of any questionable activity.</Typography>
                     </Box>
                 </Box>
-                <Box sx={{ backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", boxShadow: "0 0 15px 0 rgba(36, 101, 233, 0.3)",
-                    border: "solid 2px #fff", padding: "50px", borderRadius: "10px", marginX: "10px", width:"30%" }}>
+                <Box sx={{
+                    backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", boxShadow: "0 0 15px 0 rgba(36, 101, 233, 0.3)",
+                    border: "solid 2px #fff", padding: "50px", borderRadius: "10px", marginX: "10px", width: "30%"
+                }}>
                     <Typography component="h1" variant="h5">
                         Login
                     </Typography>
@@ -142,7 +164,7 @@ const Login = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <ForgotPasswordLink onClick={handleForgotPassword} sx={{  textTransform: "capitalize", paddingY:"20px"}}>
+                        <ForgotPasswordLink onClick={handleForgotPassword} sx={{ textTransform: "capitalize", paddingY: "20px" }}>
                             Forgot Password?
                         </ForgotPasswordLink>
                         <StyledButton
@@ -160,5 +182,5 @@ const Login = () => {
         </Container>
     );
 }
- 
+
 export default Login;
