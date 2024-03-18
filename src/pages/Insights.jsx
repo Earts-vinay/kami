@@ -14,6 +14,7 @@ import Overview from "../components/InsightsContent/Overview";
 import SystemStats from "../components/InsightsContent/SystemStats";
 import Incident from "../components/InsightsContent/Incident";
 import TrafficComponent from "../components/InsightsContent/TrafficComponent";
+import NavbarLoader from "./NavbarLoader";
 
 
 const Insights = () => {
@@ -35,7 +36,7 @@ const Insights = () => {
 
   return (
     <>
-    <Navbar />
+    <NavbarLoader  />
     <Container maxWidth="xxl" disableGutters>
       <Box
         backgroundColor="linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)"

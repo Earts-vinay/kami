@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import moment from 'moment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import NavbarLoader from "./NavbarLoader";
 
 const commonStyles = {
   fontFamily: "montserrat-regular"
@@ -79,7 +80,7 @@ const Devices = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarLoader role="propertyView" />
       <Container maxWidth="xxl" sx={{  }}>
         <Box sx={{
           backgroundColor: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",

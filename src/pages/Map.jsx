@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import {MarkerClusterer} from "@googlemaps/markerclusterer";
 import { Box } from "@mui/material";
 import { Navbar } from "../components";
+import NavbarLoader from "./NavbarLoader";
 
 export default function Intro() {
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -30,7 +31,7 @@ export default function Intro() {
   return (
     <>
       {/* Navbar component */}
-      <Navbar />
+      <NavbarLoader  />
       <div style={{ height: "80vh", maxWidth: "98vw", marginLeft: "20px", marginRight: "20px", borderRadius: "10px", overflow: "hidden"}}>
         <APIProvider apiKey={process.env.REACT_APP_API_KEY}>
           <Map

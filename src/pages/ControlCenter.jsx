@@ -30,6 +30,7 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { Navbar } from '../components';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
+import NavbarLoader from "./NavbarLoader";
 
 const commonStyles = {
   fontFamily: "montserrat-regular"
@@ -140,7 +141,7 @@ const ControlCenter = () => {
 
   return (
     <div>
-      <Navbar />
+     <NavbarLoader role="propertyView" />
       <Container maxWidth="xxl">
         <Box
           sx={{

@@ -12,6 +12,7 @@ import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import moment from 'moment';
 import { StaticDateTimePicker } from '@mui/x-date-pickers';
+import NavbarLoader from "./NavbarLoader";
 
 const commonStyles = {
   fontFamily: "montserrat-regular"
@@ -80,7 +81,7 @@ const Alerts = () => {
 
   return (
     <div>
-      <Navbar />
+     <NavbarLoader role="propertyView" />
       <Container maxWidth="xxl" sx={{ height: "55vh" }}>
         <Box sx={{
           background: "linear-gradient(119deg, #ebeffa 2%, #e8ebfd 30%, #f0ecf9 51%, #efeefb 70%, #eef7ff 100%)", backdropFilter: "blur(15px)",

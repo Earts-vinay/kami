@@ -93,7 +93,10 @@ const Login = () => {
             if (data && data.role && data.role.level === 'company') {
                 dispatch(setAuthentication(data));
                 toast.success('Login successful');
+                navigate('/navbarloader');
                 navigate('/map');
+                
+                
             } else {
                 throw new Error('User does not have access to map');
             }
